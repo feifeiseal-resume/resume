@@ -74,7 +74,7 @@ export const resumeData = {
     '近 4 年前端工程師，專精 Nuxt 3 / Vue 3 / TypeScript。轉職前曾於小型工作室擔任 PM，因此能從需求端理解專案；轉職後工作內容涵蓋客戶企業系統、企業官網與自有產品，目前獨立負責各專案前端交付。',
   jobs: [
     {
-      period: ['2024.11', '至今'] as [string, string],
+      period: ['2024.11', '2026.05'] as [string, string],
       company: '勝崨有限公司',
       location: '台中',
       title: '前端工程師',
