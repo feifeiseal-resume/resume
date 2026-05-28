@@ -76,7 +76,7 @@ body {
 
 /* Profile block */
 .sb-avatar {
-  width: 100px; height: 100px;
+  width: 150px; height: 150px;
   border-radius: 50%;
   background: var(--grad);
   display: flex; align-items: center; justify-content: center;
@@ -96,7 +96,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center;
   display: block;
 }
 
@@ -343,6 +343,13 @@ body {
   transition: border-color var(--transition), color var(--transition);
 }
 .proj-link:hover { border-bottom-color: var(--accent); color: var(--accent-deep); }
+.proj-link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+}
 .proj-link-icon { width: 10px; height: 10px; }
 
 .proj-card-tech { display: flex; flex-wrap: wrap; gap: 0.2rem; margin-bottom: 0.45rem; }

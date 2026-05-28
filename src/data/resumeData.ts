@@ -16,7 +16,7 @@ export interface Project {
   tech: string[];
   name: string;
   link?: { url: string; label: string };
-  locked?: boolean;
+  screenshots?: string[];
   description: string;
 }
 
@@ -40,6 +40,16 @@ export interface ArticleItem {
   url: string;
   meta: string;
 }
+
+function envUrlList(value: string | undefined): string[] {
+  if (!value) return [];
+  return value
+    .split(',')
+    .map((url) => url.trim())
+    .filter(Boolean);
+}
+
+const cityProbeScreenshots = envUrlList(import.meta.env.VITE_CITY_PROBE_SCREENSHOTS);
 
 export const resumeData = {
   name: '郭珮語',
@@ -114,7 +124,7 @@ export const resumeData = {
     {
       tech: ['Vue 3', 'Pinia', 'Dashcode', 'Axios'],
       name: '都市探針 City Probe · 學術研究管理平台',
-      locked: true,
+      screenshots: cityProbeScreenshots.length > 0 ? cityProbeScreenshots : undefined,
       description:
         '配合大學學術研究開發的智慧城市市民參與平台。「都市探針」倡議以人本視角推動智慧城市建設，讓市民主導資訊提供、分析、套疊與加值四階段決策流程。前端負責登入認證、權限管理、數據視覺化儀表板等核心功能，使用 Pinia 管理複雜狀態，以 Tailwind CSS 與自訂元件實作表格、圖表、表單驗證等互動元件。',
     },

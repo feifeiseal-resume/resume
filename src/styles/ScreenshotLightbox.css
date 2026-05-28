@@ -1,0 +1,165 @@
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(12, 18, 48, 0.72);
+  backdrop-filter: blur(4px);
+}
+
+.lightbox-dialog {
+  width: min(920px, 100%);
+  max-height: min(90vh, 720px);
+  display: flex;
+  flex-direction: column;
+  background: var(--main-bg);
+  border-radius: 14px;
+  box-shadow:
+    0 8px 32px rgba(12, 18, 48, 0.35),
+    0 24px 80px rgba(12, 18, 48, 0.45);
+  overflow: hidden;
+}
+
+.lightbox-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1rem 0.75rem;
+  border-bottom: 1px solid var(--main-border);
+}
+
+.lightbox-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--main-text);
+  line-height: 1.4;
+}
+
+.lightbox-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--main-text-dim);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.lightbox-close:hover {
+  background: var(--accent-light);
+  color: var(--accent-deep);
+}
+
+.lightbox-close svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.lightbox-carousel {
+  flex: 1;
+  min-height: 0;
+  padding: 0.75rem 0.5rem;
+}
+
+.lightbox-embla {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 100%;
+}
+
+.lightbox-embla .embla-viewport {
+  flex: 1;
+  min-width: 0;
+}
+
+.lightbox-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: min(68vh, 560px);
+}
+
+.carousel-img {
+  display: block;
+  max-width: 100%;
+  max-height: min(68vh, 560px);
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--main-border);
+  box-shadow: 0 4px 24px rgba(78, 96, 176, 0.12);
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.carousel-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.65rem 1rem 1rem;
+  border-top: 1px solid var(--main-border);
+}
+
+.carousel-counter {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--main-text-faint);
+}
+
+.carousel-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.carousel-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--main-border-mid);
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.carousel-dot.active {
+  background: var(--accent);
+  transform: scale(1.15);
+}
+
+.carousel-dot:hover:not(.active) {
+  background: var(--accent-deep);
+}
+
+@media (max-width: 680px) {
+  .lightbox-overlay {
+    padding: 0.5rem;
+  }
+
+  .lightbox-carousel {
+    padding: 0.5rem 0.25rem;
+  }
+
+  .lightbox-embla .embla-nav {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .lightbox-slide,
+  .carousel-img {
+    max-height: min(58vh, 480px);
+    min-height: min(58vh, 480px);
+  }
+}

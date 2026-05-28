@@ -2,16 +2,17 @@ import { useState } from 'react';
 import {
   IconBrandGithub,
   IconExternalLink,
-  IconLock,
   IconMail,
   IconMapPin,
   IconPhone,
+  IconPhoto,
 } from '@tabler/icons-react';
 import type { ContactItem } from '../data/resumeData';
 import { resumeData } from '../data/resumeData';
+import ScreenshotLightbox from './ScreenshotLightbox';
 import '../styles/Resume.css';
 
-const AVATAR_SRC = 'https://picsum.photos/200/300';
+const AVATAR_SRC = import.meta.env.VITE_AVATAR_URL ?? '';
 
 function Avatar({ name }: { name: string }) {
   const [imgError, setImgError] = useState(false);
@@ -74,6 +75,11 @@ export default function Resume() {
     certifications,
     articles,
   } = resumeData;
+
+  const [lightbox, setLightbox] = useState<{
+    title: string;
+    images: string[];
+  } | null>(null);
 
   return (
     <>
@@ -188,11 +194,17 @@ export default function Resume() {
                 <div key={proj.name} className="proj-card">
                   <div className="proj-card-header">
                     <div className="proj-name">{proj.name}</div>
-                    {proj.locked ? (
-                      <span className="proj-link">
-                        <IconLock className="proj-link-icon" aria-hidden="true" stroke={1.5} />
-                        僅截圖，不公開
-                      </span>
+                    {proj.screenshots ? (
+                      <button
+                        type="button"
+                        className="proj-link proj-link-btn"
+                        onClick={() =>
+                          setLightbox({ title: proj.name, images: proj.screenshots! })
+                        }
+                      >
+                        <IconPhoto className="proj-link-icon" aria-hidden="true" stroke={1.5} />
+                        <span className="proj-link">檢視截圖</span>
+                      </button>
                     ) : (
                       proj.link && (
                         <a
@@ -240,6 +252,15 @@ export default function Resume() {
           </div>
         </main>
       </div>
+
+      {lightbox && (
+        <ScreenshotLightbox
+          title={lightbox.title}
+          images={lightbox.images}
+          open={!!lightbox}
+          onClose={() => setLightbox(null)}
+        />
+      )}
     </>
   );
 }
