@@ -93,7 +93,9 @@ export default function Resume() {
             <Avatar name={name} />
             <div className="sb-name">{name}</div>
             <div className="sb-title-en">{titleEn}</div>
-            <span className="sb-pill">{titlePill}</span>
+            <div className="sb-pill">
+              <span className="sb-pill-text">{titlePill}</span>
+            </div>
           </div>
 
           {/* Contact */}
