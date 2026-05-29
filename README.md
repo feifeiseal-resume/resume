@@ -20,12 +20,14 @@ npm run dev
 |------|------|
 | `VITE_AVATAR_URL` | 履歷大頭照 URL |
 | `VITE_CITY_PROBE_SCREENSHOTS` | 都市探針專案截圖，多張 URL 以逗號分隔 |
+| `VITE_OG_IMAGE_URL` | Open Graph / Twitter 分享預覽圖 URL |
 
 範例：
 
 ```env
 VITE_AVATAR_URL=https://assets.josui.space/avatar.png
 VITE_CITY_PROBE_SCREENSHOTS=https://assets.josui.space/city-probe-1.png,https://assets.josui.space/city-probe-2.png
+VITE_OG_IMAGE_URL=https://assets.josui.space/resume-og.jpeg
 ```
 
 > Vite 會在 **build 時** 將 `VITE_` 前綴的變數寫入前端程式碼，並非執行時讀取。這些 URL 會出現在打包後的 JS 中，不屬於機密資料。
@@ -63,6 +65,7 @@ npm run preview
 3. 至 **Settings → Environment variables** 新增：
    - `VITE_AVATAR_URL`
    - `VITE_CITY_PROBE_SCREENSHOTS`
+   - `VITE_OG_IMAGE_URL`
 
 4. Production 與 Preview 環境皆需設定（若 Preview 也要顯示圖片）
 5. 儲存後重新部署（Redeploy）
@@ -106,6 +109,7 @@ jobs:
         env:
           VITE_AVATAR_URL: ${{ vars.VITE_AVATAR_URL }}
           VITE_CITY_PROBE_SCREENSHOTS: ${{ vars.VITE_CITY_PROBE_SCREENSHOTS }}
+          VITE_OG_IMAGE_URL: ${{ vars.VITE_OG_IMAGE_URL }}
 
       - uses: actions/upload-pages-artifact@v3
         with:
