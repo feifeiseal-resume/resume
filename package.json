@@ -12,8 +12,7 @@
     "@tabler/icons-react": "^3.34.0",
     "embla-carousel-react": "^8.6.0",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "simplex-noise": "^4.0.3"
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@types/react": "^19.1.2",

@@ -1,18 +1,14 @@
 import Resume from './components/Resume';
-import Vortex from './components/Vortex';
+import ParticlesBg from './components/ParticlesBg';
 
 export default function App() {
   return (
     <>
-      <Vortex
-        particleCount={600}
-        baseHue={230}
-        backgroundColor="#080c1a"
-        baseSpeed={0}
-        rangeSpeed={1.2}
-        baseRadius={1}
-        rangeRadius={2}
-        rangeY={120}
+      <ParticlesBg
+        color="#92a4e8"
+        accentColor="#d8a4c8"
+        backgroundColor="#080e22"
+        backgroundColorLight="#2e4278"
       />
       <Resume />
     </>
