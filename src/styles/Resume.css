@@ -244,6 +244,7 @@ body {
   font-size: 0.845rem;
   color: var(--main-text-dim);
   line-height: 1.95;
+  white-space: pre-line;
   padding: 0.9rem 1.1rem;
   background: var(--accent-light);
   border-left: 3px solid var(--accent);
