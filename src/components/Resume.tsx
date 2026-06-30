@@ -205,7 +205,7 @@ export default function Resume() {
                         }
                       >
                         <IconPhoto className="proj-link-icon" aria-hidden="true" stroke={1.5} />
-                        <span className="proj-link">檢視截圖</span>
+                        <span className="proj-link">Preview</span>
                       </button>
                     ) : (
                       proj.link && (
@@ -220,7 +220,7 @@ export default function Resume() {
                             aria-hidden="true"
                             stroke={1.5}
                           />
-                          {proj.link.label}
+                          Link
                         </a>
                       )
                     )}
