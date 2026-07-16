@@ -1,70 +1,178 @@
 @media print {
+  /* 橫式 A4，並保留邊界 */
   @page {
     size: A4 landscape;
-    margin: 0;
+    margin: 14mm;
   }
 
   html,
   body {
+    width: auto !important;
+    height: auto !important;
+    background: #fff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .scroll-root {
+    position: static !important;
+    inset: auto !important;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
     background: #fff !important;
   }
 
-  .deck-root {
-    position: static;
-    inset: auto;
-    background: #fff;
+  .scroll-nav {
+    display: none !important;
   }
 
-  .deck-stage {
-    display: block;
-    padding: 0;
-    overflow: visible;
+  .scroll-main {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
-  .slide-slot {
+  .scroll-section,
+  .scroll-section--soft,
+  .scroll-section--dark {
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 0 8mm !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+    color: #14171f !important;
+    border: none !important;
     display: block !important;
-    width: 297mm;
-    height: 210mm;
+    overflow: visible !important;
+    scroll-snap-align: none !important;
     page-break-after: always;
     break-after: page;
   }
 
-  .slide-slot:last-child {
+  .scroll-section:last-child {
     page-break-after: auto;
     break-after: auto;
+    padding-bottom: 0 !important;
   }
 
-  .slide {
-    position: relative;
-    width: 297mm !important;
-    height: 210mm !important;
-    margin: 0;
-    overflow: hidden;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
+  .scroll-section--hero,
+  .scroll-section--thanks {
+    min-height: auto !important;
+    height: auto !important;
   }
 
-  .slide-inner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 297mm !important;
-    height: 210mm !important;
-    transform: none !important;
-    padding: 16mm 18mm;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
+  .scroll-section-inner {
+    width: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
   }
 
-  .deck-controls,
-  .deck-progress {
+  .hero-title,
+  .section-title,
+  .thanks-title {
+    font-size: 28pt !important;
+    max-width: none !important;
+    line-height: 1.15 !important;
+  }
+
+  .hero-lead,
+  .section-lead,
+  .section-subtitle {
+    font-size: 11pt !important;
+    max-width: none !important;
+  }
+
+  .hero-title span,
+  .section-kicker,
+  .section-kicker--on-dark,
+  .hero-eyebrow,
+  .career-period,
+  .block-title {
+    color: #0f6e7a !important;
+  }
+
+  .hero-lead,
+  .section-lead,
+  .plain-list li,
+  .career-description,
+  .thanks-name,
+  .thanks-contact span,
+  .stat-label,
+  .workflow-card p,
+  .thinking-card p {
+    color: #5c6478 !important;
+  }
+
+  .thanks-contact strong,
+  .career-title,
+  .stat-value {
+    color: #14171f !important;
+  }
+
+  .hero-hint {
     display: none !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .about-layout,
+  .two-col,
+  .skills-board,
+  .collab-board {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8mm !important;
+  }
+
+  .workflow-board,
+  .thinking-board {
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    gap: 3mm !important;
+  }
+
+  .stat-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  .skill-group,
+  .collab-card,
+  .workflow-card,
+  .thinking-card,
+  .stat-item,
+  .flow-chip,
+  .motivation-pitch,
+  .career-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    box-shadow: none !important;
+  }
+
+  .deck-tag,
+  .flow-chip,
+  .skill-group,
+  .collab-card,
+  .workflow-card,
+  .thinking-card,
+  .stat-item,
+  .motivation-pitch {
+    border-color: #d7dbe5 !important;
   }
 
   * {
     animation: none !important;
     transition: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
   }
 }
