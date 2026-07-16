@@ -1,24 +1,9 @@
-import { useState } from 'react';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Resume from './components/Resume';
 import ParticlesBg from './components/ParticlesBg';
 import MicroprogramerDeck from './pages/microprogramer/MicroprogramerDeck';
 
-const INTERVIEW_DECK_PATH = '/interview/microprogramer';
-
-export default function App() {
-  const [path, setPath] = useState(() => window.location.pathname);
-
-  if (path === INTERVIEW_DECK_PATH) {
-    return (
-      <MicroprogramerDeck
-        onExit={() => {
-          window.history.pushState({}, '', '/');
-          setPath('/');
-        }}
-      />
-    );
-  }
-
+function ResumePage() {
   return (
     <>
       <ParticlesBg
@@ -29,5 +14,17 @@ export default function App() {
       />
       <Resume />
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<ResumePage />} />
+        <Route path="/interview/microprogramer" element={<MicroprogramerDeck />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
 }

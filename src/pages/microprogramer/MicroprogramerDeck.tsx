@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Reveal from './components/Reveal';
 import ScrollNav from './components/ScrollNav';
 import ScrollSection from './components/ScrollSection';
@@ -27,13 +28,10 @@ import {
 import './styles/presentation.css';
 import './styles/print.css';
 
-interface MicroprogramerDeckProps {
-  onExit: () => void;
-}
-
 const sectionIds = slideOutline.map((item) => item.id);
 
-export default function MicroprogramerDeck({ onExit }: MicroprogramerDeckProps) {
+export default function MicroprogramerDeck() {
+  const navigate = useNavigate();
   const rootRef = useRef<HTMLDivElement>(null);
   const { activeId, jumpTo } = useSectionNavigation(sectionIds, rootRef);
 
@@ -52,7 +50,7 @@ export default function MicroprogramerDeck({ onExit }: MicroprogramerDeckProps) 
       <ScrollNav
         activeId={activeId}
         rootRef={rootRef}
-        onExit={onExit}
+        onExit={() => navigate('/')}
         onPrint={handlePrint}
         onJump={jumpTo}
       />

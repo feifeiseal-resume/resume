@@ -1,5 +1,5 @@
 @media print {
-  /* 橫式 A4，並保留邊界 */
+  /* 橫式 A4，保留邊界 */
   @page {
     size: A4 landscape;
     margin: 14mm;
@@ -10,8 +10,8 @@
     width: auto !important;
     height: auto !important;
     background: #fff !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
   .scroll-root {
@@ -20,7 +20,8 @@
     width: auto !important;
     height: auto !important;
     overflow: visible !important;
-    background: #fff !important;
+    background: #f6f7f9 !important;
+    color: #14171f !important;
   }
 
   .scroll-nav {
@@ -34,91 +35,63 @@
     padding: 0 !important;
   }
 
+  /*
+    每一章固定佔滿一頁可印區域（A4 橫式扣掉 14mm 邊界 ≈ 182mm 高）
+    避免內容跨頁被拆開
+  */
   .scroll-section,
   .scroll-section--soft,
-  .scroll-section--dark {
+  .scroll-section--dark,
+  .scroll-section--hero,
+  .scroll-section--thanks {
     width: 100% !important;
-    height: auto !important;
-    min-height: auto !important;
-    max-height: none !important;
+    height: 182mm !important;
+    min-height: 182mm !important;
+    max-height: 182mm !important;
     margin: 0 !important;
-    padding: 0 0 8mm !important;
-    border-radius: 0 !important;
-    background: #fff !important;
-    color: #14171f !important;
+    padding: 8mm 0 !important;
     border: none !important;
-    display: block !important;
-    overflow: visible !important;
-    scroll-snap-align: none !important;
-    page-break-after: always;
-    break-after: page;
+    border-radius: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
   }
 
   .scroll-section:last-child {
-    page-break-after: auto;
-    break-after: auto;
-    padding-bottom: 0 !important;
+    page-break-after: auto !important;
+    break-after: auto !important;
   }
 
+  /* 跟網頁一樣保留區塊底色 */
+  .scroll-section {
+    background: #f6f7f9 !important;
+    color: #14171f !important;
+  }
+
+  .scroll-section--soft {
+    background: #eef1f5 !important;
+    color: #14171f !important;
+  }
+
+  .scroll-section--dark,
   .scroll-section--hero,
   .scroll-section--thanks {
-    min-height: auto !important;
-    height: auto !important;
+    background: #12161f !important;
+    color: #f4f6fa !important;
   }
 
   .scroll-section-inner {
     width: 100% !important;
     max-width: none !important;
-    max-height: none !important;
+    max-height: 100% !important;
     margin: 0 !important;
-    padding: 0 !important;
-    overflow: visible !important;
-  }
-
-  .hero-title,
-  .section-title,
-  .thanks-title {
-    font-size: 28pt !important;
-    max-width: none !important;
-    line-height: 1.15 !important;
-  }
-
-  .hero-lead,
-  .section-lead,
-  .section-subtitle {
-    font-size: 11pt !important;
-    max-width: none !important;
-  }
-
-  .hero-title span,
-  .section-kicker,
-  .section-kicker--on-dark,
-  .hero-eyebrow,
-  .career-period,
-  .block-title {
-    color: #0f6e7a !important;
-  }
-
-  .hero-lead,
-  .section-lead,
-  .plain-list li,
-  .career-description,
-  .thanks-name,
-  .thanks-contact span,
-  .stat-label,
-  .workflow-card p,
-  .thinking-card p {
-    color: #5c6478 !important;
-  }
-
-  .thanks-contact strong,
-  .career-title,
-  .stat-value {
-    color: #14171f !important;
-  }
-
-  .hero-hint {
-    display: none !important;
+    padding: 0 6mm !important;
+    overflow: hidden !important;
   }
 
   .reveal {
@@ -127,46 +100,197 @@
     transition: none !important;
   }
 
+  .hero-hint {
+    display: none !important;
+  }
+
+  /* 字級與網頁接近，但壓縮到單頁可放下 */
+  .hero-title,
+  .thanks-title {
+    font-size: 34pt !important;
+    line-height: 1.1 !important;
+    max-width: 14ch !important;
+  }
+
+  .section-title {
+    font-size: 24pt !important;
+    line-height: 1.15 !important;
+    max-width: 18ch !important;
+  }
+
+  .hero-lead,
+  .section-lead,
+  .section-subtitle {
+    font-size: 10.5pt !important;
+    line-height: 1.55 !important;
+    max-width: 48rem !important;
+    margin-top: 4mm !important;
+  }
+
+  .hero-eyebrow,
+  .section-kicker,
+  .section-kicker--on-dark {
+    font-size: 8pt !important;
+    margin-bottom: 3mm !important;
+  }
+
+  .hero-title span,
+  .section-kicker,
+  .career-period,
+  .block-title {
+    color: #0f6e7a !important;
+  }
+
+  .scroll-section--dark .hero-eyebrow,
+  .scroll-section--dark .section-kicker,
+  .scroll-section--dark .section-kicker--on-dark,
+  .scroll-section--hero .hero-eyebrow,
+  .scroll-section--thanks .section-kicker {
+    color: #8fd4db !important;
+  }
+
+  .scroll-section--dark .hero-title span,
+  .scroll-section--hero .hero-title span {
+    color: #8fd4db !important;
+  }
+
+  .plain-list li,
+  .career-description,
+  .stat-label,
+  .workflow-card p,
+  .thinking-card p,
+  .section-subtitle {
+    color: #5c6478 !important;
+  }
+
+  .scroll-section--dark .plain-list li,
+  .scroll-section--dark .hero-lead,
+  .scroll-section--dark .thanks-name,
+  .scroll-section--hero .hero-lead,
+  .scroll-section--thanks .thanks-name,
+  .scroll-section--thanks .thanks-contact span {
+    color: rgba(244, 246, 250, 0.78) !important;
+  }
+
+  .scroll-section--thanks .thanks-contact strong {
+    color: #f4f6fa !important;
+  }
+
   .about-layout,
   .two-col,
   .skills-board,
   .collab-board {
     grid-template-columns: 1fr 1fr !important;
-    gap: 8mm !important;
+    gap: 5mm !important;
+    margin-top: 5mm !important;
   }
 
   .workflow-board,
   .thinking-board {
     grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-    gap: 3mm !important;
+    gap: 2.5mm !important;
+    margin-top: 5mm !important;
   }
 
   .stat-row {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 3mm !important;
+    margin-top: 5mm !important;
+  }
+
+  .career-list {
+    margin-top: 4mm !important;
+  }
+
+  .career-item {
+    grid-template-columns: 28mm 1fr !important;
+    gap: 4mm !important;
+    padding: 2.5mm 0 !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .career-title {
+    font-size: 12pt !important;
   }
 
   .skill-group,
   .collab-card,
   .workflow-card,
   .thinking-card,
-  .stat-item,
-  .flow-chip,
-  .motivation-pitch,
-  .career-item {
-    break-inside: avoid;
-    page-break-inside: avoid;
-    box-shadow: none !important;
+  .stat-item {
+    padding: 3.5mm !important;
+    border-radius: 3mm !important;
+    background: #ffffff !important;
+    border: 0.3mm solid #d7dbe5 !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .scroll-section--soft .skill-group,
+  .scroll-section--soft .collab-card,
+  .scroll-section--soft .workflow-card,
+  .scroll-section--soft .thinking-card,
+  .scroll-section--soft .stat-item {
+    background: #ffffff !important;
+  }
+
+  .plain-list {
+    gap: 2mm !important;
+  }
+
+  .plain-list li {
+    font-size: 9.5pt !important;
+    line-height: 1.45 !important;
+  }
+
+  .tag-row {
+    margin-top: 3.5mm !important;
+    gap: 1.5mm !important;
   }
 
   .deck-tag,
-  .flow-chip,
-  .skill-group,
-  .collab-card,
-  .workflow-card,
-  .thinking-card,
-  .stat-item,
+  .flow-chip {
+    font-size: 8pt !important;
+    padding: 1.2mm 2.5mm !important;
+    background: #ffffff !important;
+    border: 0.3mm solid #d7dbe5 !important;
+  }
+
+  .deck-tag--core {
+    background: #0f6e7a !important;
+    border-color: #0f6e7a !important;
+    color: #fff !important;
+  }
+
+  .deck-tag--practical {
+    background: #e5f3f4 !important;
+    border-color: #e5f3f4 !important;
+    color: #0f6e7a !important;
+  }
+
+  .flow-row {
+    margin-top: 4mm !important;
+    gap: 1.5mm !important;
+  }
+
+  .stat-value {
+    font-size: 22pt !important;
+    color: #14171f !important;
+  }
+
   .motivation-pitch {
-    border-color: #d7dbe5 !important;
+    margin-top: 4mm !important;
+    padding: 3.5mm 4mm !important;
+    background: #e5f3f4 !important;
+    color: #14171f !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .thanks-contact {
+    margin-top: 6mm !important;
+    gap: 6mm !important;
   }
 
   * {
