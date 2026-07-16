@@ -1,0 +1,688 @@
+.deck-root {
+  --deck-ink: #1a2033;
+  --deck-ink-soft: #545b72;
+  --deck-paper: #ffffff;
+  --deck-paper-soft: #f4f5f9;
+  --deck-border: #e2e4ec;
+  --deck-accent: #3654e0;
+  --deck-accent-soft: #eaedfc;
+
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--deck-paper-soft);
+  color: var(--deck-ink);
+  font-family:
+    Inter,
+    'Noto Sans TC',
+    'PingFang TC',
+    'Microsoft JhengHei',
+    Arial,
+    sans-serif;
+  z-index: 1000;
+}
+
+.deck-stage {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: clamp(12px, 3vh, 32px) clamp(16px, 4vw, 48px);
+}
+
+.slide-slot {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-slot.is-active {
+  display: flex;
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  max-width: 1280px;
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-border);
+  border-radius: 20px;
+  box-shadow: 0 24px 60px -32px rgba(26, 32, 51, 0.25);
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  overflow: hidden;
+}
+
+.slide-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(24px, 4vw, 56px);
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-header {
+  flex-shrink: 0;
+  margin-bottom: clamp(12px, 2vh, 24px);
+}
+
+.slide-kicker {
+  margin: 0 0 6px;
+  font-size: clamp(11px, 1vw, 13px);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--deck-accent);
+}
+
+.slide-title {
+  margin: 0;
+  font-size: clamp(20px, 2.6vw, 32px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--deck-ink);
+}
+
+.slide-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2vh, 20px);
+  min-height: 0;
+  overflow: hidden;
+  font-size: clamp(12px, 1.35vw, 16px);
+}
+
+.slide-page-number {
+  position: absolute;
+  right: clamp(20px, 3vw, 40px);
+  bottom: clamp(16px, 2vh, 28px);
+  margin: 0;
+  font-size: 12px;
+  color: var(--deck-ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Cover & Thanks ---- */
+
+.cover-slide,
+.thanks-slide {
+  flex: 1;
+  display: flex;
+}
+
+.cover-slide {
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(16px, 3vw, 40px);
+}
+
+.cover-main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cover-eyebrow {
+  margin: 0;
+  font-size: clamp(11px, 1.1vw, 14px);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--deck-ink-soft);
+}
+
+.cover-name {
+  margin: 0;
+  font-size: clamp(28px, 4.6vw, 56px);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--deck-ink);
+}
+
+.cover-name-en {
+  font-weight: 500;
+  color: var(--deck-ink-soft);
+}
+
+.cover-role {
+  margin: 0;
+  font-size: clamp(14px, 1.8vw, 22px);
+  color: var(--deck-accent);
+  font-weight: 600;
+}
+
+.cover-stack,
+.cover-date {
+  margin: 0;
+  font-size: clamp(12px, 1.2vw, 15px);
+  color: var(--deck-ink-soft);
+}
+
+.cover-visual {
+  flex-shrink: 0;
+  width: clamp(180px, 30vw, 340px);
+  border-radius: 16px;
+  background: #10162b;
+  padding: clamp(14px, 2vw, 24px);
+}
+
+.cover-code {
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: clamp(9px, 1vw, 12px);
+  line-height: 1.6;
+  color: #c7d1ff;
+  white-space: pre;
+}
+
+.thanks-slide {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.thanks-title {
+  margin: 0;
+  font-size: clamp(30px, 5vw, 56px);
+  font-weight: 800;
+}
+
+.thanks-subtitle {
+  margin: 0;
+  font-size: clamp(14px, 1.6vw, 20px);
+  color: var(--deck-accent);
+  font-weight: 600;
+}
+
+.thanks-name {
+  margin: 0;
+  color: var(--deck-ink-soft);
+  font-size: clamp(12px, 1.2vw, 15px);
+}
+
+.thanks-contact {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(12px, 2vw, 28px);
+}
+
+.thanks-contact li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.thanks-contact-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--deck-ink-soft);
+}
+
+.thanks-contact-value {
+  font-size: clamp(12px, 1.2vw, 15px);
+  font-weight: 600;
+}
+
+/* ---- Layout helpers ---- */
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: clamp(16px, 3vw, 32px);
+  align-items: start;
+}
+
+.bullet-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bullet-list li {
+  position: relative;
+  padding-left: 16px;
+  line-height: 1.55;
+}
+
+.bullet-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--deck-accent);
+}
+
+.keyword-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-content: flex-start;
+}
+
+/* ---- Tags ---- */
+
+.deck-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--deck-paper-soft);
+  border: 1px solid var(--deck-border);
+  font-size: 0.85em;
+  font-weight: 500;
+  color: var(--deck-ink);
+}
+
+.deck-tag--core {
+  background: var(--deck-accent);
+  border-color: var(--deck-accent);
+  color: #fff;
+}
+
+.deck-tag--practical {
+  background: var(--deck-accent-soft);
+  border-color: var(--deck-accent-soft);
+  color: var(--deck-accent);
+}
+
+.deck-tag--learning {
+  color: var(--deck-ink-soft);
+  border-style: dashed;
+}
+
+/* ---- Info card / grids ---- */
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(10px, 2vw, 18px);
+  flex: 1;
+  min-height: 0;
+}
+
+.info-card {
+  border: 1px solid var(--deck-border);
+  border-radius: 14px;
+  padding: clamp(10px, 1.6vw, 18px);
+  background: var(--deck-paper-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.info-card-title {
+  margin: 0;
+  font-size: 0.95em;
+  font-weight: 700;
+  color: var(--deck-ink);
+}
+
+.skills-tag-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-content: flex-start;
+}
+
+/* ---- Timeline ---- */
+
+.timeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.6vh, 14px);
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 74px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--deck-border);
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 64px 20px 1fr;
+  align-items: start;
+  column-gap: 6px;
+}
+
+.timeline-period {
+  font-size: 0.8em;
+  color: var(--deck-ink-soft);
+  font-weight: 600;
+  padding-top: 2px;
+}
+
+.timeline-dot {
+  width: 10px;
+  height: 10px;
+  margin-top: 3px;
+  border-radius: 50%;
+  background: var(--deck-accent);
+  justify-self: center;
+  z-index: 1;
+}
+
+.timeline-title {
+  margin: 0;
+  font-weight: 700;
+}
+
+.timeline-description {
+  margin: 2px 0 0;
+  color: var(--deck-ink-soft);
+}
+
+/* ---- Flow diagram ---- */
+
+.flow-diagram {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.flow-diagram--column {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.flow-step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.flow-step-label {
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: var(--deck-paper-soft);
+  border: 1px solid var(--deck-border);
+  font-size: 0.85em;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.flow-step-arrow {
+  width: 16px;
+  height: 2px;
+  background: var(--deck-ink-soft);
+  position: relative;
+}
+
+.flow-diagram--column .flow-step {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.flow-diagram--column .flow-step-arrow {
+  width: 2px;
+  height: 12px;
+  margin-left: 12px;
+}
+
+/* ---- Workflow ---- */
+
+.workflow-grid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(8px, 1.4vw, 14px);
+  flex: 1;
+  min-height: 0;
+}
+
+.workflow-step {
+  border: 1px solid var(--deck-border);
+  border-radius: 12px;
+  padding: clamp(8px, 1.4vw, 14px);
+  background: var(--deck-paper-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.workflow-step-index {
+  font-size: 0.75em;
+  color: var(--deck-accent);
+  font-weight: 700;
+}
+
+.workflow-step-title {
+  margin: 0;
+  font-weight: 700;
+}
+
+.workflow-step-description {
+  margin: 0;
+  font-size: 0.85em;
+  color: var(--deck-ink-soft);
+}
+
+/* ---- Project slides ---- */
+
+.project-background {
+  margin: 0;
+  color: var(--deck-ink-soft);
+  line-height: 1.6;
+}
+
+.project-overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 3vw, 32px);
+  flex: 1;
+  min-height: 0;
+}
+
+.project-block-title {
+  margin: 0 0 8px;
+  font-size: 0.9em;
+  font-weight: 700;
+  color: var(--deck-accent);
+}
+
+.project-tech-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.project-technical {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 2vh, 16px);
+  flex: 1;
+  min-height: 0;
+}
+
+/* ---- Design thinking ---- */
+
+.thinking-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(8px, 1.4vw, 14px);
+}
+
+.thinking-card {
+  border: 1px solid var(--deck-border);
+  border-radius: 12px;
+  padding: clamp(8px, 1.4vw, 14px);
+  background: var(--deck-paper-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.thinking-card-tag {
+  font-size: 0.75em;
+  color: var(--deck-accent);
+  font-weight: 700;
+}
+
+.thinking-card-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.9em;
+}
+
+.thinking-card-description {
+  margin: 0;
+  font-size: 0.82em;
+  color: var(--deck-ink-soft);
+}
+
+/* ---- Motivation ---- */
+
+.motivation-pitch {
+  margin: 0;
+  padding: clamp(10px, 1.6vh, 16px);
+  border-radius: 12px;
+  background: var(--deck-accent-soft);
+  color: var(--deck-ink);
+  line-height: 1.6;
+}
+
+/* ---- Controls ---- */
+
+.deck-controls {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px clamp(16px, 4vw, 48px);
+  background: var(--deck-paper);
+  border-top: 1px solid var(--deck-border);
+}
+
+.deck-btn {
+  border: 1px solid var(--deck-border);
+  background: var(--deck-paper);
+  color: var(--deck-ink);
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.deck-btn:hover:not(:disabled) {
+  background: var(--deck-paper-soft);
+}
+
+.deck-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.deck-btn--ghost {
+  border-color: transparent;
+  color: var(--deck-ink-soft);
+}
+
+.deck-btn--accent {
+  background: var(--deck-accent);
+  border-color: var(--deck-accent);
+  color: #fff;
+}
+
+.deck-btn--accent:hover {
+  background: #2c46c4;
+}
+
+.deck-progress {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.deck-progress-track {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  max-width: min(60vw, 560px);
+  padding: 2px;
+}
+
+.deck-progress-dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: var(--deck-border);
+  cursor: pointer;
+  padding: 0;
+}
+
+.deck-progress-dot.is-active {
+  width: 20px;
+  border-radius: 4px;
+  background: var(--deck-accent);
+}
+
+.deck-progress-count {
+  font-size: 12px;
+  color: var(--deck-ink-soft);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .deck-root * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .two-col,
+  .project-overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-grid,
+  .workflow-grid,
+  .thinking-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .deck-controls {
+    flex-wrap: wrap;
+  }
+}
