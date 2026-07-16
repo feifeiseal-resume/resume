@@ -29,6 +29,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  min-height: 0;
   padding: clamp(12px, 3vh, 32px) clamp(16px, 4vw, 48px);
 }
 
@@ -36,46 +37,58 @@
   display: none;
   width: 100%;
   height: 100%;
+  min-width: 0;
+  min-height: 0;
 }
 
 .slide-slot.is-active {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* 外框尺寸由 JS 依同一組 scale 寫入，避免與 transform 不同步造成裁切 */
 .slide {
-  width: 100%;
-  height: 100%;
-  max-width: 1280px;
-  aspect-ratio: 16 / 9;
-  margin: 0 auto;
+  position: relative;
+  width: var(--deck-frame-width, 1280px);
+  height: var(--deck-frame-height, 720px);
+  margin: 0;
+  flex-shrink: 0;
+  overflow: visible;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* 內層維持 1280×720 設計稿，再等比縮放到外框內 */
+.slide-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1280px;
+  height: 720px;
+  transform: scale(var(--deck-scale, 1));
+  transform-origin: 0 0;
+  display: flex;
+  flex-direction: column;
+  padding: 48px;
+  overflow: hidden;
   background: var(--deck-paper);
   border: 1px solid var(--deck-border);
   border-radius: 20px;
   box-shadow: 0 24px 60px -32px rgba(26, 32, 51, 0.25);
-  display: flex;
-  align-items: stretch;
-  justify-content: stretch;
-  overflow: hidden;
-}
-
-.slide-inner {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: clamp(24px, 4vw, 56px);
-  position: relative;
-  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .slide-header {
   flex-shrink: 0;
-  margin-bottom: clamp(12px, 2vh, 24px);
+  margin-bottom: 20px;
 }
 
 .slide-kicker {
   margin: 0 0 6px;
-  font-size: clamp(11px, 1vw, 13px);
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -84,7 +97,7 @@
 
 .slide-title {
   margin: 0;
-  font-size: clamp(20px, 2.6vw, 32px);
+  font-size: 32px;
   font-weight: 700;
   line-height: 1.25;
   color: var(--deck-ink);
@@ -94,16 +107,16 @@
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  gap: clamp(12px, 2vh, 20px);
+  gap: 16px;
   min-height: 0;
   overflow: hidden;
-  font-size: clamp(12px, 1.35vw, 16px);
+  font-size: 16px;
 }
 
 .slide-page-number {
   position: absolute;
-  right: clamp(20px, 3vw, 40px);
-  bottom: clamp(16px, 2vh, 28px);
+  right: 40px;
+  bottom: 28px;
   margin: 0;
   font-size: 12px;
   color: var(--deck-ink-soft);
@@ -121,7 +134,7 @@
 .cover-slide {
   align-items: center;
   justify-content: space-between;
-  gap: clamp(16px, 3vw, 40px);
+  gap: 32px;
 }
 
 .cover-main {
@@ -132,7 +145,7 @@
 
 .cover-eyebrow {
   margin: 0;
-  font-size: clamp(11px, 1.1vw, 14px);
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.06em;
   color: var(--deck-ink-soft);
@@ -140,7 +153,7 @@
 
 .cover-name {
   margin: 0;
-  font-size: clamp(28px, 4.6vw, 56px);
+  font-size: 48px;
   font-weight: 800;
   line-height: 1.1;
   color: var(--deck-ink);
@@ -153,7 +166,7 @@
 
 .cover-role {
   margin: 0;
-  font-size: clamp(14px, 1.8vw, 22px);
+  font-size: 20px;
   color: var(--deck-accent);
   font-weight: 600;
 }
@@ -161,22 +174,22 @@
 .cover-stack,
 .cover-date {
   margin: 0;
-  font-size: clamp(12px, 1.2vw, 15px);
+  font-size: 14px;
   color: var(--deck-ink-soft);
 }
 
 .cover-visual {
   flex-shrink: 0;
-  width: clamp(180px, 30vw, 340px);
+  width: 340px;
   border-radius: 16px;
   background: #10162b;
-  padding: clamp(14px, 2vw, 24px);
+  padding: 24px;
 }
 
 .cover-code {
   margin: 0;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: clamp(9px, 1vw, 12px);
+  font-size: 11px;
   line-height: 1.6;
   color: #c7d1ff;
   white-space: pre;
@@ -192,13 +205,13 @@
 
 .thanks-title {
   margin: 0;
-  font-size: clamp(30px, 5vw, 56px);
+  font-size: 56px;
   font-weight: 800;
 }
 
 .thanks-subtitle {
   margin: 0;
-  font-size: clamp(14px, 1.6vw, 20px);
+  font-size: 20px;
   color: var(--deck-accent);
   font-weight: 600;
 }
@@ -206,7 +219,7 @@
 .thanks-name {
   margin: 0;
   color: var(--deck-ink-soft);
-  font-size: clamp(12px, 1.2vw, 15px);
+  font-size: 15px;
 }
 
 .thanks-contact {
@@ -216,7 +229,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: clamp(12px, 2vw, 28px);
+  gap: 28px;
 }
 
 .thanks-contact li {
@@ -233,7 +246,7 @@
 }
 
 .thanks-contact-value {
-  font-size: clamp(12px, 1.2vw, 15px);
+  font-size: 15px;
   font-weight: 600;
 }
 
@@ -242,7 +255,7 @@
 .two-col {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
-  gap: clamp(16px, 3vw, 32px);
+  gap: 32px;
   align-items: start;
 }
 
@@ -315,7 +328,7 @@
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: clamp(10px, 2vw, 18px);
+  gap: 16px;
   flex: 1;
   min-height: 0;
 }
@@ -323,7 +336,7 @@
 .info-card {
   border: 1px solid var(--deck-border);
   border-radius: 14px;
-  padding: clamp(10px, 1.6vw, 18px);
+  padding: 16px;
   background: var(--deck-paper-soft);
   display: flex;
   flex-direction: column;
@@ -354,7 +367,7 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 1.6vh, 14px);
+  gap: 12px;
   position: relative;
 }
 
@@ -458,7 +471,7 @@
   list-style: none;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: clamp(8px, 1.4vw, 14px);
+  gap: 12px;
   flex: 1;
   min-height: 0;
 }
@@ -466,7 +479,7 @@
 .workflow-step {
   border: 1px solid var(--deck-border);
   border-radius: 12px;
-  padding: clamp(8px, 1.4vw, 14px);
+  padding: 12px;
   background: var(--deck-paper-soft);
   display: flex;
   flex-direction: column;
@@ -501,7 +514,7 @@
 .project-overview-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(16px, 3vw, 32px);
+  gap: 32px;
   flex: 1;
   min-height: 0;
 }
@@ -522,7 +535,7 @@
 .project-technical {
   display: flex;
   flex-direction: column;
-  gap: clamp(10px, 2vh, 16px);
+  gap: 14px;
   flex: 1;
   min-height: 0;
 }
@@ -532,13 +545,13 @@
 .thinking-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: clamp(8px, 1.4vw, 14px);
+  gap: 12px;
 }
 
 .thinking-card {
   border: 1px solid var(--deck-border);
   border-radius: 12px;
-  padding: clamp(8px, 1.4vw, 14px);
+  padding: 12px;
   background: var(--deck-paper-soft);
   display: flex;
   flex-direction: column;
@@ -567,7 +580,7 @@
 
 .motivation-pitch {
   margin: 0;
-  padding: clamp(10px, 1.6vh, 16px);
+  padding: 14px;
   border-radius: 12px;
   background: var(--deck-accent-soft);
   color: var(--deck-ink);
@@ -661,6 +674,12 @@
   color: var(--deck-ink-soft);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
+}
+
+/* Fullscreen: 縮小外框留白，內容縮放由 --deck-scale 處理 */
+.deck-root:fullscreen .deck-stage,
+.deck-root:-webkit-full-screen .deck-stage {
+  padding: 8px;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import DeckControls from './components/DeckControls';
+import { useDeckScale } from './hooks/useDeckScale';
 import { useFullscreen } from './hooks/useFullscreen';
 import { useKeyboardNavigation } from './hooks/useKeyboardNavigation';
 import { usePresentation } from './hooks/usePresentation';
@@ -48,8 +49,11 @@ interface MicroprogramerDeckProps {
 
 export default function MicroprogramerDeck({ onExit }: MicroprogramerDeckProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
   const { index, goTo, next, prev, first, last } = usePresentation(total);
   const { isFullscreen, toggle: toggleFullscreen } = useFullscreen(containerRef);
+
+  useDeckScale(containerRef, stageRef);
 
   const handlePrint = () => window.print();
 
@@ -72,7 +76,7 @@ export default function MicroprogramerDeck({ onExit }: MicroprogramerDeckProps) 
 
   return (
     <div className="deck-root" ref={containerRef}>
-      <div className="deck-stage">
+      <div className="deck-stage" ref={stageRef}>
         {slideComponents.map((SlideComponent, i) => (
           <div key={slideOutline[i]?.id ?? i} className={`slide-slot${i === index ? ' is-active' : ''}`}>
             <SlideComponent index={i} total={total} />

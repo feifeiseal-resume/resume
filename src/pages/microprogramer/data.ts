@@ -35,12 +35,12 @@ export const slideOutline: { id: string; label: string }[] = [
 ];
 
 export const aboutHighlights: string[] = [
-  '近四年前端開發經驗，主力為 Vue 3、Nuxt 3、TypeScript',
+  '近四年前端開發經驗，主要使用 Vue 3、Nuxt 3、TypeScript',
   '曾有 PM 經驗，習慣從需求、流程與使用情境理解問題',
   '參與過企業內部系統、品牌官網與 SaaS 產品開發',
   '獨立開發 JOSUI，實際使用 AI 協作完成前端工具型產品',
   '重視元件設計、可維護性與使用者體驗',
-  '從需求理解、技術拆解到後續維護都會一起思考',
+  '持續學習與分享：取得 AWS Certified Cloud Practitioner 認證，並撰寫 iThome 鐵人賽技術文章',
 ];
 
 export const aboutKeywords: string[] = [
@@ -59,7 +59,7 @@ export interface TimelineStep {
 }
 
 export const careerTimeline: TimelineStep[] = [
-  { period: '2020', title: 'PM 工作', description: '負責需求訪談、時程規劃與設計／開發協調' },
+  { period: '2020–2022', title: 'PM 工作', description: '負責需求訪談、時程規劃與設計／開發協調' },
   { period: '2022', title: '轉職前端', description: '自學並進入前端工程領域' },
   { period: '2022–2024', title: '奇點無限', description: '參與客戶系統重構、企業系統、官網與元件庫建置' },
   { period: '2024–2026', title: '勝崨有限公司', description: '參與企業系統、Nuxt 官網與 SaaS 產品功能迭代' },
@@ -91,6 +91,7 @@ export const skillCategories: SkillCategory[] = [
       { label: 'HTML / CSS / SCSS', level: 'core' },
       { label: 'Tailwind CSS', level: 'practical' },
       { label: 'Responsive Web Design', level: 'core' },
+      { label: 'React（JOSUI 專案實務使用）', level: 'practical' },
     ],
   },
   {
@@ -119,10 +120,6 @@ export const skillCategories: SkillCategory[] = [
   {
     title: 'Currently Learning',
     items: [
-      { label: 'React', level: 'learning' },
-      { label: 'Next.js', level: 'learning' },
-      { label: 'JavaScript 核心原理', level: 'learning' },
-      { label: '前端系統設計', level: 'learning' },
       { label: 'Vitest / Vue Test Utils', level: 'learning' },
       { label: 'Docker / CI 基礎流程', level: 'learning' },
     ],

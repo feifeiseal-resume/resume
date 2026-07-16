@@ -35,17 +35,27 @@
   }
 
   .slide {
-    width: 297mm;
-    height: 210mm;
-    max-width: none;
+    position: relative;
+    width: 297mm !important;
+    height: 210mm !important;
     margin: 0;
+    overflow: hidden;
     border: none;
     border-radius: 0;
     box-shadow: none;
   }
 
   .slide-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 297mm !important;
+    height: 210mm !important;
+    transform: none !important;
     padding: 16mm 18mm;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
   }
 
   .deck-controls,
