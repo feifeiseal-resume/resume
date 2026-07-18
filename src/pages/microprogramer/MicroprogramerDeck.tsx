@@ -70,10 +70,41 @@ export default function MicroprogramerDeck() {
     };
   }, []);
 
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+
+    let frame = 0;
+
+    const updateTransitionProgress = () => {
+      frame = 0;
+      const aboutSection = document.getElementById('about');
+      const aboutTop = aboutSection?.offsetTop ?? root.clientHeight;
+      const progress = aboutTop > 0 ? Math.min(Math.max(root.scrollTop / aboutTop, 0), 1) : 1;
+      root.style.setProperty('--cover-to-about-progress', progress.toFixed(3));
+    };
+
+    const requestUpdate = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(updateTransitionProgress);
+    };
+
+    updateTransitionProgress();
+    root.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate);
+
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      root.removeEventListener('scroll', requestUpdate);
+      window.removeEventListener('resize', requestUpdate);
+    };
+  }, []);
+
   const handlePrint = () => window.print();
 
   return (
     <div className="scroll-root" ref={rootRef}>
+      <div className="deck-transition-bg" aria-hidden="true" />
       <ScrollNav
         activeId={activeId}
         rootRef={rootRef}

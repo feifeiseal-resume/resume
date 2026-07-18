@@ -558,6 +558,10 @@
   }
 
 
+  .deck-transition-bg {
+    display: none !important;
+  }
+
   * {
     animation: none !important;
     transition: none !important;

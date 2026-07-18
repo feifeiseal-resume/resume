@@ -25,6 +25,7 @@
   --radius-card: 16px;
   --motion-duration: 480ms;
   --motion-ease: cubic-bezier(0.25, 1, 0.35, 1);
+  --cover-to-about-progress: 0;
 
   /*
     字級階層（隨視窗流體縮放）
@@ -78,6 +79,38 @@
 .scroll-root *::before,
 .scroll-root *::after {
   box-sizing: border-box;
+}
+
+.deck-transition-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.deck-transition-bg::before,
+.deck-transition-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transition: opacity 180ms linear;
+}
+
+.deck-transition-bg::before {
+  opacity: calc(1 - var(--cover-to-about-progress));
+  background:
+    radial-gradient(circle at 78% 47%, rgba(128, 144, 224, 0.16) 0 18%, transparent 36%),
+    radial-gradient(circle at 18% 28%, rgba(114, 168, 236, 0.08), transparent 34%),
+    linear-gradient(145deg, #101a4a 0%, #0c1438 42%, #070d25 100%);
+}
+
+.deck-transition-bg::after {
+  opacity: var(--cover-to-about-progress);
+  background:
+    radial-gradient(circle at 8% 48%, rgba(234, 236, 251, 0.9) 0 5%, transparent 15%),
+    linear-gradient(180deg, #ffffff 0%, #fafbff 62%, #f4f6ff 100%);
 }
 
 .scroll-nav {
@@ -192,6 +225,8 @@
 }
 
 .scroll-main {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: none;
   margin: 0;
@@ -251,10 +286,11 @@
 .scroll-section--hero {
   position: relative;
   isolation: isolate;
-  background:
-    radial-gradient(circle at 78% 47%, rgba(128, 144, 224, 0.16) 0 18%, transparent 36%),
-    radial-gradient(circle at 18% 28%, rgba(114, 168, 236, 0.08), transparent 34%),
-    linear-gradient(145deg, #101a4a 0%, #0c1438 42%, #070d25 100%);
+  background: transparent;
+}
+
+.scroll-section--about {
+  background: transparent;
 }
 
 .scroll-section--hero .scroll-section-inner {
@@ -346,6 +382,7 @@
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
+  opacity: calc(1 - var(--cover-to-about-progress));
 }
 
 .cover-orb {
