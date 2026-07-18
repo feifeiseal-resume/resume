@@ -16,6 +16,23 @@ export const deckMeta: DeckMeta = {
   presentationMinutes: 20,
 };
 
+export const coverContent = {
+  taglineLine1: 'Turning complex requirements',
+  taglineLine2: 'into maintainable frontend experiences.',
+  stack: 'Nuxt · Vue.js · TypeScript',
+};
+
+export const aboutContent = {
+  title: "Hey, I'm Hazel.",
+  /** 設定 VITE_INTERVIEW_PHOTO_URL 後顯示 About 頁照片 */
+  photoUrl: import.meta.env.VITE_INTERVIEW_PHOTO_URL ?? '',
+  photoAlt: '郭珮語 Hazel Kuo',
+  paragraphs: [
+    '我是郭珮語，以 Vue 3、Nuxt 3、TypeScript 為主力的前端工程師，有近四年實務經驗。',
+    '參與過企業系統、官網與 SaaS 開發；習慣先理解需求與資料流，再落成可維護的前端結構。',
+  ],
+};
+
 export const slideOutline: { id: string; label: string }[] = [
   { id: 'cover', label: '封面' },
   { id: 'about', label: '關於我' },
@@ -43,13 +60,31 @@ export const aboutHighlights: string[] = [
   '持續學習與分享：取得 AWS Certified Cloud Practitioner 認證，並撰寫 iThome 鐵人賽技術文章',
 ];
 
-export const aboutKeywords: string[] = [
-  'Frontend Development',
-  'Component Design',
-  'Product Thinking',
-  'AI-assisted Development',
-  'Team Collaboration',
-  'Maintainability',
+export interface AboutInfoItem {
+  label: string;
+  description: string;
+  icon: 'briefcase' | 'map' | 'code';
+}
+
+export const aboutInfoItems: AboutInfoItem[] = [
+  { label: '前端工程師', description: '近四年前端實務經驗', icon: 'briefcase' },
+  { label: '目前位於台中', description: '台灣', icon: 'map' },
+  { label: '重視可維護的前端開發', description: '從需求、資料流與使用情境思考', icon: 'code' },
+];
+
+export interface AboutCapability {
+  title: string;
+  description: string;
+  icon: 'vue' | 'typescript' | 'building' | 'product' | 'maintain' | 'team';
+}
+
+export const aboutCapabilities: AboutCapability[] = [
+  { title: 'Vue / Nuxt', description: '主力前端技術', icon: 'vue' },
+  { title: 'TypeScript', description: '型別與資料結構', icon: 'typescript' },
+  { title: '企業系統', description: '複雜資料與權限情境', icon: 'building' },
+  { title: 'SaaS / 官網', description: '產品功能與品牌頁面', icon: 'product' },
+  { title: '可維護性', description: '元件拆分與可擴充結構', icon: 'maintain' },
+  { title: '團隊協作', description: '與 PM、設計、後端、QA 對齊', icon: 'team' },
 ];
 
 export interface TimelineStep {

@@ -83,7 +83,7 @@ export default function ScrollNav({ activeId, rootRef, onExit, onPrint, onJump }
       }}
     >
       <button type="button" className="scroll-nav-btn scroll-nav-btn--ghost" onClick={onExit}>
-        ← 履歷
+        ← Resume
       </button>
 
       <nav className="scroll-nav-dots" aria-label="章節導覽">
@@ -101,7 +101,7 @@ export default function ScrollNav({ activeId, rootRef, onExit, onPrint, onJump }
       </nav>
 
       <button type="button" className="scroll-nav-btn scroll-nav-btn--accent" onClick={onPrint}>
-        <span className="scroll-nav-btn-full">列印 / 匯出 PDF</span>
+        <span className="scroll-nav-btn-full">Print / Export PDF</span>
         <span className="scroll-nav-btn-short">PDF</span>
       </button>
     </header>

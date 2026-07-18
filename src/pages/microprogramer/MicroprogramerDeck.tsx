@@ -1,4 +1,14 @@
 import { useEffect, useRef } from 'react';
+import {
+  IconBriefcase2,
+  IconBuildingSkyscraper,
+  IconCode,
+  IconHeartHandshake,
+  IconMapPin,
+  IconPuzzle,
+  IconBrandVue,
+  IconWritingSign,
+} from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
 import Reveal from './components/Reveal';
 import ScrollNav from './components/ScrollNav';
@@ -6,9 +16,11 @@ import ScrollSection from './components/ScrollSection';
 import Tag from './components/Tag';
 import { useSectionNavigation } from './hooks/useSectionNavigation';
 import {
-  aboutHighlights,
-  aboutKeywords,
+  aboutCapabilities,
+  aboutContent,
+  aboutInfoItems,
   careerTimeline,
+  coverContent,
   cityProbeOverview,
   cityProbeTechnical,
   collaborationRoles,
@@ -29,6 +41,21 @@ import './styles/presentation.css';
 import './styles/print.css';
 
 const sectionIds = slideOutline.map((item) => item.id);
+
+const aboutInfoIconMap = {
+  briefcase: IconBriefcase2,
+  map: IconMapPin,
+  code: IconCode,
+};
+
+const aboutCapabilityIconMap = {
+  vue: IconBrandVue,
+  typescript: IconCode,
+  building: IconBuildingSkyscraper,
+  product: IconWritingSign,
+  maintain: IconPuzzle,
+  team: IconHeartHandshake,
+};
 
 export default function MicroprogramerDeck() {
   const navigate = useNavigate();
@@ -57,73 +84,124 @@ export default function MicroprogramerDeck() {
 
       <main className="scroll-main">
         <ScrollSection id="cover" tone="dark" className="scroll-section--hero">
-          <Reveal>
-            <p className="hero-eyebrow">
-              {deckMeta.company} · 前端工程師面試 · {deckMeta.interviewDate}
-            </p>
-          </Reveal>
-          <Reveal delay={80}>
-            <h1 className="hero-title">
-              The story behind
-              <br />
-              <span>{deckMeta.candidateName}</span>
-            </h1>
-          </Reveal>
-          <Reveal delay={160}>
-            <p className="hero-lead">
-              {deckMeta.candidateNameEn} · {deckMeta.role}
-              <br />
-              Vue 3 / Nuxt 3 / TypeScript
-            </p>
-          </Reveal>
-          <Reveal delay={240}>
-            <p className="hero-hint">向下捲動，或按 Space / ↓ 前往下一段</p>
-          </Reveal>
-        </ScrollSection>
+          <div className="cover-art" aria-hidden="true">
+            <div className="cover-orb" />
+            <div className="cover-grid" />
+            <div className="cover-dots" />
+            <div className="cover-lines" />
+          </div>
 
-        <ScrollSection id="about">
-          <Reveal>
-            <p className="section-kicker">About Me</p>
-            <h2 className="section-title">關於我</h2>
-          </Reveal>
-          <div className="about-layout">
-            <Reveal delay={60}>
-              <p className="section-lead">
-                我是一位以 Vue 3、Nuxt 3、TypeScript 為主力的前端工程師，具備近四年前端實務經驗。過去參與企業系統、官網與 SaaS
-                產品開發，也透過 JOSUI 實際把 AI 協作導入前端工具開發流程。
+          <div className="cover-content">
+            <Reveal>
+              <p className="hero-eyebrow">
+                {deckMeta.company} ・ 前端工程師面試 ・ {deckMeta.interviewDate}
               </p>
             </Reveal>
-            <Reveal delay={120}>
-              <ul className="plain-list">
-                {aboutHighlights.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
+            <Reveal delay={80}>
+              <h1 className="hero-title hero-title--tagline">
+                {coverContent.taglineLine1}
+                <br />
+                <span>{coverContent.taglineLine2}</span>
+              </h1>
+            </Reveal>
+            <Reveal delay={160}>
+              <div className="cover-profile">
+                <p className="cover-name">
+                  {deckMeta.candidateNameEn}
+                  <span aria-hidden="true">|</span>
+                  {deckMeta.candidateName}
+                </p>
+                <p className="cover-role">{deckMeta.role}</p>
+                <div className="cover-rule" aria-hidden="true" />
+                <p className="cover-stack">{coverContent.stack}</p>
+              </div>
             </Reveal>
           </div>
-          <Reveal delay={180}>
-            <div className="tag-row">
-              {aboutKeywords.map((keyword) => (
-                <Tag key={keyword} label={keyword} />
-              ))}
+        </ScrollSection>
+
+        <ScrollSection id="about" className="scroll-section--about">
+          <div className="about-shell">
+            <div className="about-left">
+              <Reveal>
+                <p className="section-kicker">About Me</p>
+                <h2 className="section-title about-title">{aboutContent.title}</h2>
+              </Reveal>
+
+              <Reveal delay={70} className="about-photo-wrap">
+                <div className="about-photo-frame">
+                  {aboutContent.photoUrl ? (
+                    <img
+                      className="about-photo"
+                      src={aboutContent.photoUrl}
+                      alt={aboutContent.photoAlt}
+                      loading="eager"
+                      decoding="async"
+                    />
+                  ) : (
+                    <div className="about-photo about-photo--placeholder" aria-hidden="true">
+                      <span>預留照片</span>
+                    </div>
+                  )}
+                </div>
+              </Reveal>
+
+              <div className="about-info-list">
+                {aboutInfoItems.map((item, index) => {
+                  const Icon = aboutInfoIconMap[item.icon];
+
+                  return (
+                    <Reveal key={item.label} delay={130 + index * 50}>
+                      <article className="about-info-item">
+                        <span className="about-info-icon" aria-hidden="true">
+                          <Icon size={22} stroke={1.8} />
+                        </span>
+                        <div>
+                          <h3>{item.label}</h3>
+                          <p>{item.description}</p>
+                        </div>
+                      </article>
+                    </Reveal>
+                  );
+                })}
+              </div>
             </div>
-          </Reveal>
-          <Reveal delay={220}>
-            <div className="stat-row">
-              <div className="stat-item">
-                <p className="stat-value">4+</p>
-                <p className="stat-label">years of frontend</p>
+
+            <div className="about-right">
+              <div className="about-copy">
+                {aboutContent.paragraphs.map((paragraph, index) => (
+                  <Reveal key={paragraph} delay={100 + index * 60}>
+                    <p className="section-lead about-lead">{paragraph}</p>
+                  </Reveal>
+                ))}
+                <Reveal delay={220}>
+                  <div className="about-rule" aria-hidden="true" />
+                </Reveal>
+                <Reveal delay={260}>
+                  <p className="section-lead about-lead about-lead--closing">
+                    我相信好的前端，不只是完成畫面，而是協助團隊把產品做好。
+                  </p>
+                </Reveal>
               </div>
-              <div className="stat-item">
-                <p className="stat-value">2</p>
-                <p className="stat-label">companies shipped</p>
-              </div>
-              <div className="stat-item">
-                <p className="stat-value">1</p>
-                <p className="stat-label">AI side project live</p>
+
+              <div className="about-capability-grid">
+                {aboutCapabilities.map((item, index) => {
+                  const Icon = aboutCapabilityIconMap[item.icon];
+
+                  return (
+                    <Reveal key={item.title} delay={300 + index * 45}>
+                      <article className="about-capability-card">
+                        <span className="about-capability-icon" aria-hidden="true">
+                          <Icon size={34} stroke={1.8} />
+                        </span>
+                        <h3>{item.title}</h3>
+                        <p>{item.description}</p>
+                      </article>
+                    </Reveal>
+                  );
+                })}
               </div>
             </div>
-          </Reveal>
+          </div>
         </ScrollSection>
 
         <ScrollSection id="timeline" tone="soft">

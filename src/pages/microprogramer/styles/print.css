@@ -2,7 +2,7 @@
   /* 橫式 A4，保留邊界 */
   @page {
     size: A4 landscape;
-    margin: 14mm;
+    margin: 0;
   }
 
   html,
@@ -20,8 +20,8 @@
     width: auto !important;
     height: auto !important;
     overflow: visible !important;
-    background: #f6f7f9 !important;
-    color: #14171f !important;
+    background: #fafbff !important;
+    color: #111828 !important;
   }
 
   .scroll-nav {
@@ -45,11 +45,11 @@
   .scroll-section--hero,
   .scroll-section--thanks {
     width: 100% !important;
-    height: 182mm !important;
-    min-height: 182mm !important;
-    max-height: 182mm !important;
+    height: 210mm !important;
+    min-height: 210mm !important;
+    max-height: 210mm !important;
     margin: 0 !important;
-    padding: 8mm 0 !important;
+    padding: 0 !important;
     border: none !important;
     border-radius: 0 !important;
     display: flex !important;
@@ -69,20 +69,20 @@
 
   /* 跟網頁一樣保留區塊底色 */
   .scroll-section {
-    background: #f6f7f9 !important;
-    color: #14171f !important;
+    background: #ffffff !important;
+    color: #111828 !important;
   }
 
   .scroll-section--soft {
-    background: #eef1f5 !important;
-    color: #14171f !important;
+    background: #eaecfb !important;
+    color: #111828 !important;
   }
 
   .scroll-section--dark,
   .scroll-section--hero,
   .scroll-section--thanks {
-    background: #12161f !important;
-    color: #f4f6fa !important;
+    background: #141e48 !important;
+    color: rgba(255, 255, 255, 0.92) !important;
   }
 
   .scroll-section-inner {
@@ -90,7 +90,7 @@
     max-width: none !important;
     max-height: 100% !important;
     margin: 0 !important;
-    padding: 0 6mm !important;
+    padding: 14mm !important;
     overflow: hidden !important;
   }
 
@@ -104,54 +104,113 @@
     display: none !important;
   }
 
-  /* 字級與網頁接近，但壓縮到單頁可放下 */
+  /* 字級階層對應螢幕 token（固定 pt，單頁可放下） */
   .hero-title,
   .thanks-title {
-    font-size: 34pt !important;
+    font-size: 32pt !important;
     line-height: 1.1 !important;
-    max-width: 14ch !important;
+    max-width: 16ch !important;
+  }
+
+  .hero-title--tagline {
+    font-size: 28pt !important;
+    max-width: 20ch !important;
   }
 
   .section-title {
-    font-size: 24pt !important;
+    font-size: 22pt !important;
     line-height: 1.15 !important;
     max-width: 18ch !important;
   }
 
+  .career-title,
+  .skill-group-title,
+  .block-title,
+  .collab-card h3,
+  .workflow-card h3,
+  .thinking-card h3 {
+    font-size: 11pt !important;
+    line-height: 1.2 !important;
+  }
+
+  .section-subtitle,
+  .thanks-name {
+    font-size: 11pt !important;
+    line-height: 1.4 !important;
+  }
+
   .hero-lead,
   .section-lead,
-  .section-subtitle {
+  .motivation-pitch,
+  .about-copy .about-lead {
     font-size: 10.5pt !important;
     line-height: 1.55 !important;
     max-width: 48rem !important;
     margin-top: 4mm !important;
   }
 
+  .about-copy .about-lead {
+    margin-top: 0 !important;
+  }
+
+  .plain-list li,
+  .career-description,
+  .workflow-card p,
+  .thinking-card p,
+  .thanks-contact strong {
+    font-size: 9.5pt !important;
+    line-height: 1.45 !important;
+  }
+
   .hero-eyebrow,
   .section-kicker,
-  .section-kicker--on-dark {
+  .section-kicker--on-dark,
+  .career-period,
+  .workflow-index,
+  .thinking-card span,
+  .thanks-contact span,
+  .stat-label {
     font-size: 8pt !important;
+    line-height: 1.35 !important;
     margin-bottom: 3mm !important;
   }
 
+  .deck-tag,
+  .flow-chip {
+    font-size: 8pt !important;
+    padding: 1.2mm 2.5mm !important;
+  }
+
+  .stat-value {
+    font-size: 22pt !important;
+    color: #e62327 !important;
+  }
+
   .hero-title span,
-  .section-kicker,
   .career-period,
   .block-title {
-    color: #0f6e7a !important;
+    color: #6070c8 !important;
+  }
+
+  .section-kicker,
+  .workflow-index,
+  .thinking-card span,
+  .stat-value {
+    color: #e62327 !important;
   }
 
   .scroll-section--dark .hero-eyebrow,
   .scroll-section--dark .section-kicker,
   .scroll-section--dark .section-kicker--on-dark,
   .scroll-section--hero .hero-eyebrow,
-  .scroll-section--thanks .section-kicker {
-    color: #8fd4db !important;
+  .scroll-section--thanks .section-kicker,
+  .scroll-section--thanks .thanks-contact span {
+    color: #8090e0 !important;
   }
 
   .scroll-section--dark .hero-title span,
   .scroll-section--hero .hero-title span {
-    color: #8fd4db !important;
+    color: #8090e0 !important;
   }
 
   .plain-list li,
@@ -160,29 +219,134 @@
   .workflow-card p,
   .thinking-card p,
   .section-subtitle {
-    color: #5c6478 !important;
+    color: #3c4a68 !important;
   }
 
   .scroll-section--dark .plain-list li,
   .scroll-section--dark .hero-lead,
   .scroll-section--dark .thanks-name,
   .scroll-section--hero .hero-lead,
-  .scroll-section--thanks .thanks-name,
-  .scroll-section--thanks .thanks-contact span {
-    color: rgba(244, 246, 250, 0.78) !important;
+  .scroll-section--thanks .thanks-name {
+    color: rgba(255, 255, 255, 0.78) !important;
   }
 
   .scroll-section--thanks .thanks-contact strong {
-    color: #f4f6fa !important;
+    color: rgba(255, 255, 255, 0.92) !important;
   }
 
-  .about-layout,
+  .about-shell,
   .two-col,
   .skills-board,
   .collab-board {
     grid-template-columns: 1fr 1fr !important;
     gap: 5mm !important;
     margin-top: 5mm !important;
+  }
+
+  .about-shell {
+    grid-template-columns: 82mm 1fr !important;
+    align-items: center !important;
+    gap: 13mm !important;
+    margin-top: 0 !important;
+  }
+
+  .about-title {
+    font-size: 28pt !important;
+    max-width: none !important;
+    white-space: nowrap !important;
+  }
+
+  .about-photo-wrap {
+    margin-top: 7mm !important;
+  }
+
+  .about-photo-frame {
+    width: 76mm !important;
+  }
+
+  .about-photo-frame::before {
+    display: none !important;
+  }
+
+  .about-photo {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    aspect-ratio: 1.08 / 1 !important;
+    object-fit: cover !important;
+    border-radius: 3mm !important;
+    border: 0.3mm solid #dfe4f5 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .about-photo--placeholder {
+    display: flex !important;
+  }
+
+  .about-info-list {
+    gap: 2.5mm !important;
+    margin-top: 5mm !important;
+  }
+
+  .about-info-item {
+    grid-template-columns: 10mm minmax(0, 1fr) !important;
+    gap: 2.5mm !important;
+    padding-bottom: 2.5mm !important;
+  }
+
+  .about-info-icon {
+    width: 9mm !important;
+    height: 9mm !important;
+  }
+
+  .about-info-item h3,
+  .about-capability-card h3 {
+    font-size: 9.5pt !important;
+    line-height: 1.2 !important;
+  }
+
+  .about-info-item p,
+  .about-capability-card p {
+    font-size: 8pt !important;
+    line-height: 1.35 !important;
+  }
+
+  .about-copy .reveal + .reveal {
+    margin-top: 4mm !important;
+  }
+
+  .about-rule {
+    width: 12mm !important;
+    height: 0.7mm !important;
+  }
+
+  .about-capability-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 3mm !important;
+    margin-top: 7mm !important;
+  }
+
+  .about-capability-card {
+    min-height: 32mm !important;
+    padding: 3mm !important;
+    border-radius: 2mm !important;
+    background: #ffffff !important;
+    border: 0.3mm solid #dfe4f5 !important;
+  }
+
+  .about-capability-icon {
+    width: 11mm !important;
+    height: 11mm !important;
+    margin-bottom: 2mm !important;
+  }
+
+  .about-copy .reveal + .reveal {
+    margin-top: 3mm !important;
+  }
+
+  .about-tags {
+    margin-top: 4mm !important;
   }
 
   .workflow-board,
@@ -210,10 +374,6 @@
     break-inside: avoid !important;
   }
 
-  .career-title {
-    font-size: 12pt !important;
-  }
-
   .skill-group,
   .collab-card,
   .workflow-card,
@@ -222,7 +382,7 @@
     padding: 3.5mm !important;
     border-radius: 3mm !important;
     background: #ffffff !important;
-    border: 0.3mm solid #d7dbe5 !important;
+    border: 0.3mm solid #dfe4f5 !important;
     page-break-inside: avoid !important;
     break-inside: avoid !important;
   }
@@ -239,11 +399,6 @@
     gap: 2mm !important;
   }
 
-  .plain-list li {
-    font-size: 9.5pt !important;
-    line-height: 1.45 !important;
-  }
-
   .tag-row {
     margin-top: 3.5mm !important;
     gap: 1.5mm !important;
@@ -254,19 +409,19 @@
     font-size: 8pt !important;
     padding: 1.2mm 2.5mm !important;
     background: #ffffff !important;
-    border: 0.3mm solid #d7dbe5 !important;
+    border: 0.3mm solid #dfe4f5 !important;
   }
 
   .deck-tag--core {
-    background: #0f6e7a !important;
-    border-color: #0f6e7a !important;
+    background: #6070c8 !important;
+    border-color: #6070c8 !important;
     color: #fff !important;
   }
 
   .deck-tag--practical {
-    background: #e5f3f4 !important;
-    border-color: #e5f3f4 !important;
-    color: #0f6e7a !important;
+    background: #eaecfb !important;
+    border-color: #eaecfb !important;
+    color: #6070c8 !important;
   }
 
   .flow-row {
@@ -274,16 +429,13 @@
     gap: 1.5mm !important;
   }
 
-  .stat-value {
-    font-size: 22pt !important;
-    color: #14171f !important;
-  }
-
   .motivation-pitch {
     margin-top: 4mm !important;
     padding: 3.5mm 4mm !important;
-    background: #e5f3f4 !important;
-    color: #14171f !important;
+    padding-left: 5mm !important;
+    background: #eaecfb !important;
+    border-left: 0.8mm solid #e62327 !important;
+    color: #111828 !important;
     page-break-inside: avoid !important;
     break-inside: avoid !important;
   }
@@ -292,6 +444,119 @@
     margin-top: 6mm !important;
     gap: 6mm !important;
   }
+
+ 
+  .scroll-section--hero .scroll-section-inner {
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .cover-content {
+    width: 72% !important;
+    padding-top: 0 !important;
+  }
+
+  .scroll-section--hero .hero-eyebrow {
+    margin-bottom: 16mm !important;
+    font-size: 13pt !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    letter-spacing: 0.08em !important;
+    text-transform: none !important;
+  }
+
+  .scroll-section--hero .hero-title--tagline {
+    max-width: 24ch !important;
+    font-size: 34pt !important;
+    line-height: 1.16 !important;
+    color: rgba(255, 255, 255, 0.96) !important;
+  }
+
+  .scroll-section--hero .hero-title span {
+    color: #93a2ff !important;
+  }
+
+  .cover-profile {
+    margin-top: 18mm !important;
+  }
+
+  .cover-name {
+    margin: 0 !important;
+    display: flex !important;
+    gap: 7mm !important;
+    align-items: center !important;
+    color: rgba(255, 255, 255, 0.96) !important;
+    font-size: 25pt !important;
+    line-height: 1.15 !important;
+  }
+
+  .cover-name span {
+    color: rgba(255, 255, 255, 0.58) !important;
+  }
+
+  .cover-role {
+    margin-top: 4mm !important;
+    color: #93a2ff !important;
+    font-size: 16pt !important;
+  }
+
+  .cover-rule {
+    width: 18mm !important;
+    height: 0.8mm !important;
+    margin: 8mm 0 !important;
+    background: #a4afff !important;
+  }
+
+  .cover-stack {
+    margin: 0 !important;
+    color: rgba(255, 255, 255, 0.96) !important;
+    font-size: 13pt !important;
+  }
+
+  .cover-art {
+    display: block !important;
+    position: absolute !important;
+    inset: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .cover-orb,
+  .cover-grid,
+  .cover-dots,
+  .cover-lines {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .cover-orb {
+    width: 128mm !important;
+    right: -42mm !important;
+    top: 26mm !important;
+  }
+
+  .cover-grid {
+    width: 92mm !important;
+    height: 70mm !important;
+    right: 42mm !important;
+    top: 80mm !important;
+    background-size: 14mm 14mm !important;
+  }
+
+  .cover-dots {
+    width: 48mm !important;
+    height: 22mm !important;
+    right: 80mm !important;
+    top: 146mm !important;
+    background-size: 8mm 6mm !important;
+  }
+
+  .cover-lines {
+    width: 68mm !important;
+    height: 32mm !important;
+    right: 26mm !important;
+    top: 136mm !important;
+  }
+
 
   * {
     animation: none !important;
