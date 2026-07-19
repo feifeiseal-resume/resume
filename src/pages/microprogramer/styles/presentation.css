@@ -3387,3 +3387,97 @@
     overflow-wrap: anywhere;
   }
 }
+
+
+/* Tablet and mobile reading mode */
+@media screen and (max-width: 1024px) {
+  .scroll-root {
+    --page-gutter: clamp(22px, 5vw, 44px);
+    height: 100dvh;
+    overflow-y: auto;
+    scroll-snap-type: none;
+  }
+
+  .scroll-section,
+  .scroll-section--soft,
+  .scroll-section--dark,
+  .scroll-section--hero,
+  .scroll-section--thanks {
+    height: auto;
+    min-height: 100svh;
+    max-height: none;
+    padding-block: clamp(72px, 9vh, 104px) clamp(56px, 8vh, 88px);
+    overflow: visible;
+    justify-content: center;
+  }
+
+  .scroll-section-inner {
+    overflow: visible;
+  }
+
+  .scroll-section--hero .scroll-section-inner,
+  .scroll-section--thanks .scroll-section-inner {
+    min-height: calc(100svh - clamp(128px, 17vh, 192px));
+  }
+
+  .about-shell,
+  .career-journey-shell,
+  .cityprobe-overview-shell,
+  .cityprobe-technical-shell,
+  .nuxt-website-shell,
+  .josui-overview-shell,
+  .josui-technical-shell,
+  .josui-ai-shell,
+  .skills-map-shell {
+    align-items: start;
+  }
+
+  .skills-map-grid,
+  .career-timeline,
+  .josui-overview-panels,
+  .josui-technical-grid,
+  .josui-ai-board,
+  .cityprobe-info-grid,
+  .cityprobe-tech-grid,
+  .nuxt-website-grid {
+    margin-bottom: 0;
+  }
+
+  .josui-overview-showcase,
+  .cityprobe-overview-preview,
+  .cityprobe-technical-visual,
+  .nuxt-website-showcase {
+    width: 100%;
+    max-width: min(100%, 760px);
+    justify-self: center;
+  }
+
+  .josui-flow-panel,
+  .cityprobe-flow-panel,
+  .nuxt-website-preview,
+  .cityprobe-product-preview,
+  .cityprobe-dashboard-mock,
+  .josui-browser-mock {
+    max-height: none;
+  }
+
+  .scroll-section--heading {
+    min-height: auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .scroll-section,
+  .scroll-section--soft,
+  .scroll-section--dark,
+  .scroll-section--hero,
+  .scroll-section--thanks {
+    min-height: auto;
+    padding-block: clamp(64px, 9vh, 86px) clamp(48px, 7vh, 72px);
+  }
+
+  .scroll-section--hero,
+  .scroll-section--thanks {
+    min-height: 100svh;
+  }
+}

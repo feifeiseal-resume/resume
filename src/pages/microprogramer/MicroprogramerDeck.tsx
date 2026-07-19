@@ -102,16 +102,21 @@ export default function MicroprogramerDeck() {
 
     const updateTransitionProgress = () => {
       frame = 0;
+      const coverSection = document.getElementById('cover');
       const aboutSection = document.getElementById('about');
       const aboutTop = aboutSection?.offsetTop ?? root.clientHeight;
-      const coverProgress = aboutTop > 0 ? Math.min(Math.max(root.scrollTop / aboutTop, 0), 1) : 1;
+      const coverStart = (coverSection?.offsetHeight ?? root.clientHeight) * 0.45;
+      const coverRange = Math.max(aboutTop - coverStart, 1);
+      const coverProgress = Math.min(Math.max((root.scrollTop - coverStart) / coverRange, 0), 1);
 
       const headingSection = document.getElementById('where-im-heading');
       const thanksSection = document.getElementById('thanks');
       const headingTop = headingSection?.offsetTop ?? Number.POSITIVE_INFINITY;
-      const thanksTop = thanksSection?.offsetTop ?? headingTop + root.clientHeight;
-      const headingRange = Math.max(thanksTop - headingTop, 1);
-      const thanksProgress = Math.min(Math.max((root.scrollTop - headingTop) / headingRange, 0), 1);
+      const headingHeight = headingSection?.offsetHeight ?? root.clientHeight;
+      const thanksTop = thanksSection?.offsetTop ?? headingTop + headingHeight;
+      const headingStart = headingTop + headingHeight * 0.45;
+      const headingRange = Math.max(thanksTop - headingStart, 1);
+      const thanksProgress = Math.min(Math.max((root.scrollTop - headingStart) / headingRange, 0), 1);
 
       root.style.setProperty('--cover-to-about-progress', coverProgress.toFixed(3));
       root.style.setProperty('--heading-to-thanks-progress', thanksProgress.toFixed(3));

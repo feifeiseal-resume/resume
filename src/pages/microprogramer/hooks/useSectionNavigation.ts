@@ -1,5 +1,11 @@
 import { useCallback, useEffect, useRef, useState, type RefObject } from 'react';
 
+const READING_MODE_QUERY = '(max-width: 1024px)';
+
+function isReadingMode() {
+  return typeof window !== 'undefined' && window.matchMedia(READING_MODE_QUERY).matches;
+}
+
 /** 追蹤目前章節，並用滾輪 / 鍵盤穩定切換（避免 snap 卡住）。 */
 export function useSectionNavigation(
   sectionIds: string[],
@@ -52,6 +58,8 @@ export function useSectionNavigation(
     if (!root) return;
 
     const onWheel = (event: WheelEvent) => {
+      if (isReadingMode()) return;
+
       // 交給章節切換，避免內層 / snap 吃掉滾輪
       event.preventDefault();
       if (Math.abs(event.deltaY) < 8) return;
@@ -63,6 +71,8 @@ export function useSectionNavigation(
       touchStartY = event.touches[0]?.clientY ?? 0;
     };
     const onTouchEnd = (event: TouchEvent) => {
+      if (isReadingMode()) return;
+
       const endY = event.changedTouches[0]?.clientY ?? touchStartY;
       const delta = touchStartY - endY;
       if (Math.abs(delta) < 40) return;
@@ -83,6 +93,8 @@ export function useSectionNavigation(
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp' && event.key !== ' ') return;
+      if (isReadingMode()) return;
+
       event.preventDefault();
       if (event.key === 'ArrowDown' || event.key === ' ') goBy(1);
       else goBy(-1);
