@@ -36,18 +36,15 @@ export const aboutContent = {
 export const slideOutline: { id: string; label: string }[] = [
   { id: 'cover', label: '封面' },
   { id: 'about', label: '關於我' },
-  { id: 'timeline', label: '職涯歷程' },
   { id: 'skills', label: '技術能力' },
-  { id: 'workflow', label: '開發流程' },
+  { id: 'timeline', label: '職涯歷程' },
   { id: 'josui-overview', label: 'JOSUI 專案' },
   { id: 'josui-technical', label: 'JOSUI 技術亮點' },
   { id: 'josui-ai', label: 'JOSUI AI 協作' },
   { id: 'cityprobe-overview', label: 'City Probe 專案' },
   { id: 'cityprobe-technical', label: 'City Probe 技術挑戰' },
-  { id: 'components', label: '共用元件' },
-  { id: 'thinking', label: '設計思維' },
-  { id: 'collaboration', label: '團隊合作' },
-  { id: 'motivation', label: '加入動機與規劃' },
+  { id: 'nuxt-websites', label: 'Nuxt 官網' },
+  { id: 'where-im-heading', label: '職涯方向' },
   { id: 'thanks', label: 'Thank You' },
 ];
 
@@ -89,17 +86,54 @@ export const aboutCapabilities: AboutCapability[] = [
 
 export interface TimelineStep {
   period: string;
-  title: string;
-  description: string;
+  company: string;
+  role: string;
+  location: string;
+  summary: string;
+  highlights: string[];
+  tags: string[];
 }
 
 export const careerTimeline: TimelineStep[] = [
-  { period: '2020–2022', title: 'PM 工作', description: '負責需求訪談、時程規劃與設計／開發協調' },
-  { period: '2022', title: '轉職前端', description: '自學並進入前端工程領域' },
-  { period: '2022–2024', title: '奇點無限', description: '參與客戶系統重構、企業系統、官網與元件庫建置' },
-  { period: '2024–2026', title: '勝崨有限公司', description: '參與企業系統、Nuxt 官網與 SaaS 產品功能迭代' },
-  { period: '持續進行', title: 'JOSUI', description: '獨立開發 AI 協作 side project，實作設計系統工具' },
-  { period: '現在', title: '持續深化', description: 'Vue、Nuxt、TypeScript、AI 工具與前端工程品質' },
+  {
+    period: '2024.11 – 2026.05',
+    company: '勝崨有限公司',
+    role: '前端工程師',
+    location: '台中',
+    summary: '參與企業系統、Nuxt 官網與 SaaS 產品功能迭代，負責前端功能開發與專案交付。',
+    highlights: [
+      '與 SA、PM、Backend、UI/UX 協作，推進需求對齊、UAT 與上線',
+      '實作多步驟表單、角色權限、列表篩選與排序等 B 端功能',
+      '使用 Nuxt SSR、圖片最佳化與 SEO 設定改善官網體驗',
+    ],
+    tags: ['Enterprise Systems', 'Nuxt Website', 'SaaS', 'UAT'],
+  },
+  {
+    period: '2022.08 – 2024.11',
+    company: '奇點無限股份有限公司',
+    role: '前端工程師',
+    location: '台中',
+    summary: '在技術長帶領下參與客戶系統重構，累積既有 codebase 維護、模組化改寫與 Code Review 經驗。',
+    highlights: [
+      '參與內部系統開發，實作表單驗證、角色權限、資料表格與儀表板',
+      '承接既有專案，釐清未完成事項並降低修改風險',
+      '與前端同事協作建置共用元件庫，統一設計規範與元件 API',
+    ],
+    tags: ['Refactor', 'Legacy Code', 'Component Library', 'Code Review'],
+  },
+  {
+    period: '2020.10 – 2022.01',
+    company: '我瘋程式工作室',
+    role: '專案經理 PM',
+    location: '台中',
+    summary: '負責網站專案的需求訪談、時程規劃與設計／開發協調，後續主動投入自學並轉職前端。',
+    highlights: [
+      '整理需求背景、溝通專案範圍與交付節奏',
+      '理解技術能力對專案品質與溝通效率的重要性',
+      '將需求理解與協作經驗延伸到前端開發工作中',
+    ],
+    tags: ['Requirement', 'Planning', 'Communication'],
+  },
 ];
 
 export type SkillLevel = 'core' | 'practical' | 'learning';
@@ -112,72 +146,89 @@ export const skillLevelLabel: Record<SkillLevel, string> = {
 
 export interface SkillCategory {
   title: string;
+  icon: 'frontend' | 'framework' | 'ui' | 'api' | 'tools' | 'quality' | 'motion';
   items: { label: string; level: SkillLevel }[];
 }
 
 export const skillCategories: SkillCategory[] = [
   {
-    title: 'Frontend',
+    title: '前端核心',
+    icon: 'frontend',
     items: [
-      { label: 'Vue 3', level: 'core' },
-      { label: 'Nuxt 3', level: 'core' },
+      { label: 'JavaScript ES6+', level: 'core' },
       { label: 'TypeScript', level: 'core' },
-      { label: 'JavaScript', level: 'core' },
-      { label: 'HTML / CSS / SCSS', level: 'core' },
+      { label: 'HTML5', level: 'core' },
+      { label: 'CSS3 / SCSS', level: 'core' },
       { label: 'Tailwind CSS', level: 'practical' },
-      { label: 'Responsive Web Design', level: 'core' },
-      { label: 'React（JOSUI 專案實務使用）', level: 'practical' },
     ],
   },
   {
-    title: 'State & Data',
+    title: '框架與庫',
+    icon: 'framework',
     items: [
-      { label: 'Pinia', level: 'core' },
+      { label: 'Nuxt 3', level: 'core' },
+      { label: 'Vue 3', level: 'core' },
+      { label: 'React', level: 'practical' },
+      { label: 'Vue Router', level: 'core' },
+      { label: 'Pinia / Vuex', level: 'core' },
       { label: 'Composition API', level: 'core' },
-      { label: 'RESTful API / Axios', level: 'core' },
-      { label: '表單狀態管理', level: 'core' },
-      { label: '權限與角色控制', level: 'practical' },
-      { label: 'i18n 多語系', level: 'practical' },
     ],
   },
   {
-    title: 'Engineering',
+    title: 'UI 與元件庫',
+    icon: 'ui',
+    items: [
+      { label: 'shadcn/ui', level: 'core' },
+      { label: '元件庫建置', level: 'core' },
+    ],
+  },
+  {
+    title: 'API 與異步',
+    icon: 'api',
+    items: [
+      { label: 'RESTful API', level: 'core' },
+      { label: 'Axios', level: 'core' },
+    ],
+  },
+  {
+    title: '工具與版本控制',
+    icon: 'tools',
     items: [
       { label: 'Git / GitHub', level: 'core' },
       { label: 'Vite', level: 'core' },
-      { label: 'Component Design', level: 'core' },
-      { label: 'Code Review', level: 'practical' },
-      { label: 'Debugging', level: 'core' },
-      { label: 'Web Performance / SEO', level: 'practical' },
-      { label: 'AI 輔助開發與審查', level: 'practical' },
+      { label: 'Webpack', level: 'practical' },
+      { label: 'npm', level: 'core' },
     ],
   },
   {
-    title: 'Currently Learning',
+    title: '優化與品質',
+    icon: 'quality',
     items: [
-      { label: 'Vitest / Vue Test Utils', level: 'learning' },
-      { label: 'Docker / CI 基礎流程', level: 'learning' },
+      { label: 'RWD 響應式設計', level: 'core' },
+      { label: 'Web Performance', level: 'practical' },
+      { label: 'SEO 最佳化', level: 'practical' },
+    ],
+  },
+  {
+    title: '動畫與互動',
+    icon: 'motion',
+    items: [
+      { label: 'Framer Motion', level: 'practical' },
+      { label: 'SVG Animation', level: 'practical' },
+      { label: 'CSS Animation', level: 'core' },
     ],
   },
 ];
 
-export interface WorkflowStep {
-  title: string;
-  description: string;
-}
-
-export const workflowSteps: WorkflowStep[] = [
-  { title: '需求理解', description: '確認使用情境與邊界條件' },
-  { title: '功能拆解', description: '拆分畫面、狀態與資料流' },
-  { title: '技術評估', description: '確認可行性、風險與工時' },
-  { title: '元件規劃', description: '判斷共用元件與業務元件' },
-  { title: 'API 契約', description: '與後端確認資料格式與錯誤處理' },
-  { title: '功能開發', description: '依規劃實作元件與資料流' },
-  { title: '測試除錯', description: '處理正常流程及例外狀況' },
-  { title: 'Code Review', description: '與團隊確認實作方式與品質' },
-  { title: 'UAT', description: '依據使用者回饋進行調整' },
-  { title: '正式上線', description: '確認上線後行為正常' },
-];
+export const skillPerspective = {
+  statement: '我重視的不只是熟悉工具，而是能依照產品情境選擇合適的前端實作方式。',
+  strengths: [
+    '理解需求與資料流，轉化為可落地的前端方案',
+    '重視程式碼品質與可維護性',
+    '能在企業系統、官網與 SaaS 情境中切換開發思維',
+    '持續學習新技術，並快速應用到實際專案',
+  ],
+};
 
 export interface ProjectOverview {
   title: string;
@@ -252,12 +303,14 @@ export const josuiAiWorkflow: AiWorkflow = {
     '產生初版元件與互動邏輯',
     '協助 Debug 與整理錯誤方向',
     '補充 README、文件與面試說明',
+    '檢查可能遺漏的邊界情境',
   ],
   review: [
     '回到需求確認功能是否真的解決問題',
     '檢查元件責任、命名、型別與資料流',
     '確認產出是否符合專案既有風格',
-    '測試 Light / Dark、色彩格式、Copy 結果與 RWD',
+    '測試 Light / Dark、不同色彩格式、Copy 結果與 RWD',
+    '移除不必要的抽象或過度設計',
     '將 AI 產出視為初稿，而不是最終答案',
   ],
 };
@@ -266,7 +319,7 @@ export const cityProbeOverview: ProjectOverview = {
   title: 'City Probe',
   subtitle: 'Nuxt 3 企業管理後台',
   background:
-    'City Probe 是智慧城市與學術研究相關的管理平台，前端需支援登入認證、權限管理、資料查詢、表格、圖表、地圖與多語系等後台常見需求。',
+    'City Probe 是配合大學學術研究開發的智慧城市市民參與平台。前端負責登入認證、權限管理、數據視覺化儀表板等核心功能，並以 Tailwind CSS 與自訂元件實作表格、圖表、表單驗證等互動元件。',
   role: [
     '前端功能開發與 Nuxt 3 頁面／元件開發',
     'API 串接與狀態管理',
@@ -281,8 +334,9 @@ export const cityProbeOverview: ProjectOverview = {
     '儀表板與圖表',
     '地圖與空間資料呈現',
     '多語系介面',
+    '後台版面與共用元件',
   ],
-  tech: ['Nuxt 3', 'Vue 3', 'TypeScript', 'Pinia', 'Tailwind CSS', 'Axios', 'i18n', 'Leaflet / Google Map'],
+  tech: ['Nuxt 3', 'Vue 3', 'TypeScript', 'Pinia', 'Tailwind CSS', 'Axios', 'i18n', 'Leaflet / Protomaps / Google Map', 'vue-good-table-next'],
 };
 
 export const cityProbeTechnical: ProjectTechnical = {
@@ -291,11 +345,16 @@ export const cityProbeTechnical: ProjectTechnical = {
     '使用者狀態、語系、主題等資訊需跨頁面共用',
     '表格查詢、篩選、分頁與 API 參數需要一致管理',
     '地圖套件與 SSR / CSR 行為需要特別處理',
+    '多語系檔案與 UI 文案需要維持一致',
+    '需要在既有專案結構中完成維護與功能迭代',
+    '部分資料載入時間較長，需要設計 loading 狀態與配套回饋降低等待感',
   ],
   solutions: [
     '使用 Pinia 管理使用者、語系、主題設定等共用狀態',
     '將頁面、components、composables、stores 分層處理',
     '將地圖與瀏覽器限定套件設為 client-only，排除 SSR 執行',
+    '使用 Nuxt plugins 管理表格、tooltip、日期選擇等瀏覽器端套件',
+    '透過 i18n 與自動產生語系檔流程降低文案維護成本',
     '用 TypeScript 型別約束 API 資料與元件 props',
   ],
   flow: ['Nuxt Page', 'Feature Components', 'Composables', 'Pinia Stores', 'API / Runtime Config'],
@@ -318,6 +377,33 @@ export const componentReuse: ComponentReuse = {
     '避免為了共用而過度抽象',
   ],
   examples: ['Button', 'Input', 'Select', 'Dialog', 'Table', 'Pagination', 'Form Field'],
+};
+
+export interface NuxtWebsiteCase {
+  name: string;
+  summary: string;
+  role: string[];
+  focus: string[];
+  tech: string[];
+}
+
+export const fukukuWebsite: NuxtWebsiteCase = {
+  name: 'FUKUKU 樂勁雲數位服務官網',
+  summary:
+    'AI 智慧瓦斯配送服務平台官網，與設計師合作開發。我負責前端架構設計與視覺實作，使用 Nuxt 3 SSR 建立可維護、可被搜尋理解的品牌頁面。',
+  role: [
+    '與設計師合作將版面轉成 RWD 前端頁面',
+    '負責前端架構、頁面元件與視覺實作',
+    '實作產品介紹、服務模式展示與 FAQ 模組',
+    '補齊實際資料長度、圖片比例與不同裝置情境',
+  ],
+  focus: [
+    '使用 Nuxt SSR 與 SEO meta 改善內容可見度',
+    '透過圖片 Lazy Loading 與 Code Splitting 降低載入負擔',
+    '整理重複區塊成可維護的頁面元件',
+    '讓品牌官網在不同解析度下維持穩定閱讀體驗',
+  ],
+  tech: ['Nuxt 3', 'Vue 3', 'SSR', 'SEO', 'RWD', 'Lazy Loading', 'Code Splitting'],
 };
 
 export interface ThinkingAspect {
@@ -371,6 +457,41 @@ export const motivation: Motivation = {
     '中期：深化 Code Review 與可維護性判斷能力，並補上 Docker、CI 基礎流程的實際操作經驗',
     '長期：往前端系統設計方向累積，持續把 AI 工具用得更精準，同時保有工程師對架構與品質的最終判斷',
   ],
+};
+
+export interface CareerDirection {
+  statement: string;
+  stages: { id: string; title: string; subtitle: string; description: string; items: string[] }[];
+  outcome: string;
+}
+
+export const careerDirection: CareerDirection = {
+  statement:
+    '我的核心仍然是前端。學習後端不是離開前端，而是希望更完整地理解產品如何運作。',
+  stages: [
+    {
+      id: 'today',
+      title: 'Frontend Expertise',
+      subtitle: '穩定交付前端產品',
+      description: '持續深化 Vue、Nuxt、TypeScript，將需求與資料流落成可維護的產品功能。',
+      items: ['需求分析到上線的完整交付', '企業系統與產品實戰經驗'],
+    },
+    {
+      id: 'next',
+      title: 'Engineering Quality',
+      subtitle: 'Strengthen Engineering Quality',
+      description: '除了完成需求，也建立測試、自動化與部署的品質觀念。',
+      items: ['測試、CI/CD 與部署基礎', 'AI 協作下的架構與品質判斷'],
+    },
+    {
+      id: 'future',
+      title: 'System Thinking',
+      subtitle: '建立全端思維',
+      description: '逐步理解 API、資料模型與系統架構，和不同角色一起討論更完整的技術方案。',
+      items: ['API 契約、資料流與系統限制', '可維護、可擴充的產品解法'],
+    },
+  ],
+  outcome: 'Product-minded Engineer with Full-stack Thinking',
 };
 
 export interface ContactItem {

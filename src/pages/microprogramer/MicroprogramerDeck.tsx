@@ -1,10 +1,21 @@
 import { useEffect, useRef } from 'react';
 import {
+  IconApi,
+  IconBolt,
   IconBriefcase2,
   IconBuildingSkyscraper,
+  IconCube,
   IconCode,
+  IconDeviceDesktop,
+  IconGitBranch,
+  IconBrandGithub,
+  IconLink,
+  IconMail,
   IconHeartHandshake,
   IconMapPin,
+  IconPalette,
+  IconRocket,
+  IconShieldCheck,
   IconPuzzle,
   IconBrandVue,
   IconWritingSign,
@@ -22,20 +33,17 @@ import {
   careerTimeline,
   coverContent,
   cityProbeOverview,
+  careerDirection,
   cityProbeTechnical,
-  collaborationRoles,
-  componentReuse,
   contactItems,
+  fukukuWebsite,
   deckMeta,
-  designThinking,
   josuiAiWorkflow,
   josuiOverview,
   josuiTechnical,
-  motivation,
-  problemSolvingFlow,
   skillCategories,
+  skillPerspective,
   slideOutline,
-  workflowSteps,
 } from './data';
 import './styles/presentation.css';
 import './styles/print.css';
@@ -55,6 +63,22 @@ const aboutCapabilityIconMap = {
   product: IconWritingSign,
   maintain: IconPuzzle,
   team: IconHeartHandshake,
+};
+
+const skillCategoryIconMap = {
+  frontend: IconCode,
+  framework: IconDeviceDesktop,
+  ui: IconPalette,
+  api: IconApi,
+  tools: IconGitBranch,
+  quality: IconRocket,
+  motion: IconBolt,
+};
+
+const headingStageIconMap = {
+  today: IconCube,
+  next: IconShieldCheck,
+  future: IconPuzzle,
 };
 
 export default function MicroprogramerDeck() {
@@ -80,8 +104,17 @@ export default function MicroprogramerDeck() {
       frame = 0;
       const aboutSection = document.getElementById('about');
       const aboutTop = aboutSection?.offsetTop ?? root.clientHeight;
-      const progress = aboutTop > 0 ? Math.min(Math.max(root.scrollTop / aboutTop, 0), 1) : 1;
-      root.style.setProperty('--cover-to-about-progress', progress.toFixed(3));
+      const coverProgress = aboutTop > 0 ? Math.min(Math.max(root.scrollTop / aboutTop, 0), 1) : 1;
+
+      const headingSection = document.getElementById('where-im-heading');
+      const thanksSection = document.getElementById('thanks');
+      const headingTop = headingSection?.offsetTop ?? Number.POSITIVE_INFINITY;
+      const thanksTop = thanksSection?.offsetTop ?? headingTop + root.clientHeight;
+      const headingRange = Math.max(thanksTop - headingTop, 1);
+      const thanksProgress = Math.min(Math.max((root.scrollTop - headingTop) / headingRange, 0), 1);
+
+      root.style.setProperty('--cover-to-about-progress', coverProgress.toFixed(3));
+      root.style.setProperty('--heading-to-thanks-progress', thanksProgress.toFixed(3));
     };
 
     const requestUpdate = () => {
@@ -235,367 +268,617 @@ export default function MicroprogramerDeck() {
           </div>
         </ScrollSection>
 
-        <ScrollSection id="timeline" tone="soft">
-          <Reveal>
-            <p className="section-kicker">Career</p>
-            <h2 className="section-title">從 PM 到前端工程師</h2>
-          </Reveal>
-          <div className="career-list">
-            {careerTimeline.map((step, index) => (
-              <Reveal key={`${step.period}-${step.title}`} delay={index * 70}>
-                <article className="career-item">
-                  <p className="career-period">{step.period}</p>
-                  <div>
-                    <h3 className="career-title">{step.title}</h3>
-                    <p className="career-description">{step.description}</p>
-                  </div>
-                </article>
+        <ScrollSection id="skills" className="scroll-section--skills-map">
+          <div className="skills-map-shell">
+            <div className="skills-map-main">
+              <Reveal>
+                <p className="section-kicker">&nbsp;&nbsp;Skills &amp; Expertise</p>
+                <h2 className="section-title skills-map-title">Core Skills &amp; Technologies</h2>
+                <p className="section-subtitle skills-map-subtitle">
+                  將前端技術放回產品情境中，建立穩定、可維護的實作能力。
+                </p>
               </Reveal>
-            ))}
+
+              <div className="skills-map-grid">
+                {skillCategories.map((category, index) => {
+                  const Icon = skillCategoryIconMap[category.icon];
+
+                  return (
+                    <Reveal key={category.title} delay={80 + index * 45}>
+                      <article className="skill-map-card">
+                        <div className="skill-map-card-head">
+                          <span className="skill-map-icon" aria-hidden="true">
+                            <Icon size={24} stroke={1.8} />
+                          </span>
+                          <h3>{category.title}</h3>
+                        </div>
+                        <div className="tag-row skill-map-tags">
+                          {category.items.map((item) => (
+                            <Tag key={item.label} label={item.label} level={item.level} />
+                          ))}
+                        </div>
+                      </article>
+                    </Reveal>
+                  );
+                })}
+              </div>
+            </div>
+
+            <aside className="skills-map-aside">
+              <Reveal delay={120}>
+                <section className="skills-note">
+                  <h3>我的技術觀點</h3>
+                  <div className="about-rule" aria-hidden="true" />
+                  <p>{skillPerspective.statement}</p>
+                </section>
+              </Reveal>
+
+              <Reveal delay={220}>
+                <section className="skills-note skills-note--strengths">
+                  <h3>核心優勢</h3>
+                  <div className="about-rule" aria-hidden="true" />
+                  <ul className="skills-strength-list">
+                    {skillPerspective.strengths.map((item) => (
+                      <li key={item}>
+                        <span aria-hidden="true">•</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              </Reveal>
+            </aside>
           </div>
         </ScrollSection>
 
-        <ScrollSection id="skills">
-          <Reveal>
-            <p className="section-kicker">Skills</p>
-            <h2 className="section-title">我的技術能力</h2>
-          </Reveal>
-          <div className="skills-board">
-            {skillCategories.map((category, index) => (
-              <Reveal key={category.title} delay={index * 80}>
-                <div className="skill-group">
-                  <h3 className="skill-group-title">{category.title}</h3>
-                  <div className="tag-row">
-                    {category.items.map((item) => (
-                      <Tag key={item.label} label={item.label} level={item.level} />
-                    ))}
+        <ScrollSection id="timeline" tone="soft" className="scroll-section--career-journey">
+          <div className="career-journey-shell">
+            <div className="career-journey-intro">
+              <Reveal>
+                <p className="section-kicker">Experience</p>
+                <h2 className="section-title career-journey-title">Career Journey</h2>
+                <p className="section-subtitle career-journey-subtitle">
+                  這些經歷讓我的前端能力，從需求理解、系統維護，逐步走向產品交付。
+                </p>
+              </Reveal>
+            </div>
+
+            <div className="career-timeline">
+              {careerTimeline.map((step, index) => (
+                <Reveal key={step.company} delay={index * 80}>
+                  <article className="career-timeline-item">
+                    <div className="career-timeline-marker" aria-hidden="true">
+                      {String(index + 1).padStart(2, '0')}
+                    </div>
+                    <div className="career-timeline-card">
+                      <div className="career-timeline-head">
+                        <p className="career-period">{step.period}</p>
+                      </div>
+                      <h3 className="career-title">{step.company}</h3>
+                      <p className="career-role">{step.role}</p>
+                      <p className="career-description">{step.summary}</p>
+                      <ul className="career-highlight-list">
+                        {step.highlights.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </ScrollSection>
+
+        <ScrollSection id="josui-overview" className="scroll-section--josui-overview">
+          <div className="josui-overview-shell">
+            <div className="josui-overview-copy">
+              <Reveal>
+                <p className="section-kicker">Project 01</p>
+                <h2 className="section-title josui-overview-title">Style shadcn UI beautifully</h2>
+                <p className="section-subtitle">{josuiOverview.title}｜{josuiOverview.subtitle}</p>
+              </Reveal>
+              <Reveal delay={80}>
+                <p className="section-lead josui-overview-lead">{josuiOverview.background}</p>
+              </Reveal>
+
+              <div className="josui-overview-panels">
+                <Reveal delay={140}>
+                  <article className="josui-overview-panel">
+                    <span className="nuxt-website-label">My Role</span>
+                    <ul className="plain-list josui-compact-list">
+                      {josuiOverview.role.slice(0, 5).map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </article>
+                </Reveal>
+                <Reveal delay={200}>
+                  <article className="josui-overview-panel">
+                    <span className="nuxt-website-label">Focus</span>
+                    <ul className="plain-list josui-compact-list">
+                      {josuiOverview.features.slice(0, 5).map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </article>
+                </Reveal>
+              </div>
+            </div>
+
+            <Reveal delay={140} className="josui-overview-showcase">
+              <div className="josui-browser-mock">
+                <div className="josui-browser-bar" aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                <div className="josui-preview-surface">
+                  <div className="josui-preview-header">
+                    <div>
+                      <p>JOSUI</p>
+                      <strong>Theme Playground</strong>
+                    </div>
+                    <span>Live Preview</span>
+                  </div>
+                  <div className="josui-preview-grid">
+                    <div className="josui-color-panel">
+                      <span className="josui-swatch josui-swatch--primary" />
+                      <span className="josui-swatch josui-swatch--accent" />
+                      <span className="josui-swatch josui-swatch--soft" />
+                    </div>
+                    <div className="josui-component-stack">
+                      <div className="josui-mini-card" />
+                      <div className="josui-mini-card josui-mini-card--wide" />
+                      <div className="josui-mini-actions">
+                        <span />
+                        <span />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="josui-token-row">
+                    <code>--primary</code>
+                    <code>--accent</code>
+                    <code>Copy tokens</code>
                   </div>
                 </div>
-              </Reveal>
-            ))}
-          </div>
-        </ScrollSection>
+              </div>
 
-        <ScrollSection id="workflow" tone="soft">
-          <Reveal>
-            <p className="section-kicker">Workflow</p>
-            <h2 className="section-title">從需求到正式上線</h2>
-          </Reveal>
-          <div className="workflow-board">
-            {workflowSteps.map((step, index) => (
-              <Reveal key={step.title} delay={index * 40}>
-                <article className="workflow-card">
-                  <span className="workflow-index">{String(index + 1).padStart(2, '0')}</span>
-                  <h3>{step.title}</h3>
-                  <p>{step.description}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </ScrollSection>
-
-        <ScrollSection id="josui-overview">
-          <Reveal>
-            <p className="section-kicker">Project 01</p>
-            <h2 className="section-title">{josuiOverview.title}</h2>
-            <p className="section-subtitle">{josuiOverview.subtitle}</p>
-          </Reveal>
-          <Reveal delay={80}>
-            <p className="section-lead">{josuiOverview.background}</p>
-          </Reveal>
-          <div className="two-col">
-            <Reveal delay={120}>
-              <h3 className="block-title">我的角色</h3>
-              <ul className="plain-list">
-                {josuiOverview.role.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </Reveal>
-            <Reveal delay={180}>
-              <h3 className="block-title">核心功能</h3>
-              <ul className="plain-list">
-                {josuiOverview.features.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </Reveal>
-          </div>
-          <Reveal delay={220}>
-            <div className="tag-row">
-              {josuiOverview.tech.map((tech) => (
-                <Tag key={tech} label={tech} />
-              ))}
-            </div>
-          </Reveal>
-        </ScrollSection>
-
-        <ScrollSection id="josui-technical" tone="soft">
-          <Reveal>
-            <p className="section-kicker">Project 01 · Technical</p>
-            <h2 className="section-title">如何讓主題色彩即時預覽與匯出</h2>
-          </Reveal>
-          <div className="two-col">
-            <Reveal delay={80}>
-              <h3 className="block-title">挑戰</h3>
-              <ul className="plain-list">
-                {josuiTechnical.challenges.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </Reveal>
-            <Reveal delay={140}>
-              <h3 className="block-title">解法</h3>
-              <ul className="plain-list">
-                {josuiTechnical.solutions.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </Reveal>
-          </div>
-          <Reveal delay={200}>
-            <div className="flow-row">
-              {josuiTechnical.flow.map((step, index) => (
-                <span key={step} className="flow-chip">
-                  {step}
-                  {index < josuiTechnical.flow.length - 1 ? <span className="flow-arrow">→</span> : null}
-                </span>
-              ))}
-            </div>
-          </Reveal>
-        </ScrollSection>
-
-        <ScrollSection id="josui-ai">
-          <Reveal>
-            <p className="section-kicker">Project 01 · AI</p>
-            <h2 className="section-title">我如何使用 AI，但不依賴 AI</h2>
-          </Reveal>
-          <div className="two-col">
-            <Reveal delay={80}>
-              <h3 className="block-title">使用 AI 的情境</h3>
-              <ul className="plain-list">
-                {josuiAiWorkflow.usage.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </Reveal>
-            <Reveal delay={140}>
-              <h3 className="block-title">我的審查方式</h3>
-              <ul className="plain-list">
-                {josuiAiWorkflow.review.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </Reveal>
-          </div>
-        </ScrollSection>
-
-        <ScrollSection id="cityprobe-overview" tone="soft">
-          <Reveal>
-            <p className="section-kicker">Project 02</p>
-            <h2 className="section-title">{cityProbeOverview.title}</h2>
-            <p className="section-subtitle">{cityProbeOverview.subtitle}</p>
-          </Reveal>
-          <Reveal delay={80}>
-            <p className="section-lead">{cityProbeOverview.background}</p>
-          </Reveal>
-          <div className="two-col">
-            <Reveal delay={120}>
-              <h3 className="block-title">我的角色</h3>
-              <ul className="plain-list">
-                {cityProbeOverview.role.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </Reveal>
-            <Reveal delay={180}>
-              <h3 className="block-title">核心功能</h3>
-              <ul className="plain-list">
-                {cityProbeOverview.features.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </Reveal>
-          </div>
-          <Reveal delay={220}>
-            <div className="tag-row">
-              {cityProbeOverview.tech.map((tech) => (
-                <Tag key={tech} label={tech} />
-              ))}
-            </div>
-          </Reveal>
-        </ScrollSection>
-
-        <ScrollSection id="cityprobe-technical">
-          <Reveal>
-            <p className="section-kicker">Project 02 · Technical</p>
-            <h2 className="section-title">如何處理管理後台中的複雜資料與互動</h2>
-          </Reveal>
-          <div className="two-col">
-            <Reveal delay={80}>
-              <h3 className="block-title">挑戰</h3>
-              <ul className="plain-list">
-                {cityProbeTechnical.challenges.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </Reveal>
-            <Reveal delay={140}>
-              <h3 className="block-title">解法</h3>
-              <ul className="plain-list">
-                {cityProbeTechnical.solutions.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </Reveal>
-          </div>
-          <Reveal delay={200}>
-            <div className="flow-row">
-              {cityProbeTechnical.flow.map((step, index) => (
-                <span key={step} className="flow-chip">
-                  {step}
-                  {index < cityProbeTechnical.flow.length - 1 ? <span className="flow-arrow">→</span> : null}
-                </span>
-              ))}
-            </div>
-          </Reveal>
-        </ScrollSection>
-
-        <ScrollSection id="components" tone="soft">
-          <Reveal>
-            <p className="section-kicker">Engineering</p>
-            <h2 className="section-title">從單一功能到可重複使用的設計</h2>
-          </Reveal>
-          <Reveal delay={80}>
-            <p className="section-lead">{componentReuse.background}</p>
-          </Reveal>
-          <div className="two-col">
-            <Reveal delay={120}>
-              <h3 className="block-title">我的做法</h3>
-              <ul className="plain-list">
-                {componentReuse.approach.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </Reveal>
-            <Reveal delay={180}>
-              <h3 className="block-title">可展示元件範例</h3>
-              <div className="tag-row">
-                {componentReuse.examples.map((example) => (
-                  <Tag key={example} label={example} />
+              <div className="tag-row josui-tech-row">
+                {josuiOverview.tech.map((tech) => (
+                  <Tag key={tech} label={tech} />
                 ))}
               </div>
             </Reveal>
           </div>
         </ScrollSection>
 
-        <ScrollSection id="thinking">
-          <Reveal>
-            <p className="section-kicker">Mindset</p>
-            <h2 className="section-title">我在寫程式前會先思考什麼</h2>
-          </Reveal>
-          <div className="thinking-board">
-            {designThinking.aspects.map((aspect, index) => (
-              <Reveal key={aspect.title} delay={index * 70}>
-                <article className="thinking-card">
-                  <span>{aspect.tag}</span>
-                  <h3>{aspect.title}</h3>
-                  <p>{aspect.description}</p>
-                </article>
+        <ScrollSection id="josui-technical" tone="soft" className="scroll-section--josui-technical">
+          <div className="josui-technical-shell">
+            <div className="josui-technical-copy">
+              <Reveal>
+                <p className="section-kicker">Project 01 · Technical</p>
+                <h2 className="section-title josui-technical-title">Real-time Theme Preview and Token Export</h2>
+                <p className="section-subtitle">
+                  將色彩 token 的變更直接回到 CSS variables，讓元件預覽與匯出流程保持同步。
+                </p>
               </Reveal>
-            ))}
-          </div>
-          <Reveal delay={280}>
-            <div className="flow-row">
-              {designThinking.flow.map((step, index) => (
-                <span key={step} className="flow-chip">
-                  {step}
-                  {index < designThinking.flow.length - 1 ? <span className="flow-arrow">→</span> : null}
-                </span>
-              ))}
+
+              <div className="josui-technical-grid">
+                <Reveal delay={100}>
+                  <article className="josui-tech-card josui-tech-card--challenge">
+                    <span className="josui-tech-label">Challenge</span>
+                    <h3>設計與開發難以即時對齊色彩結果</h3>
+                    <ul className="plain-list josui-tech-list">
+                      {josuiTechnical.challenges.slice(0, 4).map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </article>
+                </Reveal>
+                <Reveal delay={180}>
+                  <article className="josui-tech-card josui-tech-card--solution">
+                    <span className="josui-tech-label">Approach</span>
+                    <h3>讓 CSS variables 成為主題狀態來源</h3>
+                    <ul className="plain-list josui-tech-list">
+                      {josuiTechnical.solutions.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </article>
+                </Reveal>
+              </div>
             </div>
-          </Reveal>
+
+            <Reveal delay={160} className="josui-technical-flow-wrap">
+              <div className="josui-flow-panel">
+                <div className="josui-flow-panel-head">
+                  <span>架構流程</span>
+                  <strong>CSSOM 與 CSS Variables</strong>
+                </div>
+                <div className="josui-flow-stack">
+                  {[
+                    '使用者調整顏色',
+                    'Color Picker / Theme Panel',
+                    'CSSOM 更新 CSS variables',
+                    'shadcn/ui 元件即時更新',
+                    'Copy Dialog 匯出 Tailwind tokens',
+                  ].map((step, index) => (
+                    <div key={step} className="josui-flow-node">
+                      <span>{String(index + 1).padStart(2, '0')}</span>
+                      <p>{step}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="josui-flow-note">
+                  <p>React 負責互動狀態，主題色彩的實際來源回到 CSS custom properties。</p>
+                </div>
+              </div>
+            </Reveal>
+          </div>
         </ScrollSection>
 
-        <ScrollSection id="collaboration" tone="soft">
-          <Reveal>
-            <p className="section-kicker">Collaboration</p>
-            <h2 className="section-title">前端開發不只是完成畫面</h2>
-          </Reveal>
-          <div className="collab-board">
-            {collaborationRoles.map((role, index) => (
-              <Reveal key={role.role} delay={index * 70}>
-                <article className="collab-card">
-                  <h3>{role.role}</h3>
-                  <ul className="plain-list">
-                    {role.items.map((item) => (
+        <ScrollSection id="josui-ai" className="scroll-section--josui-ai">
+          <div className="josui-ai-shell">
+            <div className="josui-ai-intro">
+              <Reveal>
+                <p className="section-kicker">Project 01 · AI Workflow</p>
+                <h2 className="section-title josui-ai-title">Using AI as a Workflow Partner</h2>
+                <p className="section-subtitle">
+                  在 JOSUI 中，我把 AI 視為協助拆解與產出初稿的工具，但不把判斷責任交給 AI。
+                </p>
+              </Reveal>
+            </div>
+
+            <div className="josui-ai-board">
+              <Reveal delay={90}>
+                <article className="josui-ai-column">
+                  <div className="josui-ai-column-head">
+                    <span>01</span>
+                    <h3>AI 協作情境</h3>
+                  </div>
+                  <ul className="josui-ai-list">
+                    {josuiAiWorkflow.usage.map((item) => (
                       <li key={item}>{item}</li>
                     ))}
                   </ul>
                 </article>
               </Reveal>
-            ))}
-          </div>
-          <Reveal delay={240}>
-            <div className="flow-row">
-              {problemSolvingFlow.map((step, index) => (
-                <span key={step} className="flow-chip">
-                  {step}
-                  {index < problemSolvingFlow.length - 1 ? <span className="flow-arrow">→</span> : null}
-                </span>
-              ))}
+
+              <Reveal delay={170}>
+                <article className="josui-ai-column josui-ai-column--review">
+                  <div className="josui-ai-column-head">
+                    <span>02</span>
+                    <h3>工程審查方式</h3>
+                  </div>
+                  <ul className="josui-ai-list">
+                    {josuiAiWorkflow.review.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </article>
+              </Reveal>
             </div>
-          </Reveal>
+          </div>
         </ScrollSection>
 
-        <ScrollSection id="motivation">
-          <Reveal>
-            <p className="section-kicker">Motivation & Plan</p>
-            <h2 className="section-title">我期待的下一個階段</h2>
-          </Reveal>
-          <div className="two-col">
-            <Reveal delay={80}>
-              <h3 className="block-title">為什麼想加入微程式</h3>
-              <ul className="plain-list">
-                {motivation.reasons.map((item) => (
-                  <li key={item}>{item}</li>
+        <ScrollSection id="cityprobe-overview" tone="soft" className="scroll-section--cityprobe-overview">
+          <div className="cityprobe-overview-shell">
+            <div className="cityprobe-overview-copy">
+              <Reveal>
+                <p className="section-kicker">Project 02</p>
+                <h2 className="section-title cityprobe-overview-title">City Probe</h2>
+                <p className="section-subtitle">Nuxt 3 企業管理後台</p>
+              </Reveal>
+              <Reveal delay={80}>
+                <p className="section-lead cityprobe-overview-lead">{cityProbeOverview.background}</p>
+              </Reveal>
+
+              <div className="cityprobe-info-grid">
+                <Reveal delay={130}>
+                  <article className="cityprobe-info-card">
+                    <span className="nuxt-website-label">My Role</span>
+                    <ul className="plain-list cityprobe-compact-list">
+                      {cityProbeOverview.role.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </article>
+                </Reveal>
+                <Reveal delay={190}>
+                  <article className="cityprobe-info-card">
+                    <span className="nuxt-website-label">Focus</span>
+                    <ul className="plain-list cityprobe-compact-list">
+                      {cityProbeOverview.features.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </article>
+                </Reveal>
+              </div>
+            </div>
+
+            <Reveal delay={150} className="cityprobe-showcase">
+              <div className="cityprobe-dashboard-mock">
+                <div className="cityprobe-dashboard-head">
+                  <div>
+                    <p>City Probe</p>
+                    <strong>Admin Dashboard</strong>
+                  </div>
+                  <span>Nuxt 3</span>
+                </div>
+                <div className="cityprobe-dashboard-stats">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                <div className="cityprobe-dashboard-body">
+                  <div className="cityprobe-table-mock">
+                    <span />
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                  <div className="cityprobe-map-mock">
+                    <span />
+                  </div>
+                </div>
+              </div>
+              <div className="tag-row cityprobe-tech-row">
+                {cityProbeOverview.tech.map((tech) => (
+                  <Tag key={tech} label={tech} />
                 ))}
-              </ul>
-            </Reveal>
-            <Reveal delay={140}>
-              <h3 className="block-title">我的職涯規劃</h3>
-              <ul className="plain-list">
-                {motivation.careerPlan.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
+              </div>
             </Reveal>
           </div>
-          <Reveal delay={200}>
-            <p className="motivation-pitch">{motivation.pitch}</p>
-          </Reveal>
+        </ScrollSection>
+
+        <ScrollSection id="cityprobe-technical" className="scroll-section--cityprobe-technical">
+          <div className="cityprobe-technical-shell">
+            <div className="cityprobe-technical-main">
+              <Reveal>
+                <p className="section-kicker">Project 02 · Technical</p>
+                <h2 className="section-title cityprobe-technical-title">Data State and Interaction Complexity</h2>
+                <p className="section-subtitle">
+                  管理後台的難度不只在畫面，而是在資料狀態、權限、表格、地圖與 SSR / CSR 邊界。
+                </p>
+              </Reveal>
+
+              <div className="cityprobe-tech-grid">
+                <Reveal delay={100}>
+                  <article className="cityprobe-tech-card cityprobe-tech-card--challenge">
+                    <span className="cityprobe-tech-label">Challenge</span>
+                    <ul className="plain-list cityprobe-tech-list">
+                      {cityProbeTechnical.challenges.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </article>
+                </Reveal>
+                <Reveal delay={170}>
+                  <article className="cityprobe-tech-card cityprobe-tech-card--solution">
+                    <span className="cityprobe-tech-label">Approach</span>
+                    <ul className="plain-list cityprobe-tech-list">
+                      {cityProbeTechnical.solutions.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </article>
+                </Reveal>
+              </div>
+            </div>
+
+            <Reveal delay={160} className="cityprobe-preview-wrap">
+              <div className="cityprobe-product-preview">
+                <div className="cityprobe-preview-sidebar">
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                <div className="cityprobe-preview-main">
+                  <div className="cityprobe-preview-toolbar">
+                    <div>
+                      <p>Dashboard Preview</p>
+                      <strong>市民參與資料總覽</strong>
+                    </div>
+                    <span>Loading State</span>
+                  </div>
+                  <div className="cityprobe-preview-metrics">
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                  <div className="cityprobe-preview-content">
+                    <div className="cityprobe-preview-table">
+                      <span />
+                      <span />
+                      <span />
+                      <span />
+                      <span />
+                    </div>
+                    <div className="cityprobe-preview-map">
+                      <i />
+                      <b />
+                    </div>
+                  </div>
+                  <div className="cityprobe-preview-loading">
+                    <span />
+                    <p>資料同步中，保留畫面回饋與可辨識狀態</p>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </ScrollSection>
+
+        <ScrollSection id="nuxt-websites" tone="soft" className="scroll-section--nuxt-websites">
+          <div className="nuxt-website-shell">
+            <div className="nuxt-website-copy">
+              <Reveal>
+                <p className="section-kicker">Project 03 · Website</p>
+                <h2 className="section-title nuxt-website-title">FUKUKU 樂勁雲數位服務官網</h2>
+                <p className="section-subtitle">{fukukuWebsite.summary}</p>
+              </Reveal>
+
+              <div className="nuxt-website-grid">
+                <Reveal delay={150}>
+                  <article className="nuxt-website-card">
+                    <span className="nuxt-website-label">My Role</span>
+                    <ul className="plain-list nuxt-website-list">
+                      {fukukuWebsite.role.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </article>
+                </Reveal>
+                <Reveal delay={210}>
+                  <article className="nuxt-website-card">
+                    <span className="nuxt-website-label">Focus</span>
+                    <ul className="plain-list nuxt-website-list">
+                      {fukukuWebsite.focus.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </article>
+                </Reveal>
+              </div>
+            </div>
+
+            <Reveal delay={170} className="nuxt-website-preview-wrap">
+              <div className="nuxt-website-preview">
+                <div className="nuxt-website-browserbar">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                <div className="nuxt-website-hero-mock">
+                  <div>
+                    <p>FUKUKU</p>
+                    <strong>樂勁雲數位服務</strong>
+                    <span>AI 智慧瓦斯配送服務平台官網</span>
+                  </div>
+                  <i />
+                </div>
+                <div className="nuxt-website-section-mock">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+              </div>
+              <div className="tag-row nuxt-website-tech-row">
+                {fukukuWebsite.tech.map((tech) => (
+                  <Tag key={tech} label={tech} />
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </ScrollSection>
+
+        <ScrollSection id="where-im-heading" tone="soft" className="scroll-section--heading">
+          <div className="heading-shell">
+            <Reveal>
+              <div className="heading-intro">
+                <div>
+                  <p className="section-kicker">11 · Where I&apos;m Heading</p>
+                  <h2 className="section-title heading-title">Where I&apos;m Heading</h2>
+                </div>
+                <p className="heading-statement">{careerDirection.statement}</p>
+              </div>
+            </Reveal>
+
+            <div className="heading-trajectory" aria-label="Career direction timeline">
+              {careerDirection.stages.map((stage, index) => (
+                <Reveal key={stage.id} delay={100 + index * 70}>
+                  <article className="heading-step">
+                    <div className="heading-step-icon" aria-hidden="true">
+                      {(() => {
+                        const StageIcon =
+                          headingStageIconMap[stage.id as keyof typeof headingStageIconMap];
+                        return <StageIcon size={44} stroke={1.7} />;
+                      })()}
+                    </div>
+                    <span className="heading-step-index">0{index + 1}</span>
+                    <p className="heading-step-title">{stage.title}</p>
+                    <h3>{stage.subtitle}</h3>
+                    <p className="heading-step-description">{stage.description}</p>
+                    <ul className="plain-list heading-step-list">
+                      {stage.items.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
+
+            <Reveal delay={340}>
+              <aside className="heading-outcome">
+                <span className="heading-outcome-icon" aria-hidden="true">
+                  <IconRocket size={30} stroke={1.8} />
+                </span>
+                <p>
+                  <span>長期目標：</span>
+                  成為兼具<strong>技術深度與產品視角</strong>的前端工程師，持續創造有價值的產品與影響力。
+                </p>
+              </aside>
+            </Reveal>
+          </div>
         </ScrollSection>
 
         <ScrollSection id="thanks" tone="dark" className="scroll-section--thanks">
-          <Reveal>
-            <p className="section-kicker section-kicker--on-dark">Thank You</p>
-            <h2 className="thanks-title">Let&apos;s continue the conversation.</h2>
-          </Reveal>
-          <Reveal delay={100}>
-            <p className="thanks-name">
-              {deckMeta.candidateName} / {deckMeta.candidateNameEn} · {deckMeta.role}
-            </p>
-          </Reveal>
-          <Reveal delay={160}>
-            <ul className="thanks-contact">
-              {contactItems.map((item) => (
-                <li key={item.label}>
-                  <span>{item.label}</span>
-                  <strong>{item.value}</strong>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
+          <div className="thanks-art" aria-hidden="true">
+            <div className="thanks-orb" />
+            <div className="thanks-grid" />
+            <div className="thanks-dots thanks-dots--left" />
+            <div className="thanks-dots thanks-dots--right" />
+            <div className="thanks-lines" />
+          </div>
+
+          <div className="thanks-content">
+            <Reveal>
+              <p className="section-kicker section-kicker--on-dark">Thank You</p>
+              <h2 className="thanks-title">THANK YOU</h2>
+              <div className="thanks-accent" aria-hidden="true" />
+            </Reveal>
+            <Reveal delay={100}>
+              <p className="thanks-name">
+                {deckMeta.candidateNameEn}｜{deckMeta.candidateName}
+              </p>
+              <p className="thanks-role">{deckMeta.role}</p>
+            </Reveal>
+            <Reveal delay={150}>
+              <div className="thanks-url">
+                <span>Presentation URL</span>
+                <strong>my-resume.josui.space/interview/microprogramer</strong>
+              </div>
+            </Reveal>
+            <Reveal delay={200}>
+              <ul className="thanks-contact">
+                {[
+                  { label: 'Email', value: contactItems[0].value, icon: IconMail },
+                  { label: 'GitHub', value: contactItems[1].value, icon: IconBrandGithub },
+                  {
+                    label: 'Resume',
+                    value: 'my-resume.josui.space/interview/microprogramer',
+                    icon: IconLink,
+                  },
+                ].map((item) => {
+                  const ContactIcon = item.icon;
+
+                  return (
+                    <li key={item.label}>
+                      <span className="thanks-contact-icon" aria-hidden="true">
+                        <ContactIcon size={28} stroke={1.8} />
+                      </span>
+                      <span className="thanks-contact-label">{item.label}</span>
+                      <strong>{item.value}</strong>
+                    </li>
+                  );
+                })}
+              </ul>
+            </Reveal>
+          </div>
         </ScrollSection>
       </main>
     </div>

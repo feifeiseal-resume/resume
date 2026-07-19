@@ -143,7 +143,7 @@
   .section-lead,
   .motivation-pitch,
   .about-copy .about-lead {
-    font-size: 10.5pt !important;
+    font-size: 9.6pt !important;
     line-height: 1.55 !important;
     max-width: 48rem !important;
     margin-top: 4mm !important;
@@ -329,7 +329,7 @@
 
   .about-capability-card {
     min-height: 32mm !important;
-    padding: 3mm !important;
+    padding: 2.6mm !important;
     border-radius: 2mm !important;
     background: #ffffff !important;
     border: 0.3mm solid #dfe4f5 !important;
@@ -345,8 +345,967 @@
     margin-top: 3mm !important;
   }
 
+  .skills-map-shell {
+    grid-template-columns: 178mm 1fr !important;
+    gap: 10mm !important;
+    align-items: center !important;
+    margin-top: 0 !important;
+  }
+
+  .skills-map-shell::before,
+  .skills-map-shell::after {
+    display: none !important;
+  }
+
+  .skills-map-title {
+    font-size: 24pt !important;
+    max-width: none !important;
+  }
+
+  .skills-map-subtitle {
+    font-size: 10pt !important;
+    margin-top: 2mm !important;
+  }
+
+  .skills-map-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-auto-rows: 33mm !important;
+    gap: 3mm !important;
+    margin-top: 5mm !important;
+  }
+
+  .skill-map-card {
+    height: 100% !important;
+    padding: 2.6mm !important;
+    border-radius: 2mm !important;
+    background: #ffffff !important;
+    border: 0.3mm solid #dfe4f5 !important;
+  }
+
+  .skill-map-card-head {
+    gap: 2mm !important;
+  }
+
+  .skill-map-icon {
+    width: 7mm !important;
+    height: 7mm !important;
+  }
+
+  .skill-map-card h3,
+  .skills-note h3 {
+    font-size: 9.5pt !important;
+    line-height: 1.2 !important;
+  }
+
+  .skill-map-tags {
+    margin-top: 2mm !important;
+    gap: 1mm !important;
+  }
+
+  .skills-map-aside {
+    gap: 9mm !important;
+  }
+
+  .skills-note .about-rule {
+    margin: 2mm 0 3mm !important;
+  }
+
+  .skills-note p,
+  .skills-strength-list li {
+    font-size: 8.5pt !important;
+    line-height: 1.45 !important;
+  }
+
+  .skills-strength-list {
+    gap: 2.2mm !important;
+  }
+
+  .skills-strength-list li {
+    grid-template-columns: 8mm minmax(0, 1fr) !important;
+    gap: 2.5mm !important;
+    padding-bottom: 2.5mm !important;
+  }
+
+  .skills-strength-list span {
+    width: 7mm !important;
+    height: 7mm !important;
+  }
+
   .about-tags {
     margin-top: 4mm !important;
+  }
+
+  .career-journey-shell {
+    grid-template-columns: 72mm 1fr !important;
+    gap: 9mm !important;
+    align-items: center !important;
+    margin-top: 0 !important;
+  }
+
+  .career-journey-title {
+    font-size: 24pt !important;
+    max-width: none !important;
+    white-space: nowrap !important;
+  }
+
+  .career-journey-subtitle {
+    font-size: 10pt !important;
+    line-height: 1.45 !important;
+  }
+
+  .career-timeline {
+    gap: 2.8mm !important;
+  }
+
+  .career-timeline::before {
+    left: 5mm !important;
+    top: 4mm !important;
+    bottom: 4mm !important;
+  }
+
+  .career-timeline-item {
+    grid-template-columns: 11mm minmax(0, 1fr) !important;
+    gap: 3mm !important;
+  }
+
+  .career-timeline-marker {
+    width: 10mm !important;
+    height: 10mm !important;
+    font-size: 7pt !important;
+  }
+
+  .career-timeline-card {
+    padding: 3mm !important;
+    border-radius: 2mm !important;
+    background: #ffffff !important;
+    border: 0.3mm solid #dfe4f5 !important;
+  }
+
+  .career-title {
+    font-size: 11pt !important;
+    line-height: 1.2 !important;
+    margin-top: 1.5mm !important;
+  }
+
+  .career-role,
+  .career-period,
+  .career-location,
+  .career-description,
+  .career-highlight-list li {
+    font-size: 7.8pt !important;
+    line-height: 1.35 !important;
+  }
+
+  .career-description {
+    margin-top: 1.5mm !important;
+  }
+
+  .career-highlight-list {
+    margin-top: 1.8mm !important;
+    gap: 1mm !important;
+  }
+
+  .career-highlight-list li {
+    padding-left: 3mm !important;
+  }
+
+  .career-highlight-list li::before {
+    width: 1.2mm !important;
+    height: 1.2mm !important;
+  }
+
+  .career-tag-row {
+    margin-top: 2mm !important;
+    gap: 1mm !important;
+  }
+
+  .career-tag-row .deck-tag {
+    font-size: 7pt !important;
+    padding: 1mm 2mm !important;
+  }
+
+  .josui-overview-shell {
+    grid-template-columns: 150mm 1fr !important;
+    gap: 9mm !important;
+    align-items: center !important;
+    margin-top: 0 !important;
+  }
+
+  .josui-overview-title {
+    font-size: 24pt !important;
+    max-width: 13ch !important;
+  }
+
+  .josui-overview-lead {
+    font-size: 9pt !important;
+    line-height: 1.45 !important;
+    margin-top: 3mm !important;
+  }
+
+  .josui-overview-panels {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 3mm !important;
+    margin-top: 5mm !important;
+  }
+
+  .josui-overview-panel {
+    padding: 3mm !important;
+    border-radius: 2mm !important;
+    background: #ffffff !important;
+    border: 0.3mm solid #dfe4f5 !important;
+  }
+
+  .josui-compact-list {
+    gap: 1.2mm !important;
+  }
+
+  .josui-compact-list li {
+    font-size: 7.6pt !important;
+    line-height: 1.35 !important;
+  }
+
+  .josui-browser-mock {
+    border-radius: 2mm !important;
+    border: 0.3mm solid #dfe4f5 !important;
+  }
+
+  .josui-browser-bar {
+    height: 8mm !important;
+    padding: 0 3mm !important;
+  }
+
+  .josui-browser-bar span {
+    width: 2mm !important;
+    height: 2mm !important;
+  }
+
+  .josui-preview-surface {
+    padding: 5mm !important;
+  }
+
+  .josui-preview-header strong {
+    font-size: 15pt !important;
+  }
+
+  .josui-preview-grid {
+    gap: 3mm !important;
+    margin-top: 6mm !important;
+  }
+
+  .josui-color-panel,
+  .josui-component-stack {
+    min-height: 42mm !important;
+    padding: 3mm !important;
+  }
+
+  .josui-swatch {
+    height: 8mm !important;
+  }
+
+  .josui-mini-card {
+    height: 10mm !important;
+  }
+
+  .josui-mini-card--wide {
+    height: 14mm !important;
+  }
+
+  .josui-mini-actions span {
+    width: 20mm !important;
+    height: 6mm !important;
+  }
+
+  .josui-tech-row {
+    margin-top: 4mm !important;
+    gap: 1mm !important;
+  }
+
+  .josui-tech-row .deck-tag {
+    font-size: 7pt !important;
+    padding: 1mm 2mm !important;
+  }
+
+  .josui-technical-shell {
+    grid-template-columns: 152mm 1fr !important;
+    gap: 8mm !important;
+    align-items: center !important;
+    margin-top: 0 !important;
+  }
+
+  .josui-technical-title {
+    font-size: 20pt !important;
+    max-width: 19ch !important;
+  }
+
+  .josui-technical-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 3mm !important;
+    margin-top: 5mm !important;
+  }
+
+  .josui-tech-card {
+    padding: 3mm !important;
+    border-radius: 2mm !important;
+    background: #ffffff !important;
+    border: 0.3mm solid #dfe4f5 !important;
+    border-top-width: 0.8mm !important;
+  }
+
+  .josui-tech-label {
+    font-size: 7pt !important;
+    margin-bottom: 2mm !important;
+  }
+
+  .josui-tech-card h3 {
+    font-size: 9pt !important;
+    line-height: 1.25 !important;
+  }
+
+  .josui-tech-list {
+    gap: 1.2mm !important;
+    margin-top: 2mm !important;
+  }
+
+  .josui-tech-list li {
+    font-size: 7.6pt !important;
+    line-height: 1.35 !important;
+  }
+
+  .josui-flow-panel {
+    padding: 4mm !important;
+    border-radius: 2mm !important;
+    background: #ffffff !important;
+    border: 0.3mm solid #dfe4f5 !important;
+  }
+
+  .josui-flow-panel-head span {
+    font-size: 7pt !important;
+  }
+
+  .josui-flow-panel-head strong {
+    font-size: 11pt !important;
+  }
+
+  .josui-flow-stack {
+    gap: 2mm !important;
+    margin-top: 4mm !important;
+  }
+
+  .josui-flow-stack::before {
+    left: 4.5mm !important;
+  }
+
+  .josui-flow-node {
+    grid-template-columns: 9mm minmax(0, 1fr) !important;
+    gap: 2.5mm !important;
+  }
+
+  .josui-flow-node span {
+    width: 9mm !important;
+    height: 9mm !important;
+    font-size: 6.5pt !important;
+  }
+
+  .josui-flow-node p {
+    padding: 2mm 2.5mm !important;
+    font-size: 7.2pt !important;
+    line-height: 1.25 !important;
+  }
+
+  .josui-flow-note {
+    margin-top: 4mm !important;
+    padding: 2.5mm !important;
+    border-left: 0.8mm solid #e62327 !important;
+    background: #eaecfb !important;
+  }
+
+  .josui-flow-note p {
+    font-size: 7.5pt !important;
+    line-height: 1.35 !important;
+  }
+
+  .josui-ai-shell {
+    grid-template-columns: 82mm 1fr !important;
+    gap: 8mm !important;
+    align-items: center !important;
+    margin-top: 0 !important;
+  }
+
+  .josui-ai-title {
+    font-size: 22pt !important;
+    max-width: 16ch !important;
+  }
+
+  .josui-ai-board {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 3mm !important;
+  }
+
+  .josui-ai-column {
+    padding: 3mm !important;
+    border-radius: 2mm !important;
+    background: #ffffff !important;
+    border: 0.3mm solid #dfe4f5 !important;
+    border-top-width: 0.8mm !important;
+  }
+
+  .josui-ai-column-head {
+    gap: 2mm !important;
+    margin-bottom: 3mm !important;
+  }
+
+  .josui-ai-column-head span {
+    width: 8mm !important;
+    height: 8mm !important;
+    font-size: 6.5pt !important;
+  }
+
+  .josui-ai-column-head h3 {
+    font-size: 10pt !important;
+  }
+
+  .josui-ai-list {
+    gap: 1.7mm !important;
+  }
+
+  .josui-ai-list li {
+    padding-left: 3mm !important;
+    font-size: 7.8pt !important;
+    line-height: 1.35 !important;
+  }
+
+  .josui-ai-list li::before {
+    width: 1.2mm !important;
+    height: 1.2mm !important;
+  }
+
+  .cityprobe-overview-shell,
+  .cityprobe-technical-shell {
+    grid-template-columns: 150mm 1fr !important;
+    gap: 8mm !important;
+    align-items: center !important;
+    margin-top: 0 !important;
+  }
+
+  .cityprobe-overview-title {
+    font-size: 23pt !important;
+    max-width: 18ch !important;
+  }
+
+  .cityprobe-technical-title {
+    font-size: 19pt !important;
+    max-width: 22ch !important;
+    text-wrap: balance !important;
+  }
+
+  .cityprobe-overview-lead {
+    font-size: 8.8pt !important;
+    line-height: 1.4 !important;
+    margin-top: 3mm !important;
+  }
+
+  .cityprobe-info-grid,
+  .cityprobe-tech-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 3mm !important;
+    margin-top: 5mm !important;
+  }
+
+  .cityprobe-info-card,
+  .cityprobe-tech-card {
+    padding: 3mm !important;
+    border-radius: 2mm !important;
+    background: #ffffff !important;
+    border: 0.3mm solid #dfe4f5 !important;
+  }
+
+  .cityprobe-tech-card {
+    border-top-width: 0.8mm !important;
+  }
+
+  .cityprobe-compact-list,
+  .cityprobe-tech-list {
+    gap: 1.2mm !important;
+  }
+
+  .cityprobe-compact-list li,
+  .cityprobe-tech-list li {
+    font-size: 7.5pt !important;
+    line-height: 1.32 !important;
+  }
+
+  .cityprobe-feature-grid {
+    gap: 1mm !important;
+  }
+
+  .cityprobe-feature-grid span {
+    font-size: 7pt !important;
+    padding: 1mm 2mm !important;
+  }
+
+  .cityprobe-dashboard-mock {
+    border-radius: 2mm !important;
+    border: 0.3mm solid #dfe4f5 !important;
+  }
+
+  .cityprobe-dashboard-head {
+    padding: 4mm !important;
+  }
+
+  .cityprobe-dashboard-head strong {
+    font-size: 15pt !important;
+  }
+
+  .cityprobe-dashboard-stats {
+    gap: 2mm !important;
+    padding: 3mm !important;
+  }
+
+  .cityprobe-dashboard-stats span {
+    height: 14mm !important;
+  }
+
+  .cityprobe-dashboard-body {
+    gap: 2mm !important;
+    padding: 0 3mm 4mm !important;
+  }
+
+  .cityprobe-table-mock,
+  .cityprobe-map-mock {
+    min-height: 40mm !important;
+  }
+
+  .cityprobe-table-mock {
+    gap: 2mm !important;
+    padding: 3mm !important;
+  }
+
+  .cityprobe-table-mock span {
+    height: 4mm !important;
+  }
+
+  .cityprobe-tech-row {
+    margin-top: 4mm !important;
+    gap: 1mm !important;
+  }
+
+  .cityprobe-tech-row .deck-tag {
+    font-size: 7pt !important;
+    padding: 1mm 2mm !important;
+  }
+
+  .cityprobe-tech-label {
+    font-size: 7pt !important;
+    margin-bottom: 2mm !important;
+  }
+
+  .cityprobe-flow-panel {
+    padding: 4mm !important;
+    border-radius: 2mm !important;
+    background: #ffffff !important;
+    border: 0.3mm solid #dfe4f5 !important;
+  }
+
+  .cityprobe-flow-head span {
+    font-size: 7pt !important;
+  }
+
+  .cityprobe-flow-head strong {
+    font-size: 11pt !important;
+  }
+
+  .cityprobe-flow-row {
+    gap: 2mm !important;
+    margin-top: 4mm !important;
+  }
+
+  .cityprobe-flow-node {
+    grid-template-columns: 8mm minmax(0, 1fr) !important;
+    gap: 2.5mm !important;
+  }
+
+  .cityprobe-flow-node span {
+    width: 8mm !important;
+    height: 8mm !important;
+    font-size: 6.5pt !important;
+  }
+
+  .cityprobe-flow-node p {
+    padding: 2mm 2.5mm !important;
+    font-size: 7.2pt !important;
+    line-height: 1.25 !important;
+  }
+
+  .cityprobe-flow-note {
+    margin-top: 4mm !important;
+    padding: 2.5mm !important;
+    border-left: 0.8mm solid #e62327 !important;
+    background: #eaecfb !important;
+  }
+
+  .cityprobe-flow-note p {
+    font-size: 7.5pt !important;
+    line-height: 1.35 !important;
+  }
+
+  .cityprobe-product-preview {
+    grid-template-columns: 12mm minmax(0, 1fr) !important;
+    border-radius: 2mm !important;
+    background: #ffffff !important;
+    border: 0.3mm solid #dfe4f5 !important;
+    box-shadow: none !important;
+  }
+
+  .cityprobe-preview-sidebar {
+    gap: 3mm !important;
+    padding: 5mm 0 !important;
+    background: #111827 !important;
+  }
+
+  .cityprobe-preview-sidebar span {
+    width: 5mm !important;
+    height: 5mm !important;
+    border-radius: 1.5mm !important;
+  }
+
+  .cityprobe-preview-main {
+    padding: 4mm !important;
+  }
+
+  .cityprobe-preview-toolbar {
+    gap: 3mm !important;
+  }
+
+  .cityprobe-preview-toolbar p {
+    font-size: 6.8pt !important;
+    margin-bottom: 1mm !important;
+  }
+
+  .cityprobe-preview-toolbar strong {
+    font-size: 11pt !important;
+  }
+
+  .cityprobe-preview-toolbar > span {
+    font-size: 6.5pt !important;
+    padding: 1mm 2mm !important;
+  }
+
+  .cityprobe-preview-metrics {
+    gap: 2mm !important;
+    margin-top: 4mm !important;
+  }
+
+  .cityprobe-preview-metrics span {
+    height: 12mm !important;
+  }
+
+  .cityprobe-preview-content {
+    gap: 2mm !important;
+    margin-top: 2mm !important;
+  }
+
+  .cityprobe-preview-table,
+  .cityprobe-preview-map {
+    min-height: 38mm !important;
+  }
+
+  .cityprobe-preview-table {
+    gap: 1.8mm !important;
+    padding: 3mm !important;
+  }
+
+  .cityprobe-preview-table span {
+    height: 3.6mm !important;
+  }
+
+  .cityprobe-preview-map i {
+    width: 8mm !important;
+    height: 8mm !important;
+  }
+
+  .cityprobe-preview-map b {
+    width: 4mm !important;
+    height: 4mm !important;
+  }
+
+  .cityprobe-preview-loading {
+    gap: 2mm !important;
+    margin-top: 2mm !important;
+    padding: 2mm 2.5mm !important;
+    border-left: 0.8mm solid #e62327 !important;
+  }
+
+  .cityprobe-preview-loading span {
+    width: 3.5mm !important;
+    height: 3.5mm !important;
+    border-width: 0.6mm !important;
+  }
+
+  .cityprobe-preview-loading p {
+    font-size: 7pt !important;
+    line-height: 1.25 !important;
+  }
+
+  .nuxt-website-shell {
+    grid-template-columns: 144mm 1fr !important;
+    gap: 8mm !important;
+    align-items: center !important;
+    margin-top: 0 !important;
+  }
+
+  .nuxt-website-title {
+    font-size: 16pt !important;
+    max-width: 24ch !important;
+    text-wrap: balance !important;
+  }
+
+  .josui-overview-panel,
+  .cityprobe-info-card,
+  .nuxt-website-card {
+    padding: 3mm !important;
+    border-radius: 2mm !important;
+    background: #ffffff !important;
+    border: 0.3mm solid #dfe4f5 !important;
+    box-shadow: none !important;
+  }
+
+  .nuxt-website-card--project {
+    margin-top: 4mm !important;
+    border-top: 0.8mm solid #e62327 !important;
+  }
+
+  .nuxt-website-card h3 {
+    font-size: 10pt !important;
+    line-height: 1.2 !important;
+    margin-bottom: 1.5mm !important;
+  }
+
+  .nuxt-website-card p {
+    font-size: 7.8pt !important;
+    line-height: 1.35 !important;
+  }
+
+  .nuxt-website-label {
+    font-size: 7pt !important;
+    margin-bottom: 2mm !important;
+  }
+
+  .nuxt-website-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 3mm !important;
+    margin-top: 3mm !important;
+  }
+
+  .nuxt-website-list {
+    gap: 1mm !important;
+  }
+
+  .nuxt-website-list li {
+    font-size: 7.3pt !important;
+    line-height: 1.28 !important;
+  }
+
+  .nuxt-website-preview {
+    border-radius: 2mm !important;
+    background: #ffffff !important;
+    border: 0.3mm solid #dfe4f5 !important;
+    box-shadow: none !important;
+  }
+
+  .nuxt-website-browserbar {
+    height: 7mm !important;
+    padding: 0 3mm !important;
+    gap: 1.2mm !important;
+  }
+
+  .nuxt-website-browserbar span {
+    width: 1.8mm !important;
+    height: 1.8mm !important;
+  }
+
+  .nuxt-website-hero-mock {
+    min-height: 46mm !important;
+    padding: 6mm !important;
+  }
+
+  .nuxt-website-hero-mock div {
+    gap: 1.5mm !important;
+  }
+
+  .nuxt-website-hero-mock p {
+    font-size: 6.8pt !important;
+  }
+
+  .nuxt-website-hero-mock strong {
+    font-size: 15pt !important;
+  }
+
+  .nuxt-website-hero-mock div > span {
+    font-size: 7.8pt !important;
+  }
+
+  .nuxt-website-hero-mock i {
+    width: 42mm !important;
+    right: -10mm !important;
+    bottom: -14mm !important;
+  }
+
+  .nuxt-website-section-mock {
+    gap: 2mm !important;
+    padding: 3mm !important;
+  }
+
+  .nuxt-website-section-mock span {
+    height: 16mm !important;
+  }
+
+  .nuxt-website-tech-row {
+    margin-top: 4mm !important;
+    gap: 1mm !important;
+  }
+
+  .nuxt-website-tech-row .deck-tag {
+    font-size: 6.8pt !important;
+    padding: 1mm 2mm !important;
+  }
+
+  .heading-shell {
+    width: 100% !important;
+    margin-top: 0 !important;
+  }
+
+  .scroll-section--heading::before,
+  .scroll-section--heading::after,
+  .heading-shell::before {
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .heading-intro {
+    display: block !important;
+    max-width: 88mm !important;
+  }
+
+  .heading-title {
+    max-width: none !important;
+    margin-bottom: 4mm !important;
+    font-size: 23pt !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+
+  .heading-title::after {
+    width: 15mm !important;
+    height: 1.1mm !important;
+    margin-top: 4mm !important;
+  }
+
+  .heading-statement {
+    max-width: 64mm !important;
+    padding-left: 0 !important;
+    border-left: 0 !important;
+    font-size: 8pt !important;
+    line-height: 1.35 !important;
+  }
+
+  .heading-trajectory {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 8mm !important;
+    margin-top: 7mm !important;
+    padding-top: 10mm !important;
+  }
+
+  .heading-trajectory::before {
+    border-top: 0.25mm dashed #ccd3f4 !important;
+  }
+
+  .heading-trajectory > .reveal {
+    padding-left: 0 !important;
+  }
+
+  .heading-trajectory > .reveal::before {
+    top: -11.8mm !important;
+    left: 23mm !important;
+    width: 3.2mm !important;
+    height: 3.2mm !important;
+    border-width: 0.8mm !important;
+  }
+
+  .heading-trajectory > .reveal:not(:first-child) {
+    padding-left: 6mm !important;
+    border-left: 0.25mm solid #d9def3 !important;
+  }
+
+  .heading-step {
+    grid-template-columns: 18mm minmax(0, 1fr) !important;
+    column-gap: 5mm !important;
+  }
+
+  .heading-step-icon {
+    width: 16mm !important;
+    height: 16mm !important;
+    border-radius: 3mm !important;
+  }
+
+  .heading-step-icon svg {
+    width: 9mm !important;
+    height: 9mm !important;
+  }
+
+  .heading-step-index {
+    margin-bottom: 1.5mm !important;
+    font-size: 11.5pt !important;
+  }
+
+  .heading-step-title {
+    margin-bottom: 1.5mm !important;
+    font-size: 6.5pt !important;
+  }
+
+  .heading-step h3 {
+    font-size: 10.5pt !important;
+    line-height: 1.18 !important;
+  }
+
+  .heading-step-description {
+    margin-top: 2.3mm !important;
+    font-size: 7pt !important;
+    line-height: 1.32 !important;
+  }
+
+  .heading-step-list {
+    gap: 1.1mm !important;
+    margin-top: 4mm !important;
+    padding-top: 3mm !important;
+  }
+
+  .heading-step-list li {
+    font-size: 6.7pt !important;
+    line-height: 1.22 !important;
+  }
+
+  .heading-outcome {
+    gap: 5mm !important;
+    width: 170mm !important;
+    margin-top: 11mm !important;
+    padding: 3mm 7mm !important;
+    border: 0.25mm solid #cdd4f4 !important;
+    border-radius: 2mm !important;
+  }
+
+  .heading-outcome-icon {
+    width: 11mm !important;
+    height: 11mm !important;
+  }
+
+  .heading-outcome-icon svg {
+    width: 6mm !important;
+    height: 6mm !important;
+  }
+
+  .heading-outcome p {
+    font-size: 8.8pt !important;
+    line-height: 1.35 !important;
   }
 
   .workflow-board,
@@ -440,9 +1399,116 @@
     break-inside: avoid !important;
   }
 
+  .scroll-section--thanks {
+    background: #101a43 !important;
+    overflow: hidden !important;
+  }
+
+  .thanks-content {
+    width: 120mm !important;
+    margin-top: 18mm !important;
+  }
+
+  .thanks-orb {
+    top: 24mm !important;
+    right: -35mm !important;
+    width: 96mm !important;
+    opacity: 0.78 !important;
+    box-shadow: none !important;
+  }
+
+  .thanks-grid {
+    width: 58% !important;
+    background-size: 22mm 22mm !important;
+  }
+
+  .thanks-dots {
+    background-size: 6mm 6mm !important;
+    opacity: 0.35 !important;
+  }
+
+  .thanks-lines {
+    right: -22mm !important;
+    bottom: 22mm !important;
+    width: 130mm !important;
+    height: 72mm !important;
+    opacity: 0.65 !important;
+  }
+
+  .thanks-title {
+    margin-top: 4mm !important;
+    font-size: 42pt !important;
+    line-height: 0.95 !important;
+    letter-spacing: 0.08em !important;
+    color: #ffffff !important;
+  }
+
+  .thanks-accent {
+    width: 24mm !important;
+    gap: 3mm !important;
+    margin-top: 5mm !important;
+  }
+
+  .thanks-accent::before {
+    width: 16mm !important;
+    height: 0.9mm !important;
+    background: #e62327 !important;
+  }
+
+  .thanks-accent::after {
+    width: 2.2mm !important;
+    height: 2.2mm !important;
+    background: #e62327 !important;
+  }
+
+  .thanks-name {
+    margin-top: 8mm !important;
+    font-size: 17pt !important;
+    color: #ffffff !important;
+  }
+
+  .thanks-role {
+    margin-top: 1.8mm !important;
+    font-size: 10pt !important;
+    color: #93a2ff !important;
+  }
+
+  .thanks-url {
+    margin-top: 10mm !important;
+    gap: 2mm !important;
+  }
+
+  .thanks-url span,
+  .thanks-contact span {
+    font-size: 7pt !important;
+    color: #93a2ff !important;
+  }
+
+  .thanks-url strong {
+    font-size: 9.5pt !important;
+    color: rgba(255, 255, 255, 0.82) !important;
+  }
+
   .thanks-contact {
-    margin-top: 6mm !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    width: 122mm !important;
+    margin-top: 11mm !important;
     gap: 6mm !important;
+  }
+
+  .thanks-contact li {
+    gap: 1.8mm !important;
+  }
+
+  .thanks-contact li + li {
+    padding-left: 5mm !important;
+    border-left: 0.25mm solid rgba(147, 162, 255, 0.45) !important;
+  }
+
+  .thanks-contact strong {
+    font-size: 8.2pt !important;
+    line-height: 1.25 !important;
+    color: rgba(255, 255, 255, 0.88) !important;
   }
 
  
@@ -568,4 +1634,335 @@
     box-shadow: none !important;
     text-shadow: none !important;
   }
+
+
+  .scroll-section--heading {
+    background: #fafbff !important;
+  }
+
+  .scroll-section--thanks {
+    background: #101a43 !important;
+  }
+
+  .thanks-art {
+    opacity: 1 !important;
+  }
+
+
+
+  .heading-trajectory > .reveal::before {
+    top: -11.8mm !important;
+  }
+
+
+
+  .thanks-contact li {
+    grid-template-columns: 9mm minmax(0, 1fr) !important;
+    column-gap: 3mm !important;
+    row-gap: 1.2mm !important;
+  }
+
+  .thanks-contact-icon {
+    grid-row: 1 / span 2 !important;
+    width: 8mm !important;
+    height: 8mm !important;
+    border-radius: 1.5mm !important;
+    color: #93a2ff !important;
+    background: rgba(234, 236, 251, 0.16) !important;
+  }
+
+  .thanks-contact-icon svg {
+    width: 4.8mm !important;
+    height: 4.8mm !important;
+  }
+
+  .thanks-contact-label {
+    align-self: end !important;
+  }
+
+  .thanks-contact strong {
+    grid-column: 2 !important;
+  }
+
+
+
+  .thanks-contact {
+    align-items: start !important;
+  }
+
+  .thanks-contact li {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+    min-height: 29mm !important;
+  }
+
+  .thanks-contact-icon {
+    grid-row: auto !important;
+    justify-self: start !important;
+    width: 9.5mm !important;
+    height: 9.5mm !important;
+    margin-bottom: 4mm !important;
+  }
+
+  .thanks-contact-label {
+    grid-column: 1 !important;
+    margin-bottom: 1.5mm !important;
+    line-height: 1 !important;
+  }
+
+  .thanks-contact strong {
+    grid-column: 1 !important;
+    line-height: 1.2 !important;
+  }
+
+
+
+  /* Print fix: Slide 11 readable horizontal columns */
+  .scroll-section--heading .scroll-section-inner {
+    align-items: center !important;
+  }
+
+  .heading-shell {
+    width: 180mm !important;
+    margin-inline: auto !important;
+  }
+
+  .heading-intro {
+    max-width: 130mm !important;
+  }
+
+  .heading-title {
+    font-size: 27pt !important;
+    margin-bottom: 4mm !important;
+  }
+
+  .heading-statement {
+    max-width: 78mm !important;
+    font-size: 8.6pt !important;
+    line-height: 1.4 !important;
+  }
+
+  .heading-trajectory {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 10mm !important;
+    margin-top: 13mm !important;
+    padding-top: 10mm !important;
+  }
+
+  .heading-trajectory > .reveal {
+    padding-left: 0 !important;
+  }
+
+  .heading-trajectory > .reveal:not(:first-child) {
+    padding-left: 5mm !important;
+    border-left: 0.25mm solid #d9def3 !important;
+  }
+
+  .heading-trajectory > .reveal::before {
+    top: -11.8mm !important;
+    left: 20mm !important;
+  }
+
+  .heading-step {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    column-gap: 0 !important;
+  }
+
+  .heading-step-icon {
+    width: 13mm !important;
+    height: 13mm !important;
+    margin-bottom: 4mm !important;
+    border-radius: 2.5mm !important;
+  }
+
+  .heading-step-icon svg {
+    width: 7.5mm !important;
+    height: 7.5mm !important;
+  }
+
+  .heading-step-index,
+  .heading-step-title,
+  .heading-step h3,
+  .heading-step-description,
+  .heading-step-list {
+    grid-column: 1 !important;
+  }
+
+  .heading-step-index {
+    font-size: 13pt !important;
+    margin-bottom: 1.4mm !important;
+  }
+
+  .heading-step-title {
+    font-size: 6.8pt !important;
+    margin-bottom: 1.6mm !important;
+  }
+
+  .heading-step h3 {
+    max-width: 22ch !important;
+    font-size: 11.2pt !important;
+    line-height: 1.18 !important;
+  }
+
+  .heading-step-description {
+    max-width: 30ch !important;
+    margin-top: 2.4mm !important;
+    font-size: 7.8pt !important;
+    line-height: 1.36 !important;
+  }
+
+  .heading-step-list {
+    gap: 1.3mm !important;
+    margin-top: 3.6mm !important;
+    padding-top: 3mm !important;
+  }
+
+  .heading-step-list li {
+    font-size: 7.3pt !important;
+    line-height: 1.28 !important;
+  }
+
+  .heading-outcome {
+    width: 150mm !important;
+    margin-top: 9mm !important;
+  }
+
+
+
+  /* Print fix: Slide 12 contact block */
+  .thanks-content {
+    width: 138mm !important;
+  }
+
+  .thanks-url {
+    margin-top: 8mm !important;
+  }
+
+  .thanks-contact {
+    display: grid !important;
+    grid-template-columns: 42mm 42mm 54mm !important;
+    width: 146mm !important;
+    gap: 0 !important;
+    margin-top: 8mm !important;
+    align-items: start !important;
+  }
+
+  .thanks-contact li {
+    display: grid !important;
+    grid-template-columns: 7mm minmax(0, 1fr) !important;
+    column-gap: 3mm !important;
+    row-gap: 1mm !important;
+    min-height: 18mm !important;
+    padding-right: 5mm !important;
+    padding-left: 0 !important;
+    border-left: 0 !important;
+    border-top: 0 !important;
+  }
+
+  .thanks-contact li + li {
+    padding-left: 6mm !important;
+    border-left: 0.25mm solid rgba(147, 162, 255, 0.42) !important;
+  }
+
+  .thanks-contact-icon {
+    grid-row: 1 / span 2 !important;
+    justify-self: start !important;
+    align-self: start !important;
+    width: 6mm !important;
+    height: 6mm !important;
+    margin: 0 !important;
+    border-radius: 1.2mm !important;
+    background: rgba(234, 236, 251, 0.14) !important;
+    box-shadow: none !important;
+  }
+
+  .thanks-contact-icon svg {
+    width: 3.6mm !important;
+    height: 3.6mm !important;
+  }
+
+  .thanks-contact-label {
+    grid-column: 2 !important;
+    align-self: end !important;
+    margin: 0 0 1mm !important;
+    font-size: 6.4pt !important;
+    line-height: 1 !important;
+  }
+
+  .thanks-contact strong {
+    grid-column: 2 !important;
+    max-width: 100% !important;
+    font-size: 7.2pt !important;
+    line-height: 1.18 !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+  }
+
+
+
+  /* Print fix: align Slide 12 contact data rows */
+  .thanks-contact {
+    display: grid !important;
+    grid-template-columns: 43mm 43mm 56mm !important;
+    width: 146mm !important;
+    gap: 0 !important;
+    margin-top: 8mm !important;
+    align-items: stretch !important;
+  }
+
+  .thanks-contact li {
+    display: grid !important;
+    grid-template-columns: 7mm minmax(0, 1fr) !important;
+    grid-template-rows: 3.5mm 7mm !important;
+    column-gap: 3mm !important;
+    row-gap: 1mm !important;
+    align-items: start !important;
+    min-height: 13mm !important;
+    padding: 0 5mm 0 0 !important;
+    border-left: 0 !important;
+  }
+
+  .thanks-contact li + li {
+    padding-left: 6mm !important;
+    border-left: 0.25mm solid rgba(147, 162, 255, 0.42) !important;
+  }
+
+  .thanks-contact-icon {
+    grid-column: 1 !important;
+    grid-row: 1 / span 2 !important;
+    align-self: start !important;
+    justify-self: start !important;
+    width: 5.5mm !important;
+    height: 5.5mm !important;
+    margin: 0 !important;
+  }
+
+  .thanks-contact-icon svg {
+    width: 3.4mm !important;
+    height: 3.4mm !important;
+  }
+
+  .thanks-contact-label {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    align-self: start !important;
+    margin: 0 !important;
+    padding-top: 0.2mm !important;
+    font-size: 6.2pt !important;
+    line-height: 1 !important;
+  }
+
+  .thanks-contact strong {
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    align-self: start !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    font-size: 6.7pt !important;
+    line-height: 1.15 !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+  }
+
 }
