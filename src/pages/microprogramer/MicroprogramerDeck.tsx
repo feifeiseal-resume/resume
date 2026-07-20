@@ -56,15 +56,21 @@ const CITY_PROBE_PREVIEW_IMAGE_URLS = [
 ] as const;
 const CITY_PROBE_TECHNICAL_PREVIEWS = [
   {
+    id: 'login',
+    title: 'Login',
+    description: '登入界面',
+    src: 'https://assets.josui.space/city-probe-5.png',
+  },
+  {
     id: 'dashboard',
     title: 'Dashboard',
-    description: '整體資料狀態',
+    description: '資料編輯與管理',
     src: 'https://assets.josui.space/city-probe-2.png',
   },
   {
-    id: 'table',
-    title: 'Data Table',
-    description: '列表查詢與篩選',
+    id: 'interactive',
+    title: 'Interactive Map',
+    description: '互動地圖與地理數據',
     src: 'https://assets.josui.space/city-probe-3.png',
   },
   {
@@ -72,12 +78,6 @@ const CITY_PROBE_TECHNICAL_PREVIEWS = [
     title: 'Map View',
     description: '地圖資料呈現',
     src: 'https://assets.josui.space/city-probe-4.png',
-  },
-  {
-    id: 'loading',
-    title: 'Loading State',
-    description: '長時間載入回饋',
-    src: 'https://assets.josui.space/city-probe-5.png',
   },
 ] as const;
 type CityProbeTechnicalPreviewId = (typeof CITY_PROBE_TECHNICAL_PREVIEWS)[number]['id'];
@@ -127,10 +127,10 @@ export default function MicroprogramerDeck() {
   const [cityProbeTechnicalImageStates, setCityProbeTechnicalImageStates] = useState<
     Record<CityProbeTechnicalPreviewId, 'loading' | 'loaded' | 'failed'>
   >({
+    login: 'loading',
     dashboard: 'loading',
-    table: 'loading',
+    interactive: 'loading',
     map: 'loading',
-    loading: 'loading',
   });
   const [fukukuPreviewState, setFukukuPreviewState] = useState<'loading' | 'loaded' | 'failed'>(
     'loading',
@@ -812,34 +812,13 @@ export default function MicroprogramerDeck() {
                     }
                     aria-hidden={selectedCityProbePreviewState === 'loaded'}
                   >
-                    <div className="cityprobe-preview-toolbar">
+                    <div className="cityprobe-loading-preview">
+                      <span className="cityprobe-loading-spinner" aria-hidden="true" />
                       <div>
-                        <p>Dashboard Preview</p>
-                        <strong>市民參與資料總覽</strong>
+                        <p>Loading Preview</p>
+                        <strong>資料載入中</strong>
+                        <small>保留畫面回饋，降低等待時的不確定感。</small>
                       </div>
-                      <span>Loading State</span>
-                    </div>
-                    <div className="cityprobe-preview-metrics">
-                      <span />
-                      <span />
-                      <span />
-                    </div>
-                    <div className="cityprobe-preview-content">
-                      <div className="cityprobe-preview-table">
-                        <span />
-                        <span />
-                        <span />
-                        <span />
-                        <span />
-                      </div>
-                      <div className="cityprobe-preview-map">
-                        <i />
-                        <b />
-                      </div>
-                    </div>
-                    <div className="cityprobe-preview-loading">
-                      <span />
-                      <p>資料同步中，保留畫面回饋與可辨識狀態</p>
                     </div>
                   </div>
                 </div>

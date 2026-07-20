@@ -2136,4 +2136,51 @@
   .cityprobe-preview-tab-copy {
     display: none !important;
   }
+
+  /* Print fix: City Probe simple loading fallback */
+  .cityprobe-loading-preview {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    display: grid !important;
+    place-items: center !important;
+    gap: 3mm !important;
+    padding: 8mm !important;
+    text-align: center !important;
+    background: #f7f8ff !important;
+  }
+
+  .cityprobe-loading-spinner {
+    width: 12mm !important;
+    height: 12mm !important;
+    border: 1mm solid rgba(100, 116, 204, 0.18) !important;
+    border-top-color: #6070c8 !important;
+    animation: none !important;
+  }
+
+  .cityprobe-loading-preview div {
+    display: grid !important;
+    gap: 1.5mm !important;
+  }
+
+  .cityprobe-loading-preview p {
+    margin: 0 !important;
+    color: #e62327 !important;
+    font-size: 6.8pt !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+  }
+
+  .cityprobe-loading-preview strong {
+    color: #111828 !important;
+    font-size: 12pt !important;
+    line-height: 1.15 !important;
+  }
+
+  .cityprobe-loading-preview small {
+    color: #3c4a68 !important;
+    font-size: 7.5pt !important;
+    line-height: 1.35 !important;
+  }
 }
