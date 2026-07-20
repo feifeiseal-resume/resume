@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState, type RefObject } from 'react';
 
-const READING_MODE_QUERY = '(max-width: 1024px)';
+const READING_MODE_QUERY = '(max-width: 1024px), (max-height: 1099px)';
 
 function isReadingMode() {
   return typeof window !== 'undefined' && window.matchMedia(READING_MODE_QUERY).matches;
