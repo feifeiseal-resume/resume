@@ -319,7 +319,7 @@ export const josuiAiWorkflow: AiWorkflow = {
 
 export const cityProbeOverview: ProjectOverview = {
   title: 'City Probe',
-  subtitle: 'Nuxt 3 企業管理後台',
+  subtitle: '學術研究管理平台',
   background:
     'City Probe 是配合大學學術研究開發的智慧城市市民參與平台。前端負責登入認證、權限管理、數據視覺化儀表板等核心功能，並以 Tailwind CSS 與自訂元件實作表格、圖表、表單驗證等互動元件。',
   role: [
