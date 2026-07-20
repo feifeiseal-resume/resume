@@ -159,7 +159,7 @@ export const skillCategories: SkillCategory[] = [
       { label: 'TypeScript', level: 'core' },
       { label: 'HTML5', level: 'core' },
       { label: 'CSS3 / SCSS', level: 'core' },
-      { label: 'Tailwind CSS', level: 'practical' },
+      { label: 'Tailwind CSS', level: 'core' },
     ],
   },
   {
@@ -168,7 +168,7 @@ export const skillCategories: SkillCategory[] = [
     items: [
       { label: 'Nuxt 3', level: 'core' },
       { label: 'Vue 3', level: 'core' },
-      { label: 'React', level: 'practical' },
+      { label: 'React', level: 'core' },
       { label: 'Vue Router', level: 'core' },
       { label: 'Pinia / Vuex', level: 'core' },
       { label: 'Composition API', level: 'core' },
@@ -196,7 +196,7 @@ export const skillCategories: SkillCategory[] = [
     items: [
       { label: 'Git / GitHub', level: 'core' },
       { label: 'Vite', level: 'core' },
-      { label: 'Webpack', level: 'practical' },
+      { label: 'Webpack', level: 'core' },
       { label: 'npm', level: 'core' },
     ],
   },
@@ -205,16 +205,16 @@ export const skillCategories: SkillCategory[] = [
     icon: 'quality',
     items: [
       { label: 'RWD 響應式設計', level: 'core' },
-      { label: 'Web Performance', level: 'practical' },
-      { label: 'SEO 最佳化', level: 'practical' },
+      { label: 'Web Performance', level: 'core' },
+      { label: 'SEO 最佳化', level: 'core' },
     ],
   },
   {
     title: '動畫與互動',
     icon: 'motion',
     items: [
-      { label: 'Framer Motion', level: 'practical' },
-      { label: 'SVG Animation', level: 'practical' },
+      { label: 'Framer Motion', level: 'core' },
+      { label: 'SVG Animation', level: 'core' },
       { label: 'CSS Animation', level: 'core' },
     ],
   },
