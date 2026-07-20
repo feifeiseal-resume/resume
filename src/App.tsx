@@ -1,7 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Resume from './components/Resume';
 import ParticlesBg from './components/ParticlesBg';
-import MicroprogramerDeck from './pages/microprogramer/MicroprogramerDeck';
+import MicroprogramDeck from './pages/microprogram/MicroprogramDeck';
 
 function ResumePage() {
   return (
@@ -22,7 +22,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<ResumePage />} />
-        <Route path="/interview/microprogramer" element={<MicroprogramerDeck />} />
+        <Route path="/interview/microprogram" element={<MicroprogramDeck />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

@@ -217,7 +217,7 @@ into maintainable frontend experiences.
 簡單問候並說明：
 
 這份簡報是使用 Vue 3 製作的網頁，同時也支援列印為 PDF，因此面試展示與提交資料共用同一份內容。
-也能在 https://my-resume.josui.space/interview/microprogramer 上進行檢視
+也能在 https://my-resume.josui.space/interview/microprogram 上進行檢視
 
 ---
 
@@ -795,7 +795,7 @@ into maintainable frontend experiences.
 ### 簡報網址
 
 ```text
-my-resume.josui.space/interview/microprogramer
+my-resume.josui.space/interview/microprogram
 ```
 
 可搭配 QR Code，方便面試官現場或面試後開啟網頁版簡報。

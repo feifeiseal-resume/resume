@@ -114,7 +114,7 @@ const headingStageIconMap = {
   future: IconPuzzle,
 };
 
-export default function MicroprogramerDeck() {
+export default function MicroprogramDeck() {
   const navigate = useNavigate();
   const rootRef = useRef<HTMLDivElement>(null);
   const { activeId, jumpTo } = useSectionNavigation(sectionIds, rootRef);
@@ -1032,7 +1032,7 @@ export default function MicroprogramerDeck() {
             <Reveal delay={150}>
               <div className="thanks-url">
                 <span>Presentation URL</span>
-                <a href="https://my-resume.josui.space/interview/microprogramer" target="_blank" rel="noopener noreferrer"><strong>my-resume.josui.space/interview/microprogramer</strong></a>
+                <a href="https://my-resume.josui.space/interview/microprogram" target="_blank" rel="noopener noreferrer"><strong>my-resume.josui.space/interview/microprogram</strong></a>
               </div>
             </Reveal>
             <Reveal delay={200}>

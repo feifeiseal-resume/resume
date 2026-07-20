@@ -506,5 +506,5 @@ export interface ContactItem {
 export const contactItems: ContactItem[] = [
   { label: 'Email', value: 'hazelworks598@gmail.com' },
   { label: 'GitHub', value: 'github.com/FeiFeiSeal' },
-  { label: 'Resume', value: 'my-resume.josui.space/interview/microprogramer' },
+  { label: 'Resume', value: 'my-resume.josui.space/interview/microprogram' },
 ];
