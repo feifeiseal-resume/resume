@@ -64,8 +64,8 @@ export interface AboutInfoItem {
 }
 
 export const aboutInfoItems: AboutInfoItem[] = [
-  { label: '前端工程師', description: '近四年前端實務經驗', icon: 'briefcase' },
-  { label: '目前位於台中', description: '台灣', icon: 'map' },
+  { label: '前端工程師', description: '', icon: 'briefcase' },
+  { label: '台中', description: ' ', icon: 'map' },
   { label: '重視可維護的前端開發', description: '從需求、資料流與使用情境思考', icon: 'code' },
 ];
 
@@ -233,6 +233,7 @@ export const skillPerspective = {
 export interface ProjectOverview {
   title: string;
   subtitle: string;
+  url?: string;
   background: string;
   role: string[];
   features: string[];
@@ -242,6 +243,7 @@ export interface ProjectOverview {
 export const josuiOverview: ProjectOverview = {
   title: 'JOSUI',
   subtitle: 'AI 協作完成的設計系統工具',
+  url: 'https://josui.space',
   background:
     'JOSUI 是一個為 shadcn/ui 與 Tailwind CSS 設計的主題色彩 Playground。使用者可以在瀏覽器中即時調整 UI token、預覽元件效果，並將色彩設定複製回自己的專案。這個專案源自實務中設計與開發對齊色彩 token 成本較高的問題，因此做成可互動、可預覽、可輸出的前端工具。',
   role: [
@@ -381,6 +383,7 @@ export const componentReuse: ComponentReuse = {
 
 export interface NuxtWebsiteCase {
   name: string;
+  url?: string;
   summary: string;
   role: string[];
   focus: string[];
@@ -389,6 +392,7 @@ export interface NuxtWebsiteCase {
 
 export const fukukuWebsite: NuxtWebsiteCase = {
   name: 'FUKUKU 樂勁雲數位服務官網',
+  url: 'https://fukuku.com.tw',
   summary:
     'AI 智慧瓦斯配送服務平台官網，與設計師合作開發。我負責前端架構設計與視覺實作，使用 Nuxt 3 SSR 建立可維護、可被搜尋理解的品牌頁面。',
   role: [
@@ -502,5 +506,5 @@ export interface ContactItem {
 export const contactItems: ContactItem[] = [
   { label: 'Email', value: 'hazelworks598@gmail.com' },
   { label: 'GitHub', value: 'github.com/FeiFeiSeal' },
-  { label: 'JOSUI Demo', value: 'josui.space' },
+  { label: 'Resume', value: 'my-resume.josui.space/interview/microprogramer' },
 ];

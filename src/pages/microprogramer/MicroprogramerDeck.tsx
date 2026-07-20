@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   IconApi,
   IconBolt,
@@ -49,6 +49,39 @@ import './styles/presentation.css';
 import './styles/print.css';
 
 const sectionIds = slideOutline.map((item) => item.id);
+const JOSUI_PREVIEW_IMAGE_URL = 'https://assets.josui.space/josui-1.png';
+const CITY_PROBE_PREVIEW_IMAGE_URLS = [
+  'https://assets.josui.space/city-probe-1.png',
+  'https://assets.josui.space/city-probe-2.png',
+] as const;
+const CITY_PROBE_TECHNICAL_PREVIEWS = [
+  {
+    id: 'dashboard',
+    title: 'Dashboard',
+    description: '整體資料狀態',
+    src: 'https://assets.josui.space/city-probe-2.png',
+  },
+  {
+    id: 'table',
+    title: 'Data Table',
+    description: '列表查詢與篩選',
+    src: 'https://assets.josui.space/city-probe-3.png',
+  },
+  {
+    id: 'map',
+    title: 'Map View',
+    description: '地圖資料呈現',
+    src: 'https://assets.josui.space/city-probe-4.png',
+  },
+  {
+    id: 'loading',
+    title: 'Loading State',
+    description: '長時間載入回饋',
+    src: 'https://assets.josui.space/city-probe-5.png',
+  },
+] as const;
+type CityProbeTechnicalPreviewId = (typeof CITY_PROBE_TECHNICAL_PREVIEWS)[number]['id'];
+const FUKUKU_PREVIEW_IMAGE_URL = 'https://assets.josui.space/fukuku-1.png';
 
 const aboutInfoIconMap = {
   briefcase: IconBriefcase2,
@@ -85,6 +118,28 @@ export default function MicroprogramerDeck() {
   const navigate = useNavigate();
   const rootRef = useRef<HTMLDivElement>(null);
   const { activeId, jumpTo } = useSectionNavigation(sectionIds, rootRef);
+  const [josuiPreviewState, setJosuiPreviewState] = useState<'loading' | 'loaded' | 'failed'>('loading');
+  const [cityProbeDashboardState, setCityProbeDashboardState] = useState<'loading' | 'loaded' | 'failed'>(
+    'loading',
+  );
+  const [selectedCityProbePreviewId, setSelectedCityProbePreviewId] =
+    useState<CityProbeTechnicalPreviewId>('dashboard');
+  const [cityProbeTechnicalImageStates, setCityProbeTechnicalImageStates] = useState<
+    Record<CityProbeTechnicalPreviewId, 'loading' | 'loaded' | 'failed'>
+  >({
+    dashboard: 'loading',
+    table: 'loading',
+    map: 'loading',
+    loading: 'loading',
+  });
+  const [fukukuPreviewState, setFukukuPreviewState] = useState<'loading' | 'loaded' | 'failed'>(
+    'loading',
+  );
+  const selectedCityProbePreview =
+    CITY_PROBE_TECHNICAL_PREVIEWS.find((preview) => preview.id === selectedCityProbePreviewId) ??
+    CITY_PROBE_TECHNICAL_PREVIEWS[0];
+  const selectedCityProbePreviewState =
+    cityProbeTechnicalImageStates[selectedCityProbePreview.id];
 
   useEffect(() => {
     const previousTitle = document.title;
@@ -382,6 +437,17 @@ export default function MicroprogramerDeck() {
                 <p className="section-kicker">Project 01</p>
                 <h2 className="section-title josui-overview-title">Style shadcn UI beautifully</h2>
                 <p className="section-subtitle">{josuiOverview.title}｜{josuiOverview.subtitle}</p>
+                {josuiOverview.url ? (
+                  <a
+                    className="project-link project-link--josui"
+                    href={josuiOverview.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <IconLink size={18} stroke={1.9} aria-hidden="true" />
+                    <span>{josuiOverview.url.replace('https://', '')}</span>
+                  </a>
+                ) : null}
               </Reveal>
               <Reveal delay={80}>
                 <p className="section-lead josui-overview-lead">{josuiOverview.background}</p>
@@ -418,33 +484,49 @@ export default function MicroprogramerDeck() {
                   <span />
                   <span />
                 </div>
-                <div className="josui-preview-surface">
-                  <div className="josui-preview-header">
-                    <div>
-                      <p>JOSUI</p>
-                      <strong>Theme Playground</strong>
+                <div className='josui-preview-surface'>
+                  {josuiPreviewState !== 'failed' ? (
+                    <img
+                      className={'josui-preview-image' + (josuiPreviewState === 'loaded' ? ' is-loaded' : '')}
+                      src={JOSUI_PREVIEW_IMAGE_URL}
+                      alt='JOSUI theme playground preview'
+                      loading='eager'
+                      decoding='async'
+                      onLoad={() => setJosuiPreviewState('loaded')}
+                      onError={() => setJosuiPreviewState('failed')}
+                    />
+                  ) : null}
+                  <div
+                    className={'josui-preview-fallback' + (josuiPreviewState === 'loaded' ? ' is-hidden' : '')}
+                    aria-hidden={josuiPreviewState === 'loaded'}
+                  >
+                    <div className='josui-preview-header'>
+                      <div>
+                        <p>JOSUI</p>
+                        <strong>Theme Playground</strong>
+                      </div>
+                      <span>Live Preview</span>
                     </div>
-                    <span>Live Preview</span>
-                  </div>
-                  <div className="josui-preview-grid">
-                    <div className="josui-color-panel">
-                      <span className="josui-swatch josui-swatch--primary" />
-                      <span className="josui-swatch josui-swatch--accent" />
-                      <span className="josui-swatch josui-swatch--soft" />
-                    </div>
-                    <div className="josui-component-stack">
-                      <div className="josui-mini-card" />
-                      <div className="josui-mini-card josui-mini-card--wide" />
-                      <div className="josui-mini-actions">
-                        <span />
-                        <span />
+                    <div className='josui-preview-grid'>
+                      <div className='josui-color-panel'>
+                        <span className='josui-swatch josui-swatch--primary' />
+                        <span className='josui-swatch josui-swatch--accent' />
+                        <span className='josui-swatch josui-swatch--soft' />
+                      </div>
+                      <div className='josui-component-stack'>
+                        <div className='josui-mini-card' />
+                        <div className='josui-mini-card josui-mini-card--wide' />
+                        <div className='josui-mini-actions'>
+                          <span />
+                          <span />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="josui-token-row">
-                    <code>--primary</code>
-                    <code>--accent</code>
-                    <code>Copy tokens</code>
+                    <div className='josui-token-row'>
+                      <code>--primary</code>
+                      <code>--accent</code>
+                      <code>Copy tokens</code>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -605,27 +687,49 @@ export default function MicroprogramerDeck() {
 
             <Reveal delay={150} className="cityprobe-showcase">
               <div className="cityprobe-dashboard-mock">
-                <div className="cityprobe-dashboard-head">
-                  <div>
-                    <p>City Probe</p>
-                    <strong>Admin Dashboard</strong>
+                {cityProbeDashboardState !== 'failed' ? (
+                  <img
+                    className={
+                      'cityprobe-dashboard-image' +
+                      (cityProbeDashboardState === 'loaded' ? ' is-loaded' : '')
+                    }
+                    src={CITY_PROBE_PREVIEW_IMAGE_URLS[0]}
+                    alt="City Probe dashboard preview"
+                    loading="eager"
+                    decoding="async"
+                    onLoad={() => setCityProbeDashboardState('loaded')}
+                    onError={() => setCityProbeDashboardState('failed')}
+                  />
+                ) : null}
+                <div
+                  className={
+                    'cityprobe-dashboard-fallback' +
+                    (cityProbeDashboardState === 'loaded' ? ' is-hidden' : '')
+                  }
+                  aria-hidden={cityProbeDashboardState === 'loaded'}
+                >
+                  <div className="cityprobe-dashboard-head">
+                    <div>
+                      <p>City Probe</p>
+                      <strong>Admin Dashboard</strong>
+                    </div>
+                    <span>Nuxt 3</span>
                   </div>
-                  <span>Nuxt 3</span>
-                </div>
-                <div className="cityprobe-dashboard-stats">
-                  <span />
-                  <span />
-                  <span />
-                </div>
-                <div className="cityprobe-dashboard-body">
-                  <div className="cityprobe-table-mock">
-                    <span />
+                  <div className="cityprobe-dashboard-stats">
                     <span />
                     <span />
                     <span />
                   </div>
-                  <div className="cityprobe-map-mock">
-                    <span />
+                  <div className="cityprobe-dashboard-body">
+                    <div className="cityprobe-table-mock">
+                      <span />
+                      <span />
+                      <span />
+                      <span />
+                    </div>
+                    <div className="cityprobe-map-mock">
+                      <span />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -675,42 +779,101 @@ export default function MicroprogramerDeck() {
 
             <Reveal delay={160} className="cityprobe-preview-wrap">
               <div className="cityprobe-product-preview">
-                <div className="cityprobe-preview-sidebar">
-                  <span />
-                  <span />
-                  <span />
-                  <span />
-                </div>
                 <div className="cityprobe-preview-main">
-                  <div className="cityprobe-preview-toolbar">
-                    <div>
-                      <p>Dashboard Preview</p>
-                      <strong>市民參與資料總覽</strong>
+                  {selectedCityProbePreviewState !== 'failed' ? (
+                    <img
+                      key={selectedCityProbePreview.id}
+                      className={
+                        'cityprobe-preview-image' +
+                        (selectedCityProbePreviewState === 'loaded' ? ' is-loaded' : '')
+                      }
+                      src={selectedCityProbePreview.src}
+                      alt={'City Probe ' + selectedCityProbePreview.title + ' preview'}
+                      loading="eager"
+                      decoding="async"
+                      onLoad={() =>
+                        setCityProbeTechnicalImageStates((states) => ({
+                          ...states,
+                          [selectedCityProbePreview.id]: 'loaded',
+                        }))
+                      }
+                      onError={() =>
+                        setCityProbeTechnicalImageStates((states) => ({
+                          ...states,
+                          [selectedCityProbePreview.id]: 'failed',
+                        }))
+                      }
+                    />
+                  ) : null}
+                  <div
+                    className={
+                      'cityprobe-preview-fallback' +
+                      (selectedCityProbePreviewState === 'loaded' ? ' is-hidden' : '')
+                    }
+                    aria-hidden={selectedCityProbePreviewState === 'loaded'}
+                  >
+                    <div className="cityprobe-preview-toolbar">
+                      <div>
+                        <p>Dashboard Preview</p>
+                        <strong>市民參與資料總覽</strong>
+                      </div>
+                      <span>Loading State</span>
                     </div>
-                    <span>Loading State</span>
-                  </div>
-                  <div className="cityprobe-preview-metrics">
-                    <span />
-                    <span />
-                    <span />
-                  </div>
-                  <div className="cityprobe-preview-content">
-                    <div className="cityprobe-preview-table">
-                      <span />
-                      <span />
+                    <div className="cityprobe-preview-metrics">
                       <span />
                       <span />
                       <span />
                     </div>
-                    <div className="cityprobe-preview-map">
-                      <i />
-                      <b />
+                    <div className="cityprobe-preview-content">
+                      <div className="cityprobe-preview-table">
+                        <span />
+                        <span />
+                        <span />
+                        <span />
+                        <span />
+                      </div>
+                      <div className="cityprobe-preview-map">
+                        <i />
+                        <b />
+                      </div>
+                    </div>
+                    <div className="cityprobe-preview-loading">
+                      <span />
+                      <p>資料同步中，保留畫面回饋與可辨識狀態</p>
                     </div>
                   </div>
-                  <div className="cityprobe-preview-loading">
-                    <span />
-                    <p>資料同步中，保留畫面回饋與可辨識狀態</p>
-                  </div>
+                </div>
+                <div className="cityprobe-preview-tabs" aria-label="City Probe preview selector">
+                  {CITY_PROBE_TECHNICAL_PREVIEWS.map((preview, index) => {
+                    const isSelected = preview.id === selectedCityProbePreviewId;
+
+                    return (
+                      <button
+                        key={preview.id}
+                        type="button"
+                        className={
+                          'cityprobe-preview-tab' + (isSelected ? ' is-active' : '')
+                        }
+                        aria-pressed={isSelected}
+                        onClick={() => setSelectedCityProbePreviewId(preview.id)}
+                      >
+                        <img
+                          src={preview.src}
+                          alt=""
+                          loading="lazy"
+                          decoding="async"
+                          aria-hidden="true"
+                        />
+                        <span className="cityprobe-preview-tab-index">
+                          {String(index + 1).padStart(2, '0')}
+                        </span>
+                        <span className="cityprobe-preview-tab-copy">
+                          <strong>{preview.title}</strong>
+                          <small>{preview.description}</small>
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             </Reveal>
@@ -724,6 +887,17 @@ export default function MicroprogramerDeck() {
                 <p className="section-kicker">Project 03 · Website</p>
                 <h2 className="section-title nuxt-website-title">FUKUKU 樂勁雲數位服務官網</h2>
                 <p className="section-subtitle">{fukukuWebsite.summary}</p>
+                {fukukuWebsite.url ? (
+                  <a
+                    className="project-link project-link--nuxt-website"
+                    href={fukukuWebsite.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <IconLink size={18} stroke={1.9} aria-hidden="true" />
+                    <span>{fukukuWebsite.url.replace('https://', '')}</span>
+                  </a>
+                ) : null}
               </Reveal>
 
               <div className="nuxt-website-grid">
@@ -757,18 +931,42 @@ export default function MicroprogramerDeck() {
                   <span />
                   <span />
                 </div>
-                <div className="nuxt-website-hero-mock">
-                  <div>
-                    <p>FUKUKU</p>
-                    <strong>樂勁雲數位服務</strong>
-                    <span>AI 智慧瓦斯配送服務平台官網</span>
+                <div className="nuxt-website-preview-surface">
+                  {fukukuPreviewState !== 'failed' ? (
+                    <img
+                      className={
+                        'nuxt-website-preview-image' +
+                        (fukukuPreviewState === 'loaded' ? ' is-loaded' : '')
+                      }
+                      src={FUKUKU_PREVIEW_IMAGE_URL}
+                      alt="FUKUKU website preview"
+                      loading="eager"
+                      decoding="async"
+                      onLoad={() => setFukukuPreviewState('loaded')}
+                      onError={() => setFukukuPreviewState('failed')}
+                    />
+                  ) : null}
+                  <div
+                    className={
+                      'nuxt-website-preview-fallback' +
+                      (fukukuPreviewState === 'loaded' ? ' is-hidden' : '')
+                    }
+                    aria-hidden={fukukuPreviewState === 'loaded'}
+                  >
+                    <div className="nuxt-website-hero-mock">
+                      <div>
+                        <p>FUKUKU</p>
+                        <strong>樂勁雲數位服務</strong>
+                        <span>AI 智慧瓦斯配送服務平台官網</span>
+                      </div>
+                      <i />
+                    </div>
+                    <div className="nuxt-website-section-mock">
+                      <span />
+                      <span />
+                      <span />
+                    </div>
                   </div>
-                  <i />
-                </div>
-                <div className="nuxt-website-section-mock">
-                  <span />
-                  <span />
-                  <span />
                 </div>
               </div>
               <div className="tag-row nuxt-website-tech-row">
@@ -785,7 +983,7 @@ export default function MicroprogramerDeck() {
             <Reveal>
               <div className="heading-intro">
                 <div>
-                  <p className="section-kicker">11 · Where I&apos;m Heading</p>
+                  <p className="section-kicker">Where I&apos;m Heading</p>
                   <h2 className="section-title heading-title">Where I&apos;m Heading</h2>
                 </div>
                 <p className="heading-statement">{careerDirection.statement}</p>
@@ -842,7 +1040,7 @@ export default function MicroprogramerDeck() {
 
           <div className="thanks-content">
             <Reveal>
-              <p className="section-kicker section-kicker--on-dark">Thank You</p>
+              {/* <p className="section-kicker section-kicker--on-dark">Thank You</p> */}
               <h2 className="thanks-title">THANK YOU</h2>
               <div className="thanks-accent" aria-hidden="true" />
             </Reveal>
@@ -855,7 +1053,7 @@ export default function MicroprogramerDeck() {
             <Reveal delay={150}>
               <div className="thanks-url">
                 <span>Presentation URL</span>
-                <strong>my-resume.josui.space/interview/microprogramer</strong>
+                <a href="https://my-resume.josui.space/interview/microprogramer" target="_blank" rel="noopener noreferrer"><strong>my-resume.josui.space/interview/microprogramer</strong></a>
               </div>
             </Reveal>
             <Reveal delay={200}>
@@ -864,9 +1062,7 @@ export default function MicroprogramerDeck() {
                   { label: 'Email', value: contactItems[0].value, icon: IconMail },
                   { label: 'GitHub', value: contactItems[1].value, icon: IconBrandGithub },
                   {
-                    label: 'Resume',
-                    value: 'my-resume.josui.space/interview/microprogramer',
-                    icon: IconLink,
+                    label: 'Resume', value: contactItems[2].value, icon: IconLink,
                   },
                 ].map((item) => {
                   const ContactIcon = item.icon;
@@ -877,7 +1073,7 @@ export default function MicroprogramerDeck() {
                         <ContactIcon size={28} stroke={1.8} />
                       </span>
                       <span className="thanks-contact-label">{item.label}</span>
-                      <strong>{item.value}</strong>
+                      <a href={item.value} target="_blank" rel="noopener noreferrer"><strong>{item.value}</strong></a>
                     </li>
                   );
                 })}

@@ -485,6 +485,7 @@
     font-size: 11pt !important;
     line-height: 1.2 !important;
     margin-top: 1.5mm !important;
+    margin-bottom: 12px !important;
   }
 
   .career-role,
@@ -2039,4 +2040,100 @@
     font-size: 6.4pt !important;
   }
 
+
+  /* Print fix: City Probe technical gallery */
+  .cityprobe-technical-shell {
+    grid-template-columns: 148mm 104mm !important;
+    gap: 7mm !important;
+    align-items: center !important;
+  }
+
+  .cityprobe-product-preview {
+    width: 104mm !important;
+    min-height: 0 !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: 74mm 24mm !important;
+    overflow: hidden !important;
+    border-radius: 2mm !important;
+    background: #ffffff !important;
+    border: 0.3mm solid #dfe4f5 !important;
+    box-shadow: none !important;
+  }
+
+  .cityprobe-preview-sidebar {
+    display: none !important;
+  }
+
+  .cityprobe-preview-main {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 74mm !important;
+    min-height: 74mm !important;
+    max-height: 74mm !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background: #ffffff !important;
+  }
+
+  .cityprobe-preview-image,
+  .cityprobe-preview-image.is-loaded {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .cityprobe-preview-fallback {
+    height: 100% !important;
+    padding: 4mm !important;
+  }
+
+  .cityprobe-preview-fallback.is-hidden {
+    opacity: 0 !important;
+  }
+
+  .cityprobe-preview-tabs {
+    grid-column: 1 !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 1.6mm !important;
+    height: 24mm !important;
+    padding: 2mm !important;
+    border-top: 0.3mm solid #dfe4f5 !important;
+    background: #ffffff !important;
+  }
+
+  .cityprobe-preview-tab {
+    height: 20mm !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border-radius: 1.5mm !important;
+    border: 0.3mm solid #dfe4f5 !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .cityprobe-preview-tab img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .cityprobe-preview-tab::after,
+  .cityprobe-preview-tab-index,
+  .cityprobe-preview-tab-copy {
+    display: none !important;
+  }
 }
