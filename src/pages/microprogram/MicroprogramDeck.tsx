@@ -123,7 +123,7 @@ export default function MicroprogramDeck() {
     'loading',
   );
   const [selectedCityProbePreviewId, setSelectedCityProbePreviewId] =
-    useState<CityProbeTechnicalPreviewId>('dashboard');
+    useState<CityProbeTechnicalPreviewId>('login');
   const [cityProbeTechnicalImageStates, setCityProbeTechnicalImageStates] = useState<
     Record<CityProbeTechnicalPreviewId, 'loading' | 'loaded' | 'failed'>
   >({
