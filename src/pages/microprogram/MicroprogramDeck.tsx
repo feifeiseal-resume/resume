@@ -841,9 +841,6 @@ export default function MicroprogramDeck() {
                       </div>
                     </div>
                   </div>
-                  {/* <span className="cityprobe-preview-zoom-hint" aria-hidden="true"> */}
-                    {/* Click to enlarge
-                  </span> */}
                 </button>
                 <div className="cityprobe-preview-tabs" aria-label="City Probe preview selector">
                   {CITY_PROBE_TECHNICAL_PREVIEWS.map((preview, index) => {

@@ -471,7 +471,7 @@ export interface CareerDirection {
 
 export const careerDirection: CareerDirection = {
   statement:
-    '我的核心仍然是前端。學習後端不是離開前端，而是希望更完整地理解產品如何運作。',
+    '我相信工程師最重要的能力不是會多少技術，而是持續學習的能力。我希望善用 AI 作為協作工具，不斷吸收新知、驗證想法，讓自己能持續成長，也為團隊帶來更多價值。',
   stages: [
     {
       id: 'today',
