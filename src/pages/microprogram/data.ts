@@ -103,7 +103,7 @@ export const careerTimeline: TimelineStep[] = [
     summary: '負責前端功能開發與專案交付，參與 SSR／CSR 架構評估、狀態管理設計與第三方套件導入，從功能實作到 API 串接皆能獨立完成',
     highlights: [
       '與 SA、PM、Backend、UI/UX 協作，推進需求對齊、UAT 與上線',
-      '參與多家客戶企業內部系統開發，實作多步驟表單、角色權限、列表篩選與排序等功能模組，處理複雜資料流與狀態管理，能獨立完成需求開發與交付',
+      '參與學術研究管理平台開發，實作多步驟表單、角色權限、列表篩選與排序等功能模組，處理複雜資料流與狀態管理，能獨立完成需求開發與交付',
       '參與核心 SaaS 產品的商業模式規劃與市場路線討論，負責前端架構維護與功能迭代，將產品需求轉化為穩定且易於使用的操作介面',
     ],
     tags: ['Enterprise Systems', 'Nuxt Website', 'SaaS', 'UAT'],
@@ -113,11 +113,12 @@ export const careerTimeline: TimelineStep[] = [
     company: '奇點無限股份有限公司',
     role: '前端工程師',
     location: '台中',
-    summary: '在技術長帶領下參與客戶系統重構，累積既有 codebase 維護、模組化改寫與 Code Review 經驗。',
+    summary: '參與客戶系統重構，累積既有 codebase 維護、模組化改寫與 Code Review 經驗',
     highlights: [
-      '參與企業內部系統開發，實作表單驗證、角色權限、資料表格與儀表板',
-      '承接既有專案，釐清未完成事項並降低修改風險',
+      '參與企業內部門市系統開發，實作表單驗證、角色權限、資料表格與儀表板',
+      '承接既有物流企業專案，釐清未完成事項並接續開發',
       '與前端同事協作建置共用元件庫，統一設計規範與元件 API',
+      '開發公司 SaaS 產品',
     ],
     tags: ['Refactor', 'Legacy Code', 'Component Library', 'Code Review'],
   },
@@ -126,7 +127,7 @@ export const careerTimeline: TimelineStep[] = [
     company: '我瘋程式工作室',
     role: '專案經理 PM',
     location: '台中',
-    summary: '負責網站專案的需求訪談、時程規劃與設計／開發協調，後續主動投入自學並轉職前端。',
+    summary: '負責網站專案的需求訪談、時程規劃並與工程師進行需求確認，後續開始自學並轉職前端',
     highlights: [
       '整理需求背景、溝通專案範圍與交付節奏',
       '理解技術能力對專案品質與溝通效率的重要性',
@@ -242,7 +243,7 @@ export interface ProjectOverview {
 
 export const josuiOverview: ProjectOverview = {
   title: 'JOSUI',
-  subtitle: 'AI 協作完成的設計系統工具',
+  subtitle: 'Style shadcn UI beautifully',
   url: 'https://josui.space',
   background:
     'JOSUI 是一個為 shadcn/ui 與 Tailwind CSS 設計的主題色彩 Playground。使用者可以在瀏覽器中即時調整 UI token、預覽元件效果，並將色彩設定複製回自己的專案。這個專案源自實務中設計與開發對齊色彩 token 成本較高的問題，因此做成可互動、可預覽、可輸出的前端工具。',
@@ -280,8 +281,8 @@ export const josuiTechnical: ProjectTechnical = {
   ],
   solutions: [
     '將主題色彩的真實來源放在 CSS custom properties',
-    '透過 CSSOM 讀寫 :root 與 .dark 的 CSS variables',
-    'React 只管理 UI 狀態，例如面板開關、目前 preset',
+    '讀寫同源樣式表中的 :root 與 .dark CSS variables',
+    'React 只管理 UI 狀態，例如面板開關',
     '使用 colorjs.io 處理色彩轉換，並分別產生 Tailwind v3 / v4 token',
   ],
   flow: [
@@ -505,6 +506,6 @@ export interface ContactItem {
 
 export const contactItems: ContactItem[] = [
   { label: 'Email', value: 'hazelworks598@gmail.com' },
-  { label: 'GitHub', value: 'github.com/FeiFeiSeal' },
+  { label: 'GitHub', value: 'https://github.com/FeiFeiSeal' },
   { label: 'Resume', value: 'my-resume.josui.space' },
 ];

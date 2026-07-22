@@ -448,9 +448,9 @@ export default function MicroprogramDeck() {
           <div className="josui-overview-shell">
             <div className="josui-overview-copy">
               <Reveal>
-                <p className="section-kicker">Project 01</p>
-                <h2 className="section-title josui-overview-title">JOSUI - Style shadcn UI beautifully</h2>
-                <p className="section-subtitle">{josuiOverview.title}｜{josuiOverview.subtitle}</p>
+                <p className="section-kicker">Project 01 · JOSUI</p>
+                <h2 className="section-title josui-overview-title">JOSUI</h2>
+                <p className="section-subtitle">{josuiOverview.subtitle}</p>
                 {josuiOverview.url ? (
                   <a
                     className="project-link project-link--josui"
@@ -558,7 +558,7 @@ export default function MicroprogramDeck() {
           <div className="josui-technical-shell">
             <div className="josui-technical-copy">
               <Reveal>
-                <p className="section-kicker">Project 01 · Technical</p>
+                <p className="section-kicker">Project 01 · JOSUI</p>
                 <h2 className="section-title josui-technical-title">Real-time Theme Preview and Token Export</h2>
                 <p className="section-subtitle">
                   將色彩 token 的變更直接回到 CSS variables，讓元件預覽與匯出流程保持同步。
@@ -601,7 +601,7 @@ export default function MicroprogramDeck() {
                   {[
                     '使用者調整顏色',
                     'Color Picker / Theme Panel',
-                    'CSSOM 更新 CSS variables',
+                    '更新 CSS variables',
                     'shadcn/ui 元件即時更新',
                     'Copy Dialog 匯出 Tailwind tokens',
                   ].map((step, index) => (
@@ -623,7 +623,7 @@ export default function MicroprogramDeck() {
           <div className="josui-ai-shell">
             <div className="josui-ai-intro">
               <Reveal>
-                <p className="section-kicker">Project 01 · AI Workflow</p>
+                <p className="section-kicker">Project 01 · JOSUI</p>
                 <h2 className="section-title josui-ai-title">Using AI as a Workflow Partner</h2>
                 <p className="section-subtitle">
                   在 JOSUI 中，我把 AI 視為協助拆解與產出初稿的工具，但不把判斷責任交給 AI。
@@ -667,7 +667,7 @@ export default function MicroprogramDeck() {
           <div className="cityprobe-overview-shell">
             <div className="cityprobe-overview-copy">
               <Reveal>
-                <p className="section-kicker">Project 02</p>
+                <p className="section-kicker">Project 02 · 都市探針 City Probe</p>
                 <h2 className="section-title cityprobe-overview-title">都市探針 City Probe</h2>
                 <p className="section-subtitle">學術研究管理平台</p>
               </Reveal>
@@ -760,7 +760,7 @@ export default function MicroprogramDeck() {
           <div className="cityprobe-technical-shell">
             <div className="cityprobe-technical-main">
               <Reveal>
-                <p className="section-kicker">Project 02 · Technical</p>
+                <p className="section-kicker">Project 02 · 都市探針 City Probe</p>
                 <h2 className="section-title cityprobe-technical-title">Data State and Interaction Complexity</h2>
                 <p className="section-subtitle">
                   管理後台的難度不只在畫面，而是在資料狀態、權限、表格、地圖與 SSR / CSR 邊界。
@@ -918,7 +918,7 @@ export default function MicroprogramDeck() {
           <div className="nuxt-website-shell">
             <div className="nuxt-website-copy">
               <Reveal>
-                <p className="section-kicker">Project 03 · Website</p>
+                <p className="section-kicker">Project 03 · FUKUKU</p>
                 <h2 className="section-title nuxt-website-title">FUKUKU 樂勁雲數位服務官網</h2>
                 <p className="section-subtitle">{fukukuWebsite.summary}</p>
                 {fukukuWebsite.url ? (
