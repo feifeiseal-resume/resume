@@ -435,7 +435,7 @@ export default function MicroprogramDeck() {
             <div className="josui-overview-copy">
               <Reveal>
                 <p className="section-kicker">Project 01</p>
-                <h2 className="section-title josui-overview-title">Style shadcn UI beautifully</h2>
+                <h2 className="section-title josui-overview-title">JOSUI - Style shadcn UI beautifully</h2>
                 <p className="section-subtitle">{josuiOverview.title}｜{josuiOverview.subtitle}</p>
                 {josuiOverview.url ? (
                   <a
@@ -839,8 +839,8 @@ export default function MicroprogramDeck() {
                         <img
                           src={preview.src}
                           alt=""
-                          loading="lazy"
-                          decoding="async"
+                          loading="eager"
+                          decoding="sync"
                           aria-hidden="true"
                         />
                         <span className="cityprobe-preview-tab-index">

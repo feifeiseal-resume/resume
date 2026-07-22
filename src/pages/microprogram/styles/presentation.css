@@ -1207,9 +1207,9 @@
   align-items: center;
 }
 
-.josui-overview-title {
+/* .josui-overview-title {
   max-width: min(13ch, 100%);
-}
+} */
 
 .josui-overview-lead {
   max-width: min(54rem, 100%);

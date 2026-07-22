@@ -29,7 +29,7 @@ export const aboutContent = {
   photoAlt: '郭珮語 Hazel Kuo',
   paragraphs: [
     '我是郭珮語，以 Vue 3、Nuxt 3、TypeScript 為主力的前端工程師，有近四年實務經驗。',
-    '參與過企業系統、官網與 SaaS 開發；習慣先理解需求與資料流，再落成可維護的前端結構。',
+    '參與過企業內部系統、官網與 SaaS 開發；習慣先理解需求與資料流，再落成可維護的前端結構。',
   ],
 };
 
@@ -66,7 +66,7 @@ export interface AboutInfoItem {
 export const aboutInfoItems: AboutInfoItem[] = [
   { label: '前端工程師', description: '', icon: 'briefcase' },
   { label: '台中', description: ' ', icon: 'map' },
-  { label: '重視可維護的前端開發', description: '從需求、資料流與使用情境思考', icon: 'code' },
+  { label: '國立嘉義大學 史地學系', description: '', icon: 'code' },
 ];
 
 export interface AboutCapability {
@@ -81,7 +81,7 @@ export const aboutCapabilities: AboutCapability[] = [
   { title: '企業系統', description: '複雜資料與權限情境', icon: 'building' },
   { title: 'SaaS / 官網', description: '產品功能與品牌頁面', icon: 'product' },
   { title: '可維護性', description: '元件拆分與可擴充結構', icon: 'maintain' },
-  { title: '團隊協作', description: '與 PM、設計、後端、QA 對齊', icon: 'team' },
+  { title: '團隊協作', description: '與 PM、設計、後端、SA 對齊', icon: 'team' },
 ];
 
 export interface TimelineStep {
@@ -100,11 +100,11 @@ export const careerTimeline: TimelineStep[] = [
     company: '勝崨有限公司',
     role: '前端工程師',
     location: '台中',
-    summary: '參與企業系統、Nuxt 官網與 SaaS 產品功能迭代，負責前端功能開發與專案交付。',
+    summary: '負責前端功能開發與專案交付，參與 SSR／CSR 架構評估、狀態管理設計與第三方套件導入，從功能實作到 API 串接皆能獨立完成',
     highlights: [
       '與 SA、PM、Backend、UI/UX 協作，推進需求對齊、UAT 與上線',
-      '實作多步驟表單、角色權限、列表篩選與排序等 B 端功能',
-      '使用 Nuxt SSR、圖片最佳化與 SEO 設定改善官網體驗',
+      '參與多家客戶企業內部系統開發，實作多步驟表單、角色權限、列表篩選與排序等功能模組，處理複雜資料流與狀態管理，能獨立完成需求開發與交付',
+      '參與核心 SaaS 產品的商業模式規劃與市場路線討論，負責前端架構維護與功能迭代，將產品需求轉化為穩定且易於使用的操作介面',
     ],
     tags: ['Enterprise Systems', 'Nuxt Website', 'SaaS', 'UAT'],
   },
@@ -115,7 +115,7 @@ export const careerTimeline: TimelineStep[] = [
     location: '台中',
     summary: '在技術長帶領下參與客戶系統重構，累積既有 codebase 維護、模組化改寫與 Code Review 經驗。',
     highlights: [
-      '參與內部系統開發，實作表單驗證、角色權限、資料表格與儀表板',
+      '參與企業內部系統開發，實作表單驗證、角色權限、資料表格與儀表板',
       '承接既有專案，釐清未完成事項並降低修改風險',
       '與前端同事協作建置共用元件庫，統一設計規範與元件 API',
     ],
@@ -506,5 +506,5 @@ export interface ContactItem {
 export const contactItems: ContactItem[] = [
   { label: 'Email', value: 'hazelworks598@gmail.com' },
   { label: 'GitHub', value: 'github.com/FeiFeiSeal' },
-  { label: 'Resume', value: 'my-resume.josui.space/interview/microprogram' },
+  { label: 'Resume', value: 'my-resume.josui.space' },
 ];

@@ -532,10 +532,10 @@
     margin-top: 0 !important;
   }
 
-  .josui-overview-title {
+  /* .josui-overview-title {
     font-size: 24pt !important;
     max-width: 13ch !important;
-  }
+  } */
 
   .josui-overview-lead {
     font-size: 9pt !important;
