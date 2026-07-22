@@ -124,6 +124,7 @@ export default function MicroprogramDeck() {
   );
   const [selectedCityProbePreviewId, setSelectedCityProbePreviewId] =
     useState<CityProbeTechnicalPreviewId>('login');
+  const [cityProbePreviewModalOpen, setCityProbePreviewModalOpen] = useState(false);
   const [cityProbeTechnicalImageStates, setCityProbeTechnicalImageStates] = useState<
     Record<CityProbeTechnicalPreviewId, 'loading' | 'loaded' | 'failed'>
   >({
@@ -140,6 +141,19 @@ export default function MicroprogramDeck() {
     CITY_PROBE_TECHNICAL_PREVIEWS[0];
   const selectedCityProbePreviewState =
     cityProbeTechnicalImageStates[selectedCityProbePreview.id];
+
+  useEffect(() => {
+    if (!cityProbePreviewModalOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setCityProbePreviewModalOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [cityProbePreviewModalOpen]);
 
   useEffect(() => {
     const previousTitle = document.title;
@@ -779,7 +793,13 @@ export default function MicroprogramDeck() {
 
             <Reveal delay={160} className="cityprobe-preview-wrap">
               <div className="cityprobe-product-preview">
-                <div className="cityprobe-preview-main">
+                <button
+                  type="button"
+                  className="cityprobe-preview-main"
+                  aria-label={'放大檢視 City Probe ' + selectedCityProbePreview.title + ' 預覽圖'}
+                  disabled={selectedCityProbePreviewState === 'failed'}
+                  onClick={() => setCityProbePreviewModalOpen(true)}
+                >
                   {selectedCityProbePreviewState !== 'failed' ? (
                     <img
                       key={selectedCityProbePreview.id}
@@ -821,7 +841,10 @@ export default function MicroprogramDeck() {
                       </div>
                     </div>
                   </div>
-                </div>
+                  {/* <span className="cityprobe-preview-zoom-hint" aria-hidden="true"> */}
+                    {/* Click to enlarge
+                  </span> */}
+                </button>
                 <div className="cityprobe-preview-tabs" aria-label="City Probe preview selector">
                   {CITY_PROBE_TECHNICAL_PREVIEWS.map((preview, index) => {
                     const isSelected = preview.id === selectedCityProbePreviewId;
@@ -858,6 +881,41 @@ export default function MicroprogramDeck() {
             </Reveal>
           </div>
         </ScrollSection>
+
+        {cityProbePreviewModalOpen ? (
+          <div
+            className="cityprobe-preview-modal"
+            role="presentation"
+            onClick={() => setCityProbePreviewModalOpen(false)}
+          >
+            <div
+              className="cityprobe-preview-modal-dialog"
+              role="dialog"
+              aria-modal="true"
+              aria-label={'City Probe ' + selectedCityProbePreview.title + ' 預覽圖'}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <button
+                type="button"
+                className="cityprobe-preview-modal-close"
+                aria-label="關閉預覽圖"
+                onClick={() => setCityProbePreviewModalOpen(false)}
+              >
+                ×
+              </button>
+              <figure className="cityprobe-preview-modal-figure">
+                <img
+                  src={selectedCityProbePreview.src}
+                  alt={'City Probe ' + selectedCityProbePreview.title + ' preview'}
+                />
+                <figcaption>
+                  <strong>{selectedCityProbePreview.title}</strong>
+                  <span>{selectedCityProbePreview.description}</span>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        ) : null}
 
         <ScrollSection id="nuxt-websites" tone="soft" className="scroll-section--nuxt-websites">
           <div className="nuxt-website-shell">

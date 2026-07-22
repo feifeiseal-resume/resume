@@ -2133,7 +2133,9 @@
 
   .cityprobe-preview-tab::after,
   .cityprobe-preview-tab-index,
-  .cityprobe-preview-tab-copy {
+  .cityprobe-preview-tab-copy,
+  .cityprobe-preview-zoom-hint,
+  .cityprobe-preview-modal {
     display: none !important;
   }
 
