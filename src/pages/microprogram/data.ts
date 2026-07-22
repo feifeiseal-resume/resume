@@ -318,7 +318,7 @@ export const josuiAiWorkflow: AiWorkflow = {
 };
 
 export const cityProbeOverview: ProjectOverview = {
-  title: 'City Probe',
+  title: '都市探針 City Probe',
   subtitle: '學術研究管理平台',
   background:
     'City Probe 是配合大學學術研究開發的智慧城市市民參與平台。前端負責登入認證、權限管理、數據視覺化儀表板等核心功能，並以 Tailwind CSS 與自訂元件實作表格、圖表、表單驗證等互動元件。',
@@ -338,7 +338,7 @@ export const cityProbeOverview: ProjectOverview = {
     '多語系介面',
     '後台版面與共用元件',
   ],
-  tech: ['Nuxt 3', 'Vue 3', 'TypeScript', 'Pinia', 'Tailwind CSS', 'Axios', 'i18n', 'Leaflet / Protomaps / Google Map', 'vue-good-table-next'],
+  tech: ['Nuxt 3', 'Vue 3', 'TypeScript', 'Pinia', 'Tailwind CSS', 'i18n', 'Leaflet / Protomaps / Google Map', 'vue-good-table-next'],
 };
 
 export const cityProbeTechnical: ProjectTechnical = {

@@ -127,7 +127,15 @@ export const resumeData = {
         'AI 智慧瓦斯配送服務平台官網，與設計師合作開發，負責前端架構設計與視覺實作。採用 Nuxt 3 SSR 提升 SEO 表現，整合多種互動動畫與 RWD 設計，確保跨裝置完美呈現。實作包含產品介紹、服務模式展示、常見問題等模組，並優化載入效能與使用者體驗。',
     },
     {
-      tech: ['Vue 3', 'Pinia', 'Dashcode', 'Axios'],
+      tech: [
+        'Nuxt 3',
+        'TypeScript',
+        'Pinia',
+        'Tailwind CSS',
+        'i18n',
+        'Leaflet / Protomaps / Google Map',
+        'vue-good-table-next',
+      ],
       name: '都市探針 City Probe · 學術研究管理平台',
       screenshots: cityProbeScreenshots.length > 0 ? cityProbeScreenshots : undefined,
       description:

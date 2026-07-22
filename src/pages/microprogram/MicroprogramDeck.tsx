@@ -654,8 +654,8 @@ export default function MicroprogramDeck() {
             <div className="cityprobe-overview-copy">
               <Reveal>
                 <p className="section-kicker">Project 02</p>
-                <h2 className="section-title cityprobe-overview-title">City Probe</h2>
-                <p className="section-subtitle">Nuxt 3 企業管理後台</p>
+                <h2 className="section-title cityprobe-overview-title">都市探針 City Probe</h2>
+                <p className="section-subtitle">學術研究管理平台</p>
               </Reveal>
               <Reveal delay={80}>
                 <p className="section-lead cityprobe-overview-lead">{cityProbeOverview.background}</p>
