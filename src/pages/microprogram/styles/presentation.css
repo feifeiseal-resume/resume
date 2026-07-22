@@ -27,6 +27,15 @@
   --motion-ease: cubic-bezier(0.25, 1, 0.35, 1);
   --cover-to-about-progress: 0;
   --heading-to-thanks-progress: 0;
+  --timeline-to-josui-progress: 0;
+  --timeline-to-josui-zone: 0;
+  --josui-to-overview-progress: 0;
+  --josui-ai-to-cityprobe-progress: 0;
+  --josui-ai-to-cityprobe-zone: 0;
+  --cityprobe-to-overview-progress: 0;
+  --cityprobe-tech-to-nuxt-title-progress: 0;
+  --cityprobe-tech-to-nuxt-title-zone: 0;
+  --nuxt-title-to-websites-progress: 0;
 
   /*
     字級階層（隨視窗流體縮放）
@@ -112,6 +121,108 @@
   background:
     radial-gradient(circle at 8% 48%, rgba(234, 236, 251, 0.9) 0 5%, transparent 15%),
     linear-gradient(180deg, #ffffff 0%, #fafbff 62%, #f4f6ff 100%);
+}
+
+.deck-transition-bg-josui {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.deck-transition-bg-josui::before,
+.deck-transition-bg-josui::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transition: opacity 180ms linear;
+}
+
+.deck-transition-bg-josui::before {
+  opacity: calc((1 - var(--timeline-to-josui-progress)) * var(--timeline-to-josui-zone));
+  background:
+    radial-gradient(circle at 12% 42%, rgba(255, 255, 255, 0.55) 0 6%, transparent 18%),
+    linear-gradient(180deg, var(--paper-soft) 0%, #e2e6f8 100%);
+}
+
+.deck-transition-bg-josui::after {
+  opacity: calc(
+    var(--timeline-to-josui-progress) * (1 - var(--josui-to-overview-progress)) *
+      max(var(--timeline-to-josui-zone), var(--josui-to-overview-progress))
+  );
+  background:
+    radial-gradient(circle at 78% 38%, rgba(255, 255, 255, 0.16) 0 16%, transparent 34%),
+    radial-gradient(circle at 16% 72%, rgba(255, 255, 255, 0.08), transparent 32%),
+    linear-gradient(145deg, var(--accent-deep) 0%, #5568bc 46%, #4656a4 100%);
+}
+
+.deck-transition-bg-cityprobe {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.deck-transition-bg-cityprobe::before,
+.deck-transition-bg-cityprobe::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transition: opacity 180ms linear;
+}
+
+.deck-transition-bg-cityprobe::before {
+  opacity: calc((1 - var(--josui-ai-to-cityprobe-progress)) * var(--josui-ai-to-cityprobe-zone));
+  background:
+    radial-gradient(circle at 8% 48%, rgba(234, 236, 251, 0.9) 0 5%, transparent 15%),
+    linear-gradient(180deg, #ffffff 0%, #fafbff 62%, #f4f6ff 100%);
+}
+
+.deck-transition-bg-cityprobe::after {
+  opacity: calc(
+    var(--josui-ai-to-cityprobe-progress) * (1 - var(--cityprobe-to-overview-progress)) *
+      max(var(--josui-ai-to-cityprobe-zone), var(--cityprobe-to-overview-progress))
+  );
+  background:
+    radial-gradient(circle at 78% 38%, rgba(255, 255, 255, 0.16) 0 16%, transparent 34%),
+    radial-gradient(circle at 16% 72%, rgba(255, 255, 255, 0.08), transparent 32%),
+    linear-gradient(145deg, var(--accent-deep) 0%, #5568bc 46%, #4656a4 100%);
+}
+
+.deck-transition-bg-nuxt-websites {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.deck-transition-bg-nuxt-websites::before,
+.deck-transition-bg-nuxt-websites::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transition: opacity 180ms linear;
+}
+
+.deck-transition-bg-nuxt-websites::before {
+  opacity: calc((1 - var(--cityprobe-tech-to-nuxt-title-progress)) * var(--cityprobe-tech-to-nuxt-title-zone));
+  background:
+    radial-gradient(circle at 8% 48%, rgba(234, 236, 251, 0.9) 0 5%, transparent 15%),
+    linear-gradient(180deg, #ffffff 0%, #fafbff 62%, #f4f6ff 100%);
+}
+
+.deck-transition-bg-nuxt-websites::after {
+  opacity: calc(
+    var(--cityprobe-tech-to-nuxt-title-progress) * (1 - var(--nuxt-title-to-websites-progress)) *
+      max(var(--cityprobe-tech-to-nuxt-title-zone), var(--nuxt-title-to-websites-progress))
+  );
+  background:
+    radial-gradient(circle at 78% 38%, rgba(255, 255, 255, 0.16) 0 16%, transparent 34%),
+    radial-gradient(circle at 16% 72%, rgba(255, 255, 255, 0.08), transparent 32%),
+    linear-gradient(145deg, var(--accent-deep) 0%, #5568bc 46%, #4656a4 100%);
 }
 
 .scroll-nav {
@@ -254,6 +365,14 @@
 
 .scroll-section--soft {
   background: var(--paper-soft);
+}
+
+.scroll-section--career-journey {
+  background: color-mix(
+    in srgb,
+    var(--paper-soft) calc((1 - var(--timeline-to-josui-progress)) * 100%),
+    transparent
+  );
 }
 
 .scroll-section--dark {
@@ -441,7 +560,10 @@
    區塊小標 h2 ｜ 副標 subtitle ｜ 內文 lead / body
 ──────────────────────────────────────────────── */
 
+
+
 /* 註解：章節小標 / eyebrow */
+.title-kicker,
 .hero-eyebrow,
 .section-kicker {
   margin: 0 0 clamp(10px, 1.5vh, 16px);
@@ -454,6 +576,10 @@
 
 .section-kicker {
   color: var(--color-company-red);
+}
+
+.title-kicker {
+  color: var(--color-accent-blue-soft);
 }
 
 .hero-eyebrow {
@@ -1198,6 +1324,54 @@
   position: relative;
 }
 
+.scroll-section--josui-title,
+.scroll-section--cityprobe-title,
+.scroll-section--nuxt-websites-title {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.94);
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+.scroll-section--josui-title .scroll-section-inner,
+.scroll-section--cityprobe-title .scroll-section-inner,
+.scroll-section--nuxt-websites-title .scroll-section-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.josui-title-shell,
+.cityprobe-title-shell,
+.nuxt-websites-title-shell {
+  width: 100%;
+  text-align: center;
+}
+
+.josui-title-heading,
+.cityprobe-title-heading,
+.nuxt-websites-title-heading {
+  margin: 0;
+  font-size: clamp(3.5rem, 2rem + 8vw, 7.5rem);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: rgba(255, 255, 255, 0.96);
+  text-wrap: balance;
+  text-shadow: 0 0 36px rgba(255, 255, 255, 0.12);
+}
+
+.cityprobe-title-heading {
+  max-width: min(14ch, 100%);
+  margin-inline: auto;
+  font-size: clamp(2.75rem, 1.45rem + 5.8vw, 6rem);
+  line-height: 1.08;
+}
+
 .josui-overview-shell {
   width: min(100%, 1680px);
   margin-inline: auto;
@@ -1420,7 +1594,6 @@
 
 .josui-technical-title {
   max-width: min(19ch, 100%);
-  font-size: clamp(2.05rem, 1.34rem + 2.25vw, 3.45rem);
 }
 
 .josui-technical-grid {
@@ -1575,6 +1748,11 @@
 
 .scroll-section--josui-ai {
   position: relative;
+  background: color-mix(
+    in srgb,
+    var(--paper-card) calc((1 - var(--josui-ai-to-cityprobe-progress)) * 100%),
+    transparent
+  );
 }
 
 .josui-ai-shell {
@@ -1675,6 +1853,14 @@
   position: relative;
 }
 
+.scroll-section--cityprobe-technical {
+  background: color-mix(
+    in srgb,
+    var(--paper-card) calc((1 - var(--cityprobe-tech-to-nuxt-title-progress)) * 100%),
+    transparent
+  );
+}
+
 .cityprobe-overview-shell,
 .cityprobe-technical-shell {
   width: min(100%, 1680px);
@@ -1692,7 +1878,6 @@
 
 .cityprobe-technical-title {
   max-width: min(22ch, 100%);
-  font-size: clamp(2.35rem, 1.56rem + 2.55vw, 3.95rem);
   text-wrap: balance;
 }
 

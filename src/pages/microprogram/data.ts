@@ -38,11 +38,14 @@ export const slideOutline: { id: string; label: string }[] = [
   { id: 'about', label: '關於我' },
   { id: 'skills', label: '技術能力' },
   { id: 'timeline', label: '職涯歷程' },
+  { id: 'josui-title', label: 'JOSUI' },
   { id: 'josui-overview', label: 'JOSUI 專案' },
   { id: 'josui-technical', label: 'JOSUI 技術亮點' },
   { id: 'josui-ai', label: 'JOSUI AI 協作' },
+  { id: 'cityprobe-title', label: 'City Probe' },
   { id: 'cityprobe-overview', label: 'City Probe 專案' },
   { id: 'cityprobe-technical', label: 'City Probe 技術挑戰' },
+  { id: 'nuxt-websites-title', label: '官方網站' },
   { id: 'nuxt-websites', label: 'Nuxt 官網' },
   { id: 'where-im-heading', label: '職涯方向' },
   { id: 'thanks', label: 'Thank You' },
@@ -242,8 +245,8 @@ export interface ProjectOverview {
 }
 
 export const josuiOverview: ProjectOverview = {
-  title: 'JOSUI',
-  subtitle: 'Style shadcn UI beautifully',
+  title: 'Style shadcn UI beautifully',
+  subtitle: '',
   url: 'https://josui.space',
   background:
     'JOSUI 是一個為 shadcn/ui 與 Tailwind CSS 設計的主題色彩 Playground。使用者可以在瀏覽器中即時調整 UI token、預覽元件效果，並將色彩設定複製回自己的專案。這個專案源自實務中設計與開發對齊色彩 token 成本較高的問題，因此做成可互動、可預覽、可輸出的前端工具。',
@@ -319,8 +322,8 @@ export const josuiAiWorkflow: AiWorkflow = {
 };
 
 export const cityProbeOverview: ProjectOverview = {
-  title: '都市探針 City Probe',
-  subtitle: '學術研究管理平台',
+  title: '學術研究管理平台',
+  subtitle: '',
   background:
     'City Probe 是配合大學學術研究開發的智慧城市市民參與平台。前端負責登入認證、權限管理、數據視覺化儀表板等核心功能，並以 Tailwind CSS 與自訂元件實作表格、圖表、表單驗證等互動元件。',
   role: [

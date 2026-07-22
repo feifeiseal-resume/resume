@@ -76,7 +76,7 @@ const CITY_PROBE_TECHNICAL_PREVIEWS = [
   {
     id: 'map',
     title: 'Map View',
-    description: '地圖資料呈現',
+    description: '地圖資料呈現', 
     src: 'https://assets.josui.space/city-probe-4.png',
   },
 ] as const;
@@ -189,6 +189,94 @@ export default function MicroprogramDeck() {
 
       root.style.setProperty('--cover-to-about-progress', coverProgress.toFixed(3));
       root.style.setProperty('--heading-to-thanks-progress', thanksProgress.toFixed(3));
+
+      const timelineSection = document.getElementById('timeline');
+      const josuiTitleSection = document.getElementById('josui-title');
+      const josuiOverviewSection = document.getElementById('josui-overview');
+      const josuiTitleTop = josuiTitleSection?.offsetTop ?? root.clientHeight * 4;
+      const timelineTop = timelineSection?.offsetTop ?? 0;
+      const timelineHeight = timelineSection?.offsetHeight ?? root.clientHeight;
+      const timelineStart = timelineTop + timelineHeight * 0.45;
+      const timelineRange = Math.max(josuiTitleTop - timelineStart, 1);
+      const timelineToJosuiProgress = Math.min(
+        Math.max((root.scrollTop - timelineStart) / timelineRange, 0),
+        1,
+      );
+
+      const josuiOverviewTop = josuiOverviewSection?.offsetTop ?? josuiTitleTop + root.clientHeight;
+      const josuiTitleHeight = josuiTitleSection?.offsetHeight ?? root.clientHeight;
+      const josuiExitStart = josuiTitleTop + josuiTitleHeight * 0.45;
+      const josuiExitRange = Math.max(josuiOverviewTop - josuiExitStart, 1);
+      const josuiToOverviewProgress = Math.min(
+        Math.max((root.scrollTop - josuiExitStart) / josuiExitRange, 0),
+        1,
+      );
+      const inTimelineToJosuiZone = root.scrollTop >= timelineStart - 1 ? 1 : 0;
+
+      root.style.setProperty('--timeline-to-josui-progress', timelineToJosuiProgress.toFixed(3));
+      root.style.setProperty('--timeline-to-josui-zone', String(inTimelineToJosuiZone));
+      root.style.setProperty('--josui-to-overview-progress', josuiToOverviewProgress.toFixed(3));
+
+      const josuiAiSection = document.getElementById('josui-ai');
+      const cityprobeTitleSection = document.getElementById('cityprobe-title');
+      const cityprobeOverviewSection = document.getElementById('cityprobe-overview');
+      const cityprobeTitleTop = cityprobeTitleSection?.offsetTop ?? root.clientHeight * 8;
+      const josuiAiTop = josuiAiSection?.offsetTop ?? 0;
+      const josuiAiHeight = josuiAiSection?.offsetHeight ?? root.clientHeight;
+      const josuiAiStart = josuiAiTop + josuiAiHeight * 0.45;
+      const josuiAiRange = Math.max(cityprobeTitleTop - josuiAiStart, 1);
+      const josuiAiToCityprobeProgress = Math.min(
+        Math.max((root.scrollTop - josuiAiStart) / josuiAiRange, 0),
+        1,
+      );
+
+      const cityprobeOverviewTop =
+        cityprobeOverviewSection?.offsetTop ?? cityprobeTitleTop + root.clientHeight;
+      const cityprobeTitleHeight = cityprobeTitleSection?.offsetHeight ?? root.clientHeight;
+      const cityprobeExitStart = cityprobeTitleTop + cityprobeTitleHeight * 0.45;
+      const cityprobeExitRange = Math.max(cityprobeOverviewTop - cityprobeExitStart, 1);
+      const cityprobeToOverviewProgress = Math.min(
+        Math.max((root.scrollTop - cityprobeExitStart) / cityprobeExitRange, 0),
+        1,
+      );
+      const inJosuiAiToCityprobeZone = root.scrollTop >= josuiAiStart - 1 ? 1 : 0;
+
+      root.style.setProperty('--josui-ai-to-cityprobe-progress', josuiAiToCityprobeProgress.toFixed(3));
+      root.style.setProperty('--josui-ai-to-cityprobe-zone', String(inJosuiAiToCityprobeZone));
+      root.style.setProperty('--cityprobe-to-overview-progress', cityprobeToOverviewProgress.toFixed(3));
+
+      const cityprobeTechnicalSection = document.getElementById('cityprobe-technical');
+      const nuxtWebsitesTitleSection = document.getElementById('nuxt-websites-title');
+      const nuxtWebsitesSection = document.getElementById('nuxt-websites');
+      const nuxtWebsitesTitleTop = nuxtWebsitesTitleSection?.offsetTop ?? root.clientHeight * 11;
+      const cityprobeTechnicalTop = cityprobeTechnicalSection?.offsetTop ?? 0;
+      const cityprobeTechnicalHeight = cityprobeTechnicalSection?.offsetHeight ?? root.clientHeight;
+      const cityprobeTechnicalStart = cityprobeTechnicalTop + cityprobeTechnicalHeight * 0.45;
+      const cityprobeTechnicalRange = Math.max(nuxtWebsitesTitleTop - cityprobeTechnicalStart, 1);
+      const cityprobeTechToNuxtTitleProgress = Math.min(
+        Math.max((root.scrollTop - cityprobeTechnicalStart) / cityprobeTechnicalRange, 0),
+        1,
+      );
+
+      const nuxtWebsitesTop = nuxtWebsitesSection?.offsetTop ?? nuxtWebsitesTitleTop + root.clientHeight;
+      const nuxtWebsitesTitleHeight = nuxtWebsitesTitleSection?.offsetHeight ?? root.clientHeight;
+      const nuxtTitleExitStart = nuxtWebsitesTitleTop + nuxtWebsitesTitleHeight * 0.45;
+      const nuxtTitleExitRange = Math.max(nuxtWebsitesTop - nuxtTitleExitStart, 1);
+      const nuxtTitleToWebsitesProgress = Math.min(
+        Math.max((root.scrollTop - nuxtTitleExitStart) / nuxtTitleExitRange, 0),
+        1,
+      );
+      const inCityprobeTechToNuxtTitleZone = root.scrollTop >= cityprobeTechnicalStart - 1 ? 1 : 0;
+
+      root.style.setProperty(
+        '--cityprobe-tech-to-nuxt-title-progress',
+        cityprobeTechToNuxtTitleProgress.toFixed(3),
+      );
+      root.style.setProperty(
+        '--cityprobe-tech-to-nuxt-title-zone',
+        String(inCityprobeTechToNuxtTitleZone),
+      );
+      root.style.setProperty('--nuxt-title-to-websites-progress', nuxtTitleToWebsitesProgress.toFixed(3));
     };
 
     const requestUpdate = () => {
@@ -212,6 +300,9 @@ export default function MicroprogramDeck() {
   return (
     <div className="scroll-root" ref={rootRef}>
       <div className="deck-transition-bg" aria-hidden="true" />
+      <div className="deck-transition-bg-josui" aria-hidden="true" />
+      <div className="deck-transition-bg-cityprobe" aria-hidden="true" />
+      <div className="deck-transition-bg-nuxt-websites" aria-hidden="true" />
       <ScrollNav
         activeId={activeId}
         rootRef={rootRef}
@@ -443,13 +534,20 @@ export default function MicroprogramDeck() {
             </div>
           </div>
         </ScrollSection>
-
+        <ScrollSection id="josui-title" className="scroll-section--josui-title">
+          <div className="josui-title-shell">
+            <Reveal>
+              <p className="title-kicker">Project 01</p>
+              <h2 className="josui-title-heading">JOSUI</h2>
+            </Reveal>
+          </div>
+        </ScrollSection>
         <ScrollSection id="josui-overview" className="scroll-section--josui-overview">
           <div className="josui-overview-shell">
             <div className="josui-overview-copy">
               <Reveal>
                 <p className="section-kicker">Project 01 · JOSUI</p>
-                <h2 className="section-title josui-overview-title">JOSUI</h2>
+                <h2 className="section-title josui-overview-title">{josuiOverview.title}</h2>
                 <p className="section-subtitle">{josuiOverview.subtitle}</p>
                 {josuiOverview.url ? (
                   <a
@@ -626,7 +724,7 @@ export default function MicroprogramDeck() {
                 <p className="section-kicker">Project 01 · JOSUI</p>
                 <h2 className="section-title josui-ai-title">Using AI as a Workflow Partner</h2>
                 <p className="section-subtitle">
-                  在 JOSUI 中，我把 AI 視為協助拆解與產出初稿的工具，但不把判斷責任交給 AI。
+                在 JOSUI 中，我把 AI 視為提升效率的夥伴，協助我拆解需求、快速產出初稿，其中我負責設計思考、技術決策與品質把關。
                 </p>
               </Reveal>
             </div>
@@ -663,13 +761,22 @@ export default function MicroprogramDeck() {
           </div>
         </ScrollSection>
 
+        <ScrollSection id="cityprobe-title" className="scroll-section--cityprobe-title">
+          <div className="cityprobe-title-shell">
+            <Reveal>
+              <p className="title-kicker">Project 02</p>
+              <h2 className="cityprobe-title-heading">都市探針 City Probe</h2>
+            </Reveal>
+          </div>
+        </ScrollSection>
+
         <ScrollSection id="cityprobe-overview" tone="soft" className="scroll-section--cityprobe-overview">
           <div className="cityprobe-overview-shell">
             <div className="cityprobe-overview-copy">
               <Reveal>
                 <p className="section-kicker">Project 02 · 都市探針 City Probe</p>
-                <h2 className="section-title cityprobe-overview-title">都市探針 City Probe</h2>
-                <p className="section-subtitle">學術研究管理平台</p>
+                <h2 className="section-title cityprobe-overview-title">{cityProbeOverview.title}</h2>
+                <p className="section-subtitle">{cityProbeOverview.subtitle}</p>
               </Reveal>
               <Reveal delay={80}>
                 <p className="section-lead cityprobe-overview-lead">{cityProbeOverview.background}</p>
@@ -913,6 +1020,15 @@ export default function MicroprogramDeck() {
             </div>
           </div>
         ) : null}
+
+        <ScrollSection id="nuxt-websites-title" className="scroll-section--nuxt-websites-title">
+          <div className="nuxt-websites-title-shell">
+            <Reveal>
+              <p className="title-kicker">Project 03</p>
+              <h2 className="nuxt-websites-title-heading">官方網站</h2>
+            </Reveal>
+          </div>
+        </ScrollSection>
 
         <ScrollSection id="nuxt-websites" tone="soft" className="scroll-section--nuxt-websites">
           <div className="nuxt-website-shell">

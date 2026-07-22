@@ -1625,7 +1625,10 @@
   }
 
 
-  .deck-transition-bg {
+  .deck-transition-bg,
+  .deck-transition-bg-josui,
+  .deck-transition-bg-cityprobe,
+  .deck-transition-bg-nuxt-websites {
     display: none !important;
   }
 
@@ -1639,6 +1642,13 @@
 
   .scroll-section--heading {
     background: #fafbff !important;
+  }
+
+  .scroll-section--josui-title,
+  .scroll-section--cityprobe-title,
+  .scroll-section--nuxt-websites-title {
+    background: var(--accent-deep) !important;
+    color: #fff !important;
   }
 
   .scroll-section--thanks {
